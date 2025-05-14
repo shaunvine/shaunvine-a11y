@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; https://cdn.jsdelivr.net; img-src 'self' https://images.ctfassets.net data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cdn.contentful.com https://preview.contentful.com https://formspree.io https://www.google-analytics.com; frame-ancestors 'none';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' https://images.ctfassets.net data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cdn.contentful.com https://preview.contentful.com https://formspree.io https://www.google-analytics.com; frame-ancestors 'none';
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Referrer-Policy: strict-origin-when-cross-origin
   X-Content-Type-Options: nosniff
