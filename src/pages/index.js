@@ -12,7 +12,7 @@ const IndexPage = () => {
       <SEOmeta
         title="Home"
         description="Expert QA Testing and CMS Content Management with 8 years of experience. Improve website performance, streamline content workflows, and ensure error-free digital experiences."
-        image="/images/shaun-vine-portfolio.jpg"
+        image="/assets/images/shaun-vine-portfolio.jpg"
       />
 
       <main className="page">
