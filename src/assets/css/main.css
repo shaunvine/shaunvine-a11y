@@ -185,6 +185,23 @@ textarea,
   border-color: #000;
   border: 1px solid #000;
 }
+
+select {
+  color: black;
+}
+
+/* Make the placeholder option gray or black */
+select option[value=""] {
+  color: #000; /* or gray if you want it to look like a placeholder */
+}
+
+input[type="date"] {
+  height: 40px;
+  padding: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
 .form-row {
   margin-bottom: 1rem;
 }
