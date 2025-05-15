@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import { useLocation } from "@reach/router"
@@ -7,42 +7,33 @@ import "../assets/css/main.css"
 
 const Layout = ({ children }) => {
   const location = useLocation()
+  const [isHydrated, setIsHydrated] = useState(false)
 
-  // Set first-visit or visited on initial load only
+  // This ensures we're only running browser-side logic
   useEffect(() => {
     if (typeof window !== "undefined") {
       const hasVisited = localStorage.getItem("hasVisitedBefore")
+      const body = document.body
+
+      // Remove any previous classes
+      body.classList.remove("first-visit", "visited")
+
       if (!hasVisited) {
-        document.body.classList.add("first-visit")
+        body.classList.add("first-visit")
         localStorage.setItem("hasVisitedBefore", "true")
       } else {
-        document.body.classList.add("visited")
+        body.classList.add("visited")
       }
+
+      // Ensure hydration is complete
+      setIsHydrated(true)
     }
   }, [])
-
-  // Always animate logo on homepage load
-  useEffect(() => {
-    const element = document.getElementById("animate")
-    const isHome = location.pathname === "/"
-    if (element) {
-      if (isHome) {
-        // Reset animation
-        element.classList.remove("logo-animate")
-        // Trigger reflow so animation can run again
-        void element.offsetWidth
-        // Add animation class
-        element.classList.add("logo-animate")
-      } else {
-        element.classList.remove("logo-animate")
-      }
-    }
-  }, [location.pathname])
 
   return (
     <>
       <Navbar />
-      {children}
+      {isHydrated && children}
       <Footer />
     </>
   )

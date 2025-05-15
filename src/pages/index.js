@@ -19,7 +19,7 @@ const IndexPage = () => {
         <header className="hero">
           {/* <div className="hero-container"> */}
           <div className="hero-text">
-            <div className="first-visit drop-bounce-text">
+            <div className="drop-bounce-text">
               <span>
                 <h1>Expert QA Testing</h1>
               </span>
