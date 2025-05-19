@@ -6,13 +6,13 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-;;(require("events").EventEmitter.defaultMaxListeners = 15),
+;(require("events").EventEmitter.defaultMaxListeners = 15),
   (module.exports = {
     /* Your site config here */
     siteMetadata: {
-      title: "UI/Visual Designer / QA Tester | Seattle | Shaun Vine",
+      title: "Manual QA Tester | CMS Content Manager | Seattle | Shaun Vine",
       siteDescription:
-        "I ensure seamless design, cross-device compatibility, and optimized user experience to help you achieve your digital goals.",
+        "Manual QA Testing, and content workflow optimization. Let me help you improve your website performance, streamline your CMS, and ensure your content is always error-free.",
       author: "Shaun Vine",
       siteUrl: "https://shaunvine.com", // Set the site URL here
     },
