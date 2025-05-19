@@ -10,8 +10,8 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEOmeta
-        title="Home"
-        description="Expert QA Testing and CMS Content Management with 8 years of experience. Improve website performance, streamline content workflows, and ensure error-free digital experiences."
+        title="Website QA, Accessibility Audits & CMS Help | Shaun Vine"
+        description="Seattle-based QA Tester specializing in accessibility audits, manual testing, and CMS support. Reliable, detail-oriented, and results-driven."
         image="/assets/images/shaun-vine-portfolio.jpg"
       />
 

@@ -10,8 +10,8 @@ const About = () => {
   return (
     <Layout>
       <SEOmeta
-        title="About"
-        description="Shaun Vine | Web Content Coordinator | Work History | Client Feedback"
+        title="About Shaun Vine | Manual QA Tester & Accessibility Consultant in Seattle"
+        description="Shaun Vine is a Seattle-based Manual QA Tester and Accessibility Consultant helping businesses improve website quality, usability, and compliance. Learn more about his approach and experience."
         image="/images/shaun-vine-portfolio.jpg"
       />
       <main className="page">

@@ -14,8 +14,8 @@ const QaServices = ({
   return (
     <Layout>
       <SEOmeta
-        title="QA Services"
-        description="Shaun Vine | Manual QA Services | Client Feedback"
+        title="Manual QA Testing for Websites | Shaun Vine – Expert Website Quality Assurance"
+        description="Ensure your website is bug-free, user-friendly, and fully functional with expert Manual QA Testing. Shaun Vine provides detailed hands-on website testing tailored to improve usability and performance."
         image="/images/shaun-vine-portfolio.jpg"
       />
       <main className="page">

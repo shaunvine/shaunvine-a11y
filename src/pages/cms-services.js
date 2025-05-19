@@ -14,8 +14,8 @@ const CmsServices = ({
   return (
     <Layout>
       <SEOmeta
-        title="CMS Content Management & QA Services | Shaun Vine"
-        description="Keep your website content accurate, optimized, and accessible with expert CMS management services. I handle updates, QA, SEO, and accessibility for WordPress, Contentful, and Optimizely."
+        title="CMS Support & Updates | Shaun Vine – Efficient Content Management Services"
+        description="Keep your website content fresh and secure with professional CMS support and updates. Shaun Vine provides reliable content management services for WordPress, Contentful, and more."
         image="/images/shaun-vine-portfolio.jpg"
       />
       <main className="page">
