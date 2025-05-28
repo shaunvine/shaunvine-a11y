@@ -33,6 +33,7 @@ export const query = graphql`
         image {
           gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR)
         }
+        imageAltText
       }
     }
   }

@@ -6,6 +6,8 @@ import slugify from "slugify"
 import SEOmeta from "../components/SEOmeta"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { FaArrowRight } from "react-icons/fa"
+import { extractTextFromRaw } from "../utils/extractTextFromRaw"
+
 
 const ProjectTemplate = ({ data }) => {
   const {
@@ -31,7 +33,13 @@ const ProjectTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <SEOmeta title={title} description={description} />
+      <SEOmeta
+        title={title}
+        description={
+          description?.raw ? extractTextFromRaw(description.raw) : ""
+        }
+      />
+
       <main className="page">
         <div className="project-page">
           {/* hero */}
@@ -130,6 +138,7 @@ export const query = graphql`
         description # Added this field for alt text
         title # Added this to get the actual image title
       }
+
       portfolioCards {
         iterations
         cardDescription {
