@@ -15,34 +15,40 @@ const IndexPage = () => {
         image="/assets/images/shaun-vine-portfolio.jpg"
       />
 
-      <main className="page">
-        <header className="hero">
-          {/* <div className="hero-container"> */}
-          <div className="hero-text">
-            <div className="drop-bounce-text">
-              <span>
-                <h1>Expert QA Testing</h1>
-              </span>
-              <span>
-                <h1>+</h1>
-              </span>
-              <span className="cms">
-                <h1>CMS Content Management</h1>
-              </span>
-            </div>
-            <p className="hire">
-              Ensuring flawless digital experiences with 8 years of experience
-              in UI/Visual Design, QA Testing, and content workflow
-              optimization. Let me help you improve your website performance,
-              streamline your CMS, and ensure your content is always error-free.
-            </p>
+      {/* Hero Section */}
+      <header className="hero" id="hero" aria-labelledby="hero-heading">
+        <div className="hero-text">
+          <div className="drop-bounce-text">
+            <h1 id="hero-heading">Expert QA Testing</h1>
+            <h1>+</h1>
+            <h1 className="cms">CMS Content Management</h1>
           </div>
-          {/* </div> */}
-        </header>
-        <Services />
-        <Skills />
-        <ClientFeedback />
-        <AllProjects />
+          <p className="hire">
+            Ensuring flawless digital experiences with 8 years of experience in
+            UI/Visual Design, QA Testing, and content workflow optimization. Let
+            me help you improve your website performance, streamline your CMS,
+            and ensure your content is always error-free.
+          </p>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="page">
+        <section id="services" aria-labelledby="services-heading">
+          <Services />
+        </section>
+
+        <section id="skills" aria-labelledby="skills-heading">
+          <Skills />
+        </section>
+
+        <section id="client-feedback" aria-labelledby="feedback-heading">
+          <ClientFeedback />
+        </section>
+
+        <section id="projects" aria-labelledby="projects-heading">
+          <AllProjects />
+        </section>
       </main>
     </Layout>
   )

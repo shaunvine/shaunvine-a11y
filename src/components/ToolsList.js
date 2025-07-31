@@ -7,7 +7,7 @@ const ToolsList = ({ projects }) => {
   const newTools = setupTools(projects)
   return (
     <div className="tools-container">
-      <h3>projects</h3>
+      <h3>Work</h3>
 
     <div className="tools-list">
         {newTools.map((tool, index) => {

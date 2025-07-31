@@ -47,13 +47,13 @@ const Navbar = () => {
         </div>
         <div className={show ? "nav-links show-links" : "nav-links"}>
           <Link
-            to="/projects"
+            to="/work"
             className="nav-link"
             activeClassName="active-link"
             aria-label="See latest projects"
             onClick={() => setShow(false)}
           >
-            projects
+            work
           </Link>
           <Link
             to="/manual-qa-services"

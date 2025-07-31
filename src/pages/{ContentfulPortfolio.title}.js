@@ -113,8 +113,8 @@ const ProjectTemplate = ({ data }) => {
 
           {/* Rest of the content */}
           <section className="project-content">
-            <Link to="/projects" className="project-link">
-              Projects
+            <Link to="/work" className="project-link">
+              All Work
             </Link>
           </section>
         </div>

@@ -1081,27 +1081,13 @@ a.project:hover {
   box-shadow: var(--shadow-1);
   transition: var(--transition);
   text-transform: capitalize;
+  padding: .25rem 2.5rem;
 }
 
 .project-link:hover {
   color: #fff;
   background: #70747c;
   box-shadow: var(--shadow-2);
-}
-
-.project-link {
-  cursor: pointer;
-  appearance: none;
-  color: #000;
-  font-size: 1rem;
-  background: #fff;
-  border: none;
-  border-radius: var(--borderRadius);
-  letter-spacing: var(--letterSpacing);
-  padding: 0.25rem 1rem;
-  box-shadow: var(--shadow-1);
-  transition: var(--transition);
-  text-transform: capitalize;
 }
 
 .project-link:hover {

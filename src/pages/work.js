@@ -3,7 +3,7 @@ import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
 import AllProjects from "../components/AllProjects"
 
-const Projects = () => {
+const Work = () => {
   return (
     <Layout>
       <SEOmeta
@@ -18,4 +18,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default Work
