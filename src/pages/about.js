@@ -21,7 +21,8 @@ const About = () => {
               <ul>
                 <li>
                   Shaun is a Web Content Engineer and Manual QA tester with 8
-                  years experience.
+                  years experience. He is an active Professional Member of the International Association of Accessibility
+                  Professionals (IAAP)
                 </li>
               </ul>
             </span>

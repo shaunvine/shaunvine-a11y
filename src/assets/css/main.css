@@ -450,37 +450,35 @@ svg.logo {
 /*#########*/
 /* Footer */
 /*#########*/
-.page-footer {
-  text-align: center;
-  font-size: 0.75rem;
-  height: 4rem;
+
+.footer-content {
   display: flex;
-  align-items: center;
+  margin: 1rem;
+  flex-direction: column; /* Stack logo above text */
+  align-items: center; /* Center horizontally */
   justify-content: center;
-  background: var(--black);
-  color: var(--white);
+  text-align: center;
+  gap: 1rem; /* Space between rows */
 }
-.page-footer h5 {
-  margin-bottom: 0;
+
+.footer-logo img {
+  width: 120px; /* Responsive size */
+  height: auto;
+  max-width: 40vw; /* Shrinks on mobile */
 }
-.page-footer p {
-  margin-bottom: 0;
-}
-.page-footer span,
-.page-footer a {
+
+.footer-text a {
   color: var(--primary-500);
+  margin: 0 0.25rem;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
   text-decoration: underline;
 }
 
-span.footer-copyright {
-  padding-bottom: 3em;
-}
-.gatsby {
-  padding: 0 0.5em 0 0.25em;
-}
-
 a.react {
-  font-size: 1rem; /* Adjust font size */
+  font-size: 1rem;
   line-height: 1.55;
   vertical-align: center;
   padding: 0 0 0 0.25em;
@@ -940,7 +938,7 @@ span.project-title {
   line-height: 2;
   text-align: center;
   color: #000;
-  padding-top: .25rem;
+  padding-top: 0.25rem;
 }
 
 .project p {
@@ -1081,7 +1079,7 @@ a.project:hover {
   box-shadow: var(--shadow-1);
   transition: var(--transition);
   text-transform: capitalize;
-  padding: .25rem 2.5rem;
+  padding: 0.25rem 2.5rem;
 }
 
 .project-link:hover {
@@ -1424,7 +1422,7 @@ body.visited .drop-bounce-text span {
   line-height: 1.5;
   font-weight: 200;
   background-color: #4f5f82;
-  border-radius: 10% 10%
+  border-radius: 10% 10%;
 }
 .qa-img {
   border-radius: 10% 10%;
