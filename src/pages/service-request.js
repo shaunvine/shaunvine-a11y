@@ -186,7 +186,6 @@ const ServicerequestForm = ({ data }) => {
                   value={formData.startDate}
                   onChange={handleChange}
                   min={new Date().toISOString().split("T")[0]}
-                  onKeyDown={e => e.preventDefault()} // disables typing
                 />
               </div>
               <div className="form-row">
