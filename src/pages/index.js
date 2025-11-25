@@ -19,7 +19,7 @@ const IndexPage = () => {
       <header className="hero" id="hero" aria-labelledby="hero-heading">
         <div className="hero-text">
           <div className="drop-bounce-text">
-            <h1 id="hero-heading">Expert QA Testing</h1>
+            <h1 id="hero-heading">Acessibility Testing</h1>
             <h1>+</h1>
             <h1 className="cms">CMS Content Management</h1>
           </div>
