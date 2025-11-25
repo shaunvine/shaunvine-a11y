@@ -51,7 +51,7 @@ require("dotenv").config({
             google: [
               {
                 family: "Cabin Sketch",
-                variants: ["400", "700"],
+                variants: ["400"],
               },
               {
                 family: "Atkinson Hyperlegible",
