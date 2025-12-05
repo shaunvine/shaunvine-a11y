@@ -4,9 +4,7 @@ const ClientFeedback = () => {
   return (
     <div className="feedback-hero">
       <div className="feedback-heading">
-        
-          <h2 id="feedback-heading" >Client feedback</h2>
-       
+        <h2 className="section-title feedback-heading">What clients say</h2>
       </div>
       <div className="testimonials-container">
         <blockquote>

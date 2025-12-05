@@ -5,7 +5,7 @@ const Skills = () => {
     <div className="skills-hero">
       <div className="skills-heading">
         <div>
-          <h2 id="skills-heading" >Skills</h2>
+          <h2 className="section-title skills-heading">Skills</h2>
         </div>
       </div>
       <div className="skills-container">

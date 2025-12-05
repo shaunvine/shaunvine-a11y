@@ -51,12 +51,16 @@ const ContactForm = ({ data }) => {
       <main className="page">
         <section className="contact-page">
           <article className="contact-info">
-            <h3>Want To Get In Touch?</h3>
+            <h3 className="section-title contact-info">Want to get in touch?</h3>
+
             <p>Please complete the form and I will respond to your message.</p>
             <p>Thanks, Shaun</p>
           </article>
           <article>
-            <form className="form a11y-form contact-form" onSubmit={handleSubmit}>
+            <form
+              className="form a11y-form contact-form"
+              onSubmit={handleSubmit}
+            >
               <div className="form-row">
                 <label htmlFor="name">
                   your name<sup>*</sup>

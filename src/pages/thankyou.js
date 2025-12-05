@@ -14,7 +14,9 @@ const ThankYouPage = () => {
       <main className="page">
         <section className="thankyou-page">
           <div>
-            <h2>Thank You for contacting me.</h2>
+            <h2 className="section-title thankyou-page">
+              Thank you for contacting me.
+            </h2>
             <p>Your form has been successfully sent.</p>
             <p>
               I generally answer within 24 hours, unless I am off surfing or

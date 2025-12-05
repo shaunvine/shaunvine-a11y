@@ -3,10 +3,15 @@ import { Link } from "gatsby"
 import { useLocation } from "@reach/router"
 import { FiAlignJustify } from "react-icons/fi"
 // import logo from "../assets/images/Logo-2024.png"
+import CTA from "../components/CTA"
 
-const Navbar = () => {
+const Navbar = ({ theme, onToggleTheme }) => {
   const [show, setShow] = useState(false)
   const location = useLocation()
+
+  const nextThemeLabel =
+    theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
+
   return (
     <nav className="navbar">
       <div className="nav-center">
@@ -14,21 +19,9 @@ const Navbar = () => {
           <Link
             to="/"
             aria-label="Shaun Vine logo capital S and V"
-            className="logo"
+            className="logo-mark"
           >
-            <svg
-              className="logo"
-              alt="shaun vine portfolio"
-              id="Layer_1"
-              viewBox="0 0 797.96 742.63"
-            >
-              <defs className="logo">
-                {/* <linearGradient id="logo-gradient">
-                  <stop offset="0%" stopColor="#fff" />
-                  <stop offset="80%" stopColor="#fff" />
-                  <stop offset="100%" stopColor="#fff" />
-                </linearGradient> */}
-              </defs>
+            <svg className="logo" id="Layer_1" viewBox="0 1 800.96 450">
               <path
                 id="animate"
                 className="cls-1 logo-animate logo-static"
@@ -37,14 +30,30 @@ const Navbar = () => {
               />
             </svg>
           </Link>
-          <button
-            aria-label="Nav-Hamburger"
-            className="nav-btn"
-            onClick={() => setShow(!show)}
-          >
-            <FiAlignJustify />
-          </button>
+
+          {/* Controls cluster: hamburger + MOBILE theme toggle */}
+          <div className="nav-controls">
+            <button
+              aria-label="Open main navigation"
+              className="nav-btn"
+              onClick={() => setShow(!show)}
+              type="button"
+            >
+              <FiAlignJustify />
+            </button>
+
+            {/* MOBILE theme toggle */}
+            <button
+              type="button"
+              className="theme-toggle theme-toggle--mobile"
+              onClick={onToggleTheme}
+              aria-label={nextThemeLabel}
+            >
+              <span aria-hidden="true">{theme === "dark" ? "☀️" : "🌙"}</span>
+            </button>
+          </div>
         </div>
+
         <div className={show ? "nav-links show-links" : "nav-links"}>
           <Link
             to="/work"
@@ -73,7 +82,6 @@ const Navbar = () => {
           >
             CMS Services
           </Link>
-
           <Link
             to="/about"
             className="nav-link"
@@ -82,17 +90,28 @@ const Navbar = () => {
           >
             about
           </Link>
-          {!location.pathname.startsWith("/contact") && (
-            <div className="nav-link contact-link">
-              <Link
-                to="/contact"
-                className="btn"
-                onClick={() => setShow(false)}
-              >
-                contact
-              </Link>
-            </div>
-          )}
+
+          {/* Desktop cluster: Contact + DESKTOP theme toggle */}
+          <div className="nav-actions">
+            <CTA
+              href="/contact"
+              wrapperClassName="contact-link"
+              className="btn"
+              ariaLabel="Contact Shaun"
+            >
+              Contact
+            </CTA>
+
+            {/* DESKTOP theme toggle */}
+            <button
+              type="button"
+              className="theme-toggle theme-toggle--desktop"
+              onClick={onToggleTheme}
+              aria-label={nextThemeLabel}
+            >
+              <span aria-hidden="true">{theme === "dark" ? "☀️" : "🌙"}</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
