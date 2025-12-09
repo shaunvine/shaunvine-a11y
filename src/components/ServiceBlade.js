@@ -10,9 +10,11 @@ const ServiceBlade = ({
   layout = "single", // Layout variant (single | two | three) // NEW
   title,
   subtitle,
+  description,
   listHeading,
   items = [],
   footerText,
+  footerCTA,
   columns = [], // NEW: content for two- or three-column layouts
 }) => {
   const headingId = id ? `${id}-heading` : undefined
@@ -40,7 +42,7 @@ const ServiceBlade = ({
   return (
     <section
       id={id}
-      className={`services-grid ${bladeClass} ${layoutClass}`} // NEW
+      className={`services-grid ${bladeClass} ${layoutClass}`}
       aria-labelledby={headingId}
       role="region"
     >
@@ -49,12 +51,17 @@ const ServiceBlade = ({
           {/* ==========================
               CENTRALIZED HEADING
              ========================== */}
-          <BladeHeading id={headingId} title={title} subtitle={subtitle} />
+          <BladeHeading
+            id={headingId}
+            title={title}
+            subtitle={subtitle}
+            description={description}
+          />
 
           {/* ==========================
-              LIST SECTION (optional)
+             LIST SECTION (single / two only)
              ========================== */}
-          {(listHeading || items.length > 0) && (
+          {layout !== "three" && (listHeading || items.length > 0) && (
             <div className="service-list-container">
               {listHeading && (
                 <div className="service-includes">
@@ -65,11 +72,15 @@ const ServiceBlade = ({
               {items.length > 0 && (
                 <ul className="service-includes-list">
                   {items.map((item, index) => (
-                    <li key={index}>
+                    <li key={index} className="service-list-item">
                       <span className="li-icon-wrapper">
                         <FaCheck className="list-icon" />
-                        {item}
+                        <span className="li-label">{item.label}</span>
                       </span>
+
+                      {item.description && (
+                        <p className="li-description">{item.description}</p>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -87,8 +98,6 @@ const ServiceBlade = ({
              ========================== */}
           {layout === "two" && columns.length === 2 && (
             <div className="blade-two-col">
-              {" "}
-              {/* NEW */}
               <div className="blade-col">{columns[0]}</div>
               <div className="blade-col">{columns[1]}</div>
             </div>
@@ -99,12 +108,17 @@ const ServiceBlade = ({
              ========================== */}
           {layout === "three" && columns.length === 3 && (
             <div className="blade-three-col">
-              {" "}
-              {/* NEW */}
               <div className="blade-col">{columns[0]}</div>
               <div className="blade-col">{columns[1]}</div>
               <div className="blade-col">{columns[2]}</div>
             </div>
+          )}
+
+          {/* ==========================
+              FOOTER CTA (optional)
+              ========================== */}
+          {footerCTA && (
+            <div className="blade-footer-cta">{footerCTA}</div>
           )}
         </div>
       </div>
@@ -119,8 +133,14 @@ ServiceBlade.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   listHeading: PropTypes.string,
-  items: PropTypes.arrayOf(PropTypes.string),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    })
+  ),
   footerText: PropTypes.string,
+  footerCTA: PropTypes.node,
   columns: PropTypes.arrayOf(PropTypes.node), // NEW
 }
 

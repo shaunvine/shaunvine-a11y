@@ -1,13 +1,12 @@
 import React from "react"
 import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
-import Why from "../components/WhyAcessibility"
-import Specialize from "../components/Specialize"
 import Skills from "../components/Skills"
 import AllProjects from "../components/AllProjects"
 import ClientFeedback from "../components/ClientFeedback"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
+import { FaCheck } from "react-icons/fa"
 
 const IndexPage = () => {
   return (
@@ -47,77 +46,213 @@ const IndexPage = () => {
 
       {/* Main Content */}
       <main className="page">
-        {/* ===== BLADE 2: DARK THEME ===== */}
         <ServiceBlade
-          id="why-qa"
+          id="why-accessibility-matters"
           variant="dark"
-          title="Dark blade > Why Manual QA Still Matters"
-          subtitle="Automation doesn’t catch everything."
-          listHeading="Manual QA helps you:"
-          items={[
-            "See your site the way users actually experience it",
-            "Catch visual and content issues automation ignores",
-            "Validate complex user journeys end-to-end",
-            "Combine functional and accessibility checks in one pass",
-          ]}
-          footerText="I blend manual QA and accessibility to help you ship confident, inclusive releases."
-        />
-
-        {/* ===== BLADE 1: LIGHT THEME ===== */}
-        <ServiceBlade
-          id="why-accessibility"
-          variant="light"
-          title="Light Blade > Why Accessibility Matters"
+          layout="single"
+          title="Why Accessibility Matters"
           subtitle="Every user deserves equal access."
-          listHeading="But accessibility is also:"
+          description="But accessibility is also:"
           items={[
-            "A legal requirement (ADA, Section 508, AODA, EAA)",
-            "A trust signal for customers",
-            "A quality signal for search engines",
-            "A protection against lawsuits",
-            "A way to expand your audience",
+            {
+              label: "A legal requirement (ADA, Section 508, AODA, EAA)",
+            },
+            {
+              label: "A trust signal for customers",
+            },
+            {
+              label: "A quality signal for search engines",
+            },
+            {
+              label: "A protection against lawsuits",
+            },
+            {
+              label: "A way to expand your audience",
+            },
           ]}
           footerText="I help organizations identify issues before they become costly risks."
         />
 
         <ServiceBlade
-          id="two-col-example"
-          variant="strong"
+          id="what-i-specialize-in"
+          variant="light"
+          layout="single"
+          title="What I Specialize In"
+          subtitle=""
+          description=""
+          items={[
+            {
+              label: "WCAG 2.2 Accessibility Audits",
+              description:
+                "Using AXE, Wave, and manual techniques to identify issues that automated tools miss.",
+            },
+            {
+              label: "Manual Screen-Reader Testing",
+              description:
+                "NVDA (Windows) and VoiceOver (macOS/iOS) Real-world testing with real assistive technologies.",
+            },
+            {
+              label: "Keyboard-Only Navigation Review",
+              description:
+                "Verifying focus order, keyboard traps, drop-downs, modals, sliders, forms.",
+            },
+            {
+              label: "Manual QA Testing",
+              description:
+                "Functional testing to ensure smooth, consistent experiences across devices.",
+            },
+            ,
+            {
+              label: "Accessibility Remediation Guidance",
+              description:
+                "Actionable, developer-friendly recommendations to fix accessibility barriers.",
+            },
+            {
+              label: "Ongoing Accessibility Monitoring",
+              description: "Monthly or quarterly reviews for updated websites.",
+            },
+          ]}
+          footerText="I help organizations identify issues before they become costly risks."
+        />
+
+        <ServiceBlade
+          id="client-testimonials"
+          variant="dark"
           layout="two"
-          title="A Two Column Blade"
-          subtitle="Perfect for icon + text or two balanced blocks."
+          title="What My Clients Say"
+          subtitle=""
           columns={[
-            <p>This is a block of descriptive text in the first column.</p>,
-            <p>This is a block of descriptive text in the second column.</p>,
+            <div>
+              <blockquote className="testimonial">
+                <p>
+                  “Shaun helped us identify serious accessibility issues and
+                  guided our dev team through fixing them. Our site has never
+                  been easier to use.”
+                </p>
+                <footer>
+                  — <cite>Product Manager, Healthcare SaaS</cite>
+                </footer>
+              </blockquote>
+            </div>,
+            <div>
+              <blockquote class="testimonial">
+                <p>
+                  Shaun quickly identified accessibility issues we had missed
+                  and provided clear, actionable guidance. Our site is now
+                  WCAG-compliant and far more usable.
+                </p>
+                <footer>
+                  — <cite>Product Manager, Healthcare SaaS</cite>
+                </footer>
+              </blockquote>
+            </div>,
           ]}
         />
 
         <ServiceBlade
+          id="book-a-consultation"
+          variant="light"
+          layout="single"
+          title="Ready to Make Your Website Accessible?"
+          subtitle="Let’s remove barriers and deliver an inclusive experience for all."
+          description=""
+          items={[]}
+          footerCTA={
+              <CTA
+                href="/contact"
+                wrapperClassName="button-group"
+                className="request-quote-btn"
+                ariaLabel="Request an accessibility consultation with Shaun"
+              >
+                Request a consultation
+              </CTA>
+          }
+        />
+
+        <ServiceBlade
           id="three-col-stats"
-          variant="dark"
+          variant="strong"
           layout="three"
-          title="Stats That Matter"
+          title="THREE - Stats That Matter"
           subtitle="Visual storytelling with icons."
           columns={[
+            // LEFT COLUMN
+            <div>
+              <p className="stat-label">
+                Accessibility issues spotted before launch
+              </p>
+              <p className="stat-value">95%</p>
+            </div>,
 
-          <p>Left text goes here.</p>,
-            <p>Middle explanatory text goes here.</p>,
-            <p>Right explanatory text goes here.</p>,
-  
+            // MIDDLE COLUMN (main explanatory content)
+            <div>
+              <h3>Why these numbers matter</h3>
+              <p>
+                Manual QA and accessibility reviews catch the subtle issues that
+                automation often misses—especially on real user journeys.
+              </p>
+            </div>,
+
+            // RIGHT COLUMN
+            <div>
+              <p className="stat-label">Average turnaround for small sites</p>
+              <p className="stat-value">3–5 days</p>
+            </div>,
           ]}
         />
 
-        <section id="skills" aria-labelledby="skills-heading">
-          <Skills />
-        </section>
+        <ServiceBlade
+          id="three-col-specialties"
+          variant="dark"
+          layout="three"
+          title="What I Specialize In"
+          subtitle="Accessibility-first testing and QA"
+          columns={[
+            /* LEFT column */
+            <svg aria-hidden="true" className="stat-icon">
+              {/* icon */}
+            </svg>,
 
-        <section id="client-feedback" aria-labelledby="feedback-heading">
-          <ClientFeedback />
-        </section>
+            /* MIDDLE column (✅ items live here) */
+            <>
+              <h3 className="service-includes">But accessibility is also:</h3>
 
-        <section id="projects" aria-labelledby="projects-heading">
-          <AllProjects />
-        </section>
+              <ul className="service-includes-list">
+                {[
+                  {
+                    label: "WCAG 2.2 Accessibility Audits",
+                    description:
+                      "Manual and automated testing to catch issues tools miss.",
+                  },
+                  {
+                    label: "Screen Reader Testing",
+                    description:
+                      "NVDA and VoiceOver testing across real user journeys.",
+                  },
+                  {
+                    label: "Keyboard Navigation Review",
+                    description:
+                      "Focus order, traps, modals, menus, and forms.",
+                  },
+                ].map((item, index) => (
+                  <li key={index} className="service-list-item">
+                    <span className="li-icon-wrapper">
+                      <FaCheck className="list-icon" />
+                      <span className="li-label">{item.label}</span>
+                    </span>
+
+                    <p className="li-description">{item.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </>,
+
+            /* RIGHT column */
+            <svg aria-hidden="true" className="stat-icon">
+              {/* icon */}
+            </svg>,
+          ]}
+        />
       </main>
     </Layout>
   )

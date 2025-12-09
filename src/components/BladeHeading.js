@@ -7,6 +7,7 @@ const BladeHeading = ({
   id,
   title,
   subtitle,
+  description,
 }) => {
   return (
     <header className="blade-heading">
@@ -15,6 +16,7 @@ const BladeHeading = ({
       </Heading>
 
       {subtitle && <p className="blade-subtitle">{subtitle}</p>}
+      {description && <p className="blade-description">{description}</p>}
     </header>
   )
 }
@@ -24,6 +26,7 @@ BladeHeading.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
+  description: PropTypes.string,
 }
 
 export default BladeHeading

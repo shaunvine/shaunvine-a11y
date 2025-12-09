@@ -40,11 +40,18 @@ html {
   --heading-margin-bottom: 1.25rem;
   --heading-weight: 400;
 
+  /* Overall page + content widths */
+  --page-max-width: 72rem; /* ≈ 1152px, good for multi-col */
+  --content-max-width: 46rem; /* single-blade text */
+  --blade-padding-inline: 1rem;
+  --blade-padding-block: clamp(1rem, 2vw, 2rem);
+
   /* ===== SEMANTIC COLOR ROLES (defaults = LIGHT THEME) ===== */
 
   /* Page-level */
   --site-bg: #fef3c7; /* page background */
   --site-bg-strong: #b45309;
+  --site-bg-light: #fffbeb;
   --site-surface: #fff7db; /* cards, panels, blades */
   --site-surface-alt: #fffbeb; /* lighter variant for sections */
   --site-text: #b45309; /* main text color */
@@ -803,7 +810,7 @@ a.react {
 .hero {
   position: relative;
   margin: 4rem;
-  background-color: var(--site-bg);
+  background-color: var(--blade-light-bg);
   border: 2px solid var(--site-border-strong);
   border-radius: var(--borderRadius);
   padding: 2rem 2rem;
@@ -840,7 +847,7 @@ a.react {
 /*#########*/
 
 /* Grid container with two equal columns */
-.services-grid {
+/* .services-grid {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -848,12 +855,12 @@ a.react {
   margin-inline: auto;
   padding-inline: 1rem;
   align-items: center;
-  /* background-color: var(--site-bg-strong); */
+  background-color: var(--site-bg-strong); 
   border-radius: var(--borderRadius);
-}
+} */
 
 /* Each service column stretches full height and uses flex layout */
-.service-column {
+/* .service-column {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -861,14 +868,14 @@ a.react {
   border-radius: var(--borderRadius);
   padding: 1rem;
   height: 100%;
-}
+} */
 
 /* Wrap the content above the buttons */
-.service-content {
+/* .service-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-}
+} */
 
 /* Title styling */
 .service-title {
@@ -894,8 +901,9 @@ a.react {
 /* Container for service list */
 .service-list-container {
   border-top: 1px dashed var(--site-text);
+  border-bottom: 1px dashed var(--site-text);
   margin-bottom: 2rem;
-  padding-top: 1rem;
+  padding: 1rem 0;
 }
 
 /* Heading above list */
@@ -978,6 +986,18 @@ ul.pricing-service-includes-list {
   align-items: center;
 }
 
+.service-list-item {
+  margin-bottom: 1rem;
+}
+
+.li-description {
+  margin-left: 2.25rem; /* aligns under text, not icon */
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  color: var(--site-text-muted);
+  line-height: 1.4;
+}
+
 /* Button styles */
 .request-quote-btn {
   display: flex;
@@ -996,6 +1016,7 @@ ul.pricing-service-includes-list {
   transition: var(--transition);
   text-transform: capitalize;
   font-size: 1.25rem;
+  line-height: 0.5;
 }
 
 /*#########*/
@@ -1072,28 +1093,19 @@ ul.pricing-service-includes-list {
 }
 
 blockquote {
-  display: grid;
-  grid-column-gap: 2rem;
   color: --var(site-text);
-  border-left: 2px solid #fff;
-  padding: 1.2em 30px 1.2em 55px;
+  border-left: 5px solid var(--site-text-dark);
+  padding: 2rem;
   margin: 1rem auto;
   position: relative;
-  background: transparent;
-  max-width: 85vw;
-}
-
-.client-name {
-  color: #fff;
-  font-size: 1.25rem;
-  margin-top: 1rem;
-  align-self: end;
+  background-color: var(--site-surface-alt);
+  border-radius: var(--borderRadius);
 }
 
 blockquote::before {
   font-family: Arial;
   content: "\201C";
-  color: #fff;
+  color: var(--site-text-dark);
   font-size: 4.5rem;
   position: absolute;
   left: 10px;
@@ -1106,10 +1118,27 @@ blockquote::after {
 
 blockquote span.callout {
   display: grid;
-  color: var(--site-text);
+  color: var(--site-text-dark);
   font-size: 1.5rem;
   line-height: 1.25;
   margin: 0 0.75rem;
+}
+
+.testimonial p {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.testimonial footer {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--site-text-muted);
+}
+
+.testimonial cite {
+  font-style: normal;
+  font-weight: 500;
 }
 
 /*#########*/
@@ -2142,19 +2171,55 @@ li.list-custom-style-none {
 
 /* ============================
    BASE BLADE (layout only)
+   Mobile-first: stacked content
    ============================ */
 
 .blade {
   width: 100%;
 }
 
+/* Full-width blade section */
 .services-grid.blade {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 46rem;
+  display: block;
+  width: 100%;
   margin-inline: auto;
-  padding: clamp(3rem, 6vw, 5rem) 1rem;
+  padding: var(--blade-padding-block) var(--blade-padding-inline);
+}
+
+/* Center inner column */
+.service-column {
+  display: flex;
+  justify-content: center;
+}
+
+.service-content {
+  width: 100%;
+}
+
+/* ============================
+   SINGLE COLUMN LAYOUT
+   ============================ */
+
+/* Limit readable text width */
+.blade-layout--single .service-content {
+  max-width: var(--content-max-width); /* 46rem */
+  margin-inline: auto;
+}
+
+/* Optional: limit entire blade width as well */
+.blade-layout--single.services-grid.blade {
+  max-width: var(--content-max-width);
+}
+
+/* ============================
+   END BASE BLADE (layout only)
+   ============================ */
+
+/* =====================================
+   SHARED COLUMN STYLES (for all layouts)
+   ===================================== */
+.services-grid {
+  border-radius: var(--borderRadius);
 }
 
 .service-column {
@@ -2176,11 +2241,16 @@ li.list-custom-style-none {
 }
 
 .blade-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   max-width: 38rem;
 }
 
-/* List */
+.blade-description {
+  font-size: 1.5rem;
+  max-width: 38rem;
+}
+
+/* Lists */
 .service-list-container {
   margin-top: 2rem;
 }
@@ -2197,77 +2267,77 @@ li.list-custom-style-none {
   align-items: flex-start;
 }
 
-/* ============================
-   END BASE BLADE (layout only)
-   ============================ */
+/* SINGLE-COLUMN BLADE
+   (layout="single")
+   Mobile: 100% width, stacked (default)
+   Desktop: narrow text column centered (46rem)
+*/
 
-/* =====================================
-   SHARED COLUMN STYLES (for both layouts)
-   ===================================== */
+.blade-layout--single .service-content {
+  max-width: var(--content-max-width); /* 46rem */
+  margin-inline: auto;
+}
+
+/* Multi-column containers (start as 1 col on mobile) */
 
 .blade-two-col,
 .blade-three-col {
   display: grid;
+  grid-template-columns: 1fr; /* ✅ Mobile: stacked */
   gap: 2rem;
   margin-top: 2rem;
 }
 
 .blade-col {
   display: flex;
-  align-items: center; /* vertically center SVGs / text */
-  justify-content: center; /* horizontally center by default */
-  text-align: center; /* good default for stats/icons */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* =====================================
-   TWO-COLUMN LAYOUT (layout="two")
-   1fr / 1fr, centered block
-   ===================================== */
+/* TWO-COLUMN BLADE
+   (layout="two")
+   Mobile: 1 col (from base)
+   >= 768px: 2 columns, max 72rem
+*/
 
-.blade-layout--two .blade-two-col {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 60rem;
-  margin-inline: auto; /* center the grid within the blade */
+/* make the inner content use the wider width */
+.blade-layout--two .service-content {
+  max-width: var(--page-max-width); /* 72rem */
+  margin-inline: auto;
 }
 
-/* =====================================
-   THREE-COLUMN LAYOUT (layout="three")
-   side / 46rem / side (center matches hero width)
-   ===================================== */
-
-.blade-layout--three .blade-three-col {
-  grid-template-columns:
-    minmax(0, 1fr) /* left stat column */
-    minmax(0, 46rem) /* center content matches hero width */
-    minmax(0, 1fr); /* right stat column */
-
-  max-width: 80rem; /* total width cap */
-  margin-inline: auto; /* center the whole 3-col block */
-  align-items: center; /* vertically center all three cols */
+@media (min-width: 768px) {
+  .blade-layout--two .blade-two-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-/* If you want middle column text left-aligned but keep
-   side columns centered, you can optionally do this: */
-.blade-layout--three .blade-three-col .blade-col:nth-child(2) {
-  text-align: left;
-  align-items: flex-start;
+/* THREE-COLUMN BLADE
+   (layout="three")
+   Mobile: 1 col (from base)
+   >= 1024px: 3 cols (side / 46rem / side)
+*/
+
+/* give this blade the wider multi-col width */
+.blade-layout--three .service-content {
+  max-width: var(--page-max-width); /* 72rem */
+  margin-inline: auto;
 }
 
-/* =====================================
-   RESPONSIVE BEHAVIOR
-   (stack on smaller screens)
-   ===================================== */
-
-@media (max-width: 768px) {
-  .blade-two-col,
-  .blade-three-col {
-    grid-template-columns: 1fr; /* stack vertically */
-    max-width: 100%;
+@media (min-width: 1024px) {
+  .blade-layout--three .blade-three-col {
+    grid-template-columns:
+      minmax(0, 1fr) /* left stat / icon */
+      minmax(0, var(--content-max-width)) /* center text = 46rem */
+      minmax(0, 1fr); /* right stat / icon */
+    align-items: center;
   }
 
-  .blade-col {
-    justify-content: flex-start;
+  /* Optional: center column text left-aligned, side cols centered */
+  .blade-layout--three .blade-three-col .blade-col:nth-child(2) {
     text-align: left;
+    align-items: flex-start;
   }
 }
 
@@ -2283,9 +2353,28 @@ li.list-custom-style-none {
 }
 
 /* Dark blade */
+.blade--dark .service-title {
+  color: var(--blade-dark-title);
+}
+
 .blade--dark {
   background-color: var(--blade-dark-bg);
   color: var(--blade-dark-text);
+}
+
+.blade--dark .li-icon-wrapper {
+  color: var(--site-text-light);
+}
+
+.blade--dark .service-list-container {
+  border-top: 1px dashed var(--site-text-light);
+  border-bottom: 1px dashed var(--site-text-light);
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+}
+
+.blade--dark .testimonial p {
+  color: var(--site-text-dark);
 }
 
 /* Strong / highlight blade */
