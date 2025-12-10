@@ -6,7 +6,7 @@ import { graphql } from "gatsby"
 import { FaCheck } from "react-icons/fa"
 import { Link } from "gatsby"
 
-const QaServices = ({
+const Services = ({
   data: {
     allContentfulPortfolio: { nodes: projects },
   },
@@ -14,7 +14,7 @@ const QaServices = ({
   return (
     <Layout>
       <SEOmeta
-        title="Seattle Manual QA Testing | Accessibility Audits | CMS Support"
+        title="Accessibility Audits | CMS Support"
         description="Seattle-based Manual QA and Accessibility Testing expert ensuring bug-free, accessible websites for local Businesses and Agencies"
         image="/images/shaun-vine-portfolio.jpg"
       />
@@ -292,4 +292,4 @@ export const query = graphql`
   }
 `
 
-export default QaServices
+export default Services

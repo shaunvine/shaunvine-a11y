@@ -55,7 +55,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
         </div>
 
         <div className={show ? "nav-links show-links" : "nav-links"}>
-          <Link
+          {/* <Link
             to="/work"
             className="nav-link"
             activeClassName="active-link"
@@ -63,15 +63,15 @@ const Navbar = ({ theme, onToggleTheme }) => {
             onClick={() => setShow(false)}
           >
             work
-          </Link>
+          </Link> */}
           <Link
-            to="/manual-qa-services"
+            to="/services"
             className="nav-link"
             activeClassName="active-link"
             aria-label="Find out more about QA services"
             onClick={() => setShow(false)}
           >
-            QA Services
+            Services
           </Link>
           <Link
             to="/cms-services"

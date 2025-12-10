@@ -21,6 +21,9 @@ html {
   --smallText: 0.8em;
   --extraSmallText: 0.7em;
 
+  --statMainFont: "Nato Sans", sans-serif;
+  --statMainFill: #383599;
+
   --borderRadius: 0.75rem;
   --letterSpacing: 1px;
   --transition: 0.2s ease-in-out;
@@ -750,6 +753,58 @@ a.react {
 }
 
 /*#########*/
+/* Back To Top */
+/*#########*/
+
+.back-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.5rem;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  color: var(--cta-bg);
+  background-color: var(--site-bg-light);
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.back-to-top:hover {
+  color: var(--site-surface);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/*#########*/
 /* Error */
 /*#########*/
 .error-page {
@@ -1011,7 +1066,7 @@ ul.pricing-service-includes-list {
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
   margin-top: 2rem;
-  padding: 1.25rem 0.5rem;
+  padding: 1.25rem 2.5rem;
   box-shadow: var(--shadow-1);
   transition: var(--transition);
   text-transform: capitalize;
@@ -2329,7 +2384,7 @@ li.list-custom-style-none {
   .blade-layout--three .blade-three-col {
     grid-template-columns:
       minmax(0, 1fr) /* left stat / icon */
-      minmax(0, var(--content-max-width)) /* center text = 46rem */
+      minmax(0, 1fr)
       minmax(0, 1fr); /* right stat / icon */
     align-items: center;
   }
@@ -2339,6 +2394,196 @@ li.list-custom-style-none {
     text-align: left;
     align-items: flex-start;
   }
+}
+
+/* ============================
+   STAT CARDS – MINIMAL, SAFE
+   ============================ */
+
+.stat-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* SVG wrapper fills available width */
+.stat-icon {
+  width: 100%;
+}
+
+/* SVG fills the column */
+.stat-icon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Card background */
+.bg-card {
+  fill: transparent;
+  stroke: var(--site-border-strong, #b45309);
+  stroke-width: 1.5;
+  fill: #fef3c7;
+}
+
+/* Text styles */
+.stat-label {
+  fill: var(--site-text-muted, #78350f);
+  font-family: var(
+    --bodyFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stat-main {
+  fill: var(--statMainFill);
+  font-family: var(
+    --statMainFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 2rem;
+  padding-top: 1rem;
+}
+
+.stat-percentage {
+  fill: var(--statMainFill);
+  font-family: var(
+    --statMainFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.stat-sub-main {
+  fill: var(--site-text-muted, #78350f);
+  font-family: var(
+    --statMainFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.stat-sub-secondary {
+  fill: var(--site-text-muted, #78350f);
+  font-family: var(
+    --statMainFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.stat-percentage-secondary {
+  fill: var(--statMainFill);
+  font-family: var(
+    --statMainFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Secondary comparison text */
+.stat-secondary-label {
+  fill: var(--site-text-muted, #78350f);
+  font-family: var(
+    --bodyFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 0.7rem;
+}
+
+.stat-secondary-value {
+  fill: var(--site-text, #b45309);
+  font-family: var(
+    --bodyFont,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Bars for comparison */
+.stat-bar {
+  fill: var(--site-border-subtle, #f5e0b7);
+}
+
+.stat-bar--high {
+  fill: var(--site-bg-strong, #b45309);
+}
+
+.stat-bar--low {
+  fill: #fcd34d;
+}
+
+/* Cart icon pieces */
+.cart-basket {
+  fill: var(--site-surface-alt, #fffbeb);
+  stroke: var(--site-border-strong, #b45309);
+  stroke-width: 2;
+}
+
+.cart-handle {
+  fill: none;
+  stroke: var(--site-border-strong, #b45309);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.cart-grid-line {
+  stroke: #fcd34d;
+  stroke-width: 1.5;
+}
+
+.cart-wheel {
+  fill: var(--site-bg-strong, #b45309);
+}
+
+/* ============================
+   CUSTOMER LOYALTY STAT
+   ============================ */
+
+.customer-loyalty-stat .meter-bg {
+  fill: none;
+  stroke: #fcd34d;
+  stroke-width: 10;
+  opacity: 0.4;
+}
+
+.customer-loyalty-stat .heart {
+  fill: #b45309;
 }
 
 /* ============================

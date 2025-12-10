@@ -7,6 +7,8 @@ import ClientFeedback from "../components/ClientFeedback"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
 import { FaCheck } from "react-icons/fa"
+import CustomerLoyaltyStat from "../components/CustomerLoyaltyStat"
+import CartAbandonmentStat from "../components/CartAbandonmentStat"
 
 const IndexPage = () => {
   return (
@@ -116,6 +118,18 @@ const IndexPage = () => {
         />
 
         <ServiceBlade
+          id="accessibility-stats"
+          variant="light"
+          layout="two"
+          title="Accessibility impacts real customer behavior"
+          subtitle="These aren’t edge cases — they are your customers."
+          columns={[
+            <CartAbandonmentStat key="cart" />,
+
+            <CustomerLoyaltyStat key="loyalty" />,
+          ]}
+        />
+        <ServiceBlade
           id="client-testimonials"
           variant="dark"
           layout="two"
@@ -158,15 +172,40 @@ const IndexPage = () => {
           description=""
           items={[]}
           footerCTA={
-              <CTA
-                href="/contact"
-                wrapperClassName="button-group"
-                className="request-quote-btn"
-                ariaLabel="Request an accessibility consultation with Shaun"
-              >
-                Request a consultation
-              </CTA>
+            <CTA
+              href="/contact"
+              wrapperClassName="button-group"
+              className="request-quote-btn"
+              ariaLabel="Request an accessibility consultation with Shaun"
+            >
+              Request a consultation
+            </CTA>
           }
+        />
+
+        <ServiceBlade
+          id="accessibility-stats"
+          variant="light"
+          layout="three" // <-- important: tells ServiceBlade to use 3-col layout
+          title="Accessibility impacts real customer behavior"
+          subtitle="These aren’t edge cases — they are your customers."
+          columns={[
+            <CartAbandonmentStat key="cart" />,
+
+            <CustomerLoyaltyStat key="loyalty" />,
+
+            // 3rd column – another placeholder stat
+            <div className="stat-card" key="stat-3">
+              <p className="stat-number">1 in 4</p>
+              <p className="stat-label">
+                adults in the U.S. lives with a disability
+              </p>
+              <p className="stat-footnote">
+                Accessible design improves the experience for a huge portion of
+                your audience.
+              </p>
+            </div>,
+          ]}
         />
 
         <ServiceBlade

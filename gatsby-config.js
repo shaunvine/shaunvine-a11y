@@ -6,7 +6,7 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-;(require("events").EventEmitter.defaultMaxListeners = 15),
+;;(require("events").EventEmitter.defaultMaxListeners = 15),
   (module.exports = {
     /* Your site config here */
     siteMetadata: {
@@ -56,6 +56,10 @@ require("dotenv").config({
               {
                 family: "Atkinson Hyperlegible",
                 variants: ["400", "700"],
+              },
+              {
+                family: "Noto Sans",
+                variants: ["100", "200", "600", "700"],
               },
             ],
           },

@@ -1,6 +1,7 @@
 // src/components/Layout.js
 import React, { useEffect, useState } from "react"
 import Navbar from "./Navbar"
+import BackToTop from "./BackToTop"
 import Footer from "./Footer"
 import "normalize.css"
 import "../assets/css/main.css"
@@ -64,7 +65,7 @@ const Layout = ({ children }) => {
       <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
 
       <main id="main-content">{children}</main>
-
+      <BackToTop />
       <Footer />
     </>
   )
