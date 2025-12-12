@@ -86,8 +86,7 @@ const IndexPage = () => {
           columns={[
             {
               heading: "WCAG 2.2 Accessibility Audit",
-              subheading:
-                "A complete evaluation of your website or app, including:",
+              subheading: "",
               items: [
                 {
                   label: "Automated Testing",
@@ -104,7 +103,7 @@ const IndexPage = () => {
                   },
                 },
                 {
-                  label: "Automated Tesing Catches:",
+                  label: "Automated Testing Catches:",
                   description: "",
                   subList: {
                     heading: "",
@@ -121,39 +120,144 @@ const IndexPage = () => {
             },
             {
               heading: "Manual Screen-Reader Testing",
-              subheading:
-                "Real lajldjflajf ladkflf assistive tech, real user flows.",
+              subheading: "",
               items: [
                 {
-                  label: "Manual Screen-Reader Testing",
-                  description:
-                    "NVDA (Windows) and VoiceOver (macOS/iOS) — real-world testing with real assistive technologies.",
-                },
-                {
-                  label: "Keyboard-only navigation review",
-                  description:
-                    "Checking focus order, traps, modals, menus, and forms across your key user journeys.",
+                  label: "Testing Includes:",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [
+                      "NVDA (Windows)",
+                      "VoiceOver (Mac & iOS)",
+                      "Full page reading order",
+                      "Landmarks",
+                      "Forms & validation",
+                      "Modals, dropdowns, tabbed content",
+                      "Navigation menus",
+                      "Buttons & links",
+                      "Alerts & announcements",
+                    ],
+                  },
                 },
               ],
             },
             {
-              heading: "Ongoing QA & Support",
-              subheading: "Stay accessible as your site evolves.",
+              heading: "Keyboard-Only Navigation Review",
+              subheading: "",
               items: [
                 {
-                  label: "Manual QA Testing",
-                  description:
-                    "Regression and smoke testing after updates so new changes don’t break accessibility.",
-                },
-                {
-                  label: "Ongoing accessibility monitoring",
-                  description:
-                    "Monthly or quarterly check-ins to catch new issues as content and features change.",
+                  label: "Testing For:",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [
+                      "Focus order",
+                      "Keyboard traps",
+                      "Operability of interactive elements",
+                      "Skip links",
+                      "Modals that lock focus",
+                      "Carousels/sliders",
+                      "Buttons & links",
+                      "Form fields",
+                      "Accessible name and role",
+                    ],
+                  },
                 },
               ],
             },
           ]}
         />
+        <ServiceBlade
+          id="service-breakdown-2"
+          variant="light"
+          layout="three"
+          title=""
+          subtitle=""
+          description=""
+          columns={[
+            {
+              heading: "Manual Functional QA Testing",
+              subheading: "",
+              items: [
+                {
+                  label: "Cross-Browser Testing",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [
+                      "Chrome",
+                      "Safari",
+                      "Firefox",
+                      "Edge",
+                      "Mobile browsers",
+                      "Responsive views",
+                    ],
+                  },
+                },
+                {
+                  label: "Checks include:",
+                  description: "",
+                  subList: {
+                    heading: "",
+                    items: [
+                      "Navigation",
+                      "Forms",
+                      "Buttons",
+                      "Checkout flows",
+                      "Filters/sorting",
+                      "Modals",
+                      "Dynamic components",
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              heading: "Accessibility Remediation Guidance",
+              subheading: "",
+              items: [
+                {
+                  label: "You will receive:",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [
+                      "Clear issue descriptions",
+                      "WCAG reference for each issue",
+                      "Developer-ready instructions",
+                      "Code examples (when applicable)",
+                      "Prioritized fix roadmap",
+                      "Estimated impact / severity",
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              heading: "Post-Fix Verification (Re-Test)",
+              subheading: "",
+              items: [
+                {
+                  label: "After your team completes fixes, I’ll:",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [
+                      "Re-test all previous issues",
+                      "Validate improvements",
+                      "Ensure no new issues were introduced",
+                      "Confirm WCAG compliance",
+                      "Update your accessibility score",
+                      "Provide a final “Verified Fix” summary report",
+                    ],
+                  },
+                },
+              ],
+            },
+          ]}
+        />
+
         <ServiceBlade
           id="service-breakdown-2"
           variant="strong"
@@ -163,51 +267,26 @@ const IndexPage = () => {
           description=""
           columns={[
             {
-              heading: "Accessibility Audits",
-              subheading: "Find barriers before your users do.",
+              heading: "Keyboard-Only Navigation Review",
+              subheading: "",
               items: [
                 {
-                  label: "WCAG 2.2 Accessibility Audits",
-                  description:
-                    "Systematic reviews against WCAG 2.2 A/AA with clear, prioritized findings.",
-                },
-                {
-                  label: "Issue prioritization",
-                  description:
-                    "I help you focus on high-impact fixes first so teams can move quickly.",
-                },
-              ],
-            },
-            {
-              heading: "Manual Screen-Reader Testing",
-              subheading:
-                "Real lajldjflajf ladkflf assistive tech, real user flows.",
-              items: [
-                {
-                  label: "Manual Screen-Reader Testing",
-                  description:
-                    "NVDA (Windows) and VoiceOver (macOS/iOS) — real-world testing with real assistive technologies.",
-                },
-                {
-                  label: "Keyboard-only navigation review",
-                  description:
-                    "Checking focus order, traps, modals, menus, and forms across your key user journeys.",
-                },
-              ],
-            },
-            {
-              heading: "Ongoing QA & Support",
-              subheading: "Stay accessible as your site evolves.",
-              items: [
-                {
-                  label: "Manual QA Testing",
-                  description:
-                    "Regression and smoke testing after updates so new changes don’t break accessibility.",
-                },
-                {
-                  label: "Ongoing accessibility monitoring",
-                  description:
-                    "Monthly or quarterly check-ins to catch new issues as content and features change.",
+                  label: "Testing Includes:",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [
+                      "NVDA (Windows)",
+                      "VoiceOver (Mac & iOS)",
+                      "Full page reading order",
+                      "Landmarks",
+                      "Forms & validation",
+                      "Modals, dropdowns, tabbed content",
+                      "Navigation menus",
+                      "Buttons & links",
+                      "Alerts & announcements",
+                    ],
+                  },
                 },
               ],
             },
@@ -313,7 +392,7 @@ const IndexPage = () => {
               {/* icon */}
             </svg>,
 
-            /* MIDDLE column (✅ items live here) */
+            /* MIDDLE column items live here) */
             <>
               <h3 className="service-includes">But accessibility is also:</h3>
 
