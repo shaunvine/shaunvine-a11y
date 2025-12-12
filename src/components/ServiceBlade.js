@@ -94,7 +94,7 @@ const ServiceBlade = ({
           {footerText && <p className="service-includes">{footerText}</p>}
 
           {/* ==========================
-              TWO-COLUMN CONTENT (NEW)
+              TWO-COLUMN CONTENT
              ========================== */}
           {layout === "two" && columns.length === 2 && (
             <div className="blade-two-col">
@@ -104,22 +104,66 @@ const ServiceBlade = ({
           )}
 
           {/* ==========================
-              THREE-COLUMN CONTENT (NEW)
+              THREE-COLUMN CONTENT
              ========================== */}
           {layout === "three" && columns.length === 3 && (
             <div className="blade-three-col">
-              <div className="blade-col">{columns[0]}</div>
-              <div className="blade-col">{columns[1]}</div>
-              <div className="blade-col">{columns[2]}</div>
+              {columns.map((col, index) => (
+                <div className="blade-col three-col-card" key={index}>
+                  {/* Per-column heading + subheading */}
+                  {(col.heading || col.subheading) && (
+                    <>
+                      {col.heading && (
+                        <h3 className="three-col-heading">{col.heading}</h3>
+                      )}
+                      {col.subheading && (
+                        <p className="three-col-subheading">{col.subheading}</p>
+                      )}
+                    </>
+                  )}
+
+                  {/* Per-column list with label + description */}
+                  {col.items && col.items.length > 0 && (
+                    <ul className="service-includes-list three-col-list">
+                      {col.items.map((item, i) => (
+                        <li key={i} className="service-list-item">
+                          <span className="li-icon-wrapper">
+                            <FaCheck className="list-icon" />
+                            <span className="li-label">{item.label}</span>
+                          </span>
+
+                          {item.description && (
+                            <p className="li-description">{item.description}</p>
+                          )}
+                          {/* OPTIONAL nested list */}
+                          {item.subList && item.subList.items?.length > 0 && (
+                            <div className="li-sublist">
+                              {item.subList.heading && (
+                                <p className="li-sublist-heading">
+                                  {item.subList.heading}
+                                </p>
+                              )}
+
+                              <ul className="li-sublist-items">
+                                {item.subList.items.map((subItem, idx) => (
+                                  <li className="sub-item" key={idx}>{subItem}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
             </div>
           )}
 
           {/* ==========================
               FOOTER CTA (optional)
               ========================== */}
-          {footerCTA && (
-            <div className="blade-footer-cta">{footerCTA}</div>
-          )}
+          {footerCTA && <div className="blade-footer-cta">{footerCTA}</div>}
         </div>
       </div>
     </section>
@@ -141,7 +185,22 @@ ServiceBlade.propTypes = {
   ),
   footerText: PropTypes.string,
   footerCTA: PropTypes.node,
-  columns: PropTypes.arrayOf(PropTypes.node), // NEW
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      heading: PropTypes.string,
+      subheading: PropTypes.string,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          description: PropTypes.string,
+          subList: PropTypes.shape({
+            heading: PropTypes.string,
+            items: PropTypes.arrayOf(PropTypes.string),
+          }),
+        })
+      ),
+    })
+  ),
 }
 
 export default ServiceBlade

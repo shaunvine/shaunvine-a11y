@@ -1,295 +1,361 @@
 import React from "react"
 import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
-import { StaticImage } from "gatsby-plugin-image"
-import { graphql } from "gatsby"
+import CTA from "../components/CTA"
+import ServiceBlade from "../components/ServiceBlade"
 import { FaCheck } from "react-icons/fa"
-import { Link } from "gatsby"
+import CustomerLoyaltyStat from "../components/CustomerLoyaltyStat"
+import CartAbandonmentStat from "../components/CartAbandonmentStat"
 
-const Services = ({
-  data: {
-    allContentfulPortfolio: { nodes: projects },
-  },
-}) => {
+const IndexPage = () => {
   return (
     <Layout>
       <SEOmeta
-        title="Accessibility Audits | CMS Support"
-        description="Seattle-based Manual QA and Accessibility Testing expert ensuring bug-free, accessible websites for local Businesses and Agencies"
-        image="/images/shaun-vine-portfolio.jpg"
+        title="Website QA, Accessibility Audits & CMS Help | Shaun Vine"
+        description="Seattle-based QA Tester specializing in accessibility audits, manual testing, and CMS support. Reliable, detail-oriented, and results-driven."
+        image="/assets/images/shaun-vine-portfolio.jpg"
       />
       <main className="page">
-        <section className="qa-page">
-          <article className="qa-info">
-            <span className="qa-subhead">
-              <h1>Flawless User Experiences, One Click at a Time</h1>
-            </span>
-            <span className="qa-intro">
-              <ul>
-                <li>
-                  I have been based in Seattle, Washington since 1994. I offer
-                  specialized{" "}
-                  <strong> manual quality assurance testing </strong>
-                  and <strong> accessibility audits </strong>
-                  for Seattle Businesses, Digital Agencies, and Startups.
-                </li>
+        {/* Hero Section */}
 
-                <li>
-                  My hands-on approach ensures your website is thoroughly tested
-                  across all major browsers and devices, delivering flawless
-                  user experiences for your local customers.
-                </li>
+        <header className="hero" id="hero" aria-labelledby="hero-heading">
+          <div className="hero-text">
+            <div className="drop-bounce-text">
+              <h1 id="hero-heading">Accessibility Audits</h1>
+              <h1>+</h1>
+              <h1 className="cms">Manual QA Testing Services</h1>
+            </div>
+            <h2 className="hero-subhead">
+              Thorough accessibility testing for WCAG 2.2 compliance — paired
+              with functional QA to ensure your digital product works for every
+              user.
+            </h2>
+          </div>
+        </header>
 
-                <li>
-                  Whether you are a Seattle business launching a new site or
-                  maintaining an existing one, I provide detailed bug reporting,
-                  compliance checks with WCAG standards, and usability testing.
-                </li>
-                <li>
-                  I am a local expert who understands Seattle’s market and can
-                  help your business stay ahead with high-quality, accessible,
-                  and user-friendly websites.
-                </li>
-              </ul>
-            </span>
-            <Link
-              to="/service-request"
+        {/* Main Content */}
+
+        <ServiceBlade
+          id="why-hire-a-specialist"
+          variant="dark"
+          layout="single"
+          title="Why Hire a Specialist?"
+          subtitle="Automated tools find only 30% of accessibility issues. The remaining 70% require manual testing — the kind only a trained specialist can perform."
+          description=""
+          listHeading="As an Accessibility and QA professional, I combine:"
+          items={[
+            {
+              label: "Accessibility standards (WCAG 2.2) expertise",
+            },
+            {
+              label: "Manual QA testing discipline",
+            },
+            {
+              label: "Screen-reader testing expertise",
+            },
+            {
+              label: "Automated scan verification",
+            },
+            {
+              label: "Cross-browser functional testing",
+            },
+          ]}
+          footerText="This holistic approach ensures nothing gets missed."
+        />
+
+        <ServiceBlade
+          id="accessibility-stats"
+          variant="light"
+          layout="two"
+          title="Accessibility impacts real customer behavior"
+          subtitle=""
+          columns={[
+            <CartAbandonmentStat key="cart" />,
+
+            <CustomerLoyaltyStat key="loyalty" />,
+          ]}
+        />
+
+        <ServiceBlade
+          id="service-breakdown-1"
+          variant="light"
+          layout="three"
+          title="Service Breakdown"
+          subtitle=""
+          description=""
+          columns={[
+            {
+              heading: "WCAG 2.2 Accessibility Audit",
+              subheading:
+                "A complete evaluation of your website or app, including:",
+              items: [
+                {
+                  label: "Automated Testing",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [
+                      "AXE DevTools",
+                      "Wave",
+                      "NVDA (Windows)",
+                      "VoiceOver (macOS)",
+                      "VoiceOver (iOS)",
+                    ],
+                  },
+                },
+                {
+                  label: "Automated Tesing Catches:",
+                  description: "",
+                  subList: {
+                    heading: "",
+                    items: [
+                      "Missing alt text",
+                      "Low contrast",
+                      "Missing form labels",
+                      "AIRA misuse",
+                      "Structural issues",
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              heading: "Manual Screen-Reader Testing",
+              subheading:
+                "Real lajldjflajf ladkflf assistive tech, real user flows.",
+              items: [
+                {
+                  label: "Manual Screen-Reader Testing",
+                  description:
+                    "NVDA (Windows) and VoiceOver (macOS/iOS) — real-world testing with real assistive technologies.",
+                },
+                {
+                  label: "Keyboard-only navigation review",
+                  description:
+                    "Checking focus order, traps, modals, menus, and forms across your key user journeys.",
+                },
+              ],
+            },
+            {
+              heading: "Ongoing QA & Support",
+              subheading: "Stay accessible as your site evolves.",
+              items: [
+                {
+                  label: "Manual QA Testing",
+                  description:
+                    "Regression and smoke testing after updates so new changes don’t break accessibility.",
+                },
+                {
+                  label: "Ongoing accessibility monitoring",
+                  description:
+                    "Monthly or quarterly check-ins to catch new issues as content and features change.",
+                },
+              ],
+            },
+          ]}
+        />
+        <ServiceBlade
+          id="service-breakdown-2"
+          variant="strong"
+          layout="three"
+          title=""
+          subtitle=""
+          description=""
+          columns={[
+            {
+              heading: "Accessibility Audits",
+              subheading: "Find barriers before your users do.",
+              items: [
+                {
+                  label: "WCAG 2.2 Accessibility Audits",
+                  description:
+                    "Systematic reviews against WCAG 2.2 A/AA with clear, prioritized findings.",
+                },
+                {
+                  label: "Issue prioritization",
+                  description:
+                    "I help you focus on high-impact fixes first so teams can move quickly.",
+                },
+              ],
+            },
+            {
+              heading: "Manual Screen-Reader Testing",
+              subheading:
+                "Real lajldjflajf ladkflf assistive tech, real user flows.",
+              items: [
+                {
+                  label: "Manual Screen-Reader Testing",
+                  description:
+                    "NVDA (Windows) and VoiceOver (macOS/iOS) — real-world testing with real assistive technologies.",
+                },
+                {
+                  label: "Keyboard-only navigation review",
+                  description:
+                    "Checking focus order, traps, modals, menus, and forms across your key user journeys.",
+                },
+              ],
+            },
+            {
+              heading: "Ongoing QA & Support",
+              subheading: "Stay accessible as your site evolves.",
+              items: [
+                {
+                  label: "Manual QA Testing",
+                  description:
+                    "Regression and smoke testing after updates so new changes don’t break accessibility.",
+                },
+                {
+                  label: "Ongoing accessibility monitoring",
+                  description:
+                    "Monthly or quarterly check-ins to catch new issues as content and features change.",
+                },
+              ],
+            },
+          ]}
+        />
+
+        <ServiceBlade
+          id="what-i-specialize-in"
+          variant="light"
+          layout="single"
+          title="What I Specialize In"
+          subtitle=""
+          description=""
+          items={[
+            {
+              label: "WCAG 2.2 Accessibility Audits",
+              description:
+                "Using AXE, Wave, and manual techniques to identify issues that automated tools miss.",
+            },
+            {
+              label: "Manual Screen-Reader Testing",
+              description:
+                "NVDA (Windows) and VoiceOver (macOS/iOS) Real-world testing with real assistive technologies.",
+            },
+            {
+              label: "Keyboard-Only Navigation Review",
+              description:
+                "Verifying focus order, keyboard traps, drop-downs, modals, sliders, forms.",
+            },
+            {
+              label: "Manual QA Testing",
+              description:
+                "Functional testing to ensure smooth, consistent experiences across devices.",
+            },
+            ,
+            {
+              label: "Accessibility Remediation Guidance",
+              description:
+                "Actionable, developer-friendly recommendations to fix accessibility barriers.",
+            },
+            {
+              label: "Ongoing Accessibility Monitoring",
+              description: "Monthly or quarterly reviews for updated websites.",
+            },
+          ]}
+          footerText="I help organizations identify issues before they become costly risks."
+        />
+
+        <ServiceBlade
+          id="book-a-consultation"
+          variant="light"
+          layout="single"
+          title="Ready to Make Your Website Accessible?"
+          subtitle="Let’s remove barriers and deliver an inclusive experience for all."
+          description=""
+          items={[]}
+          footerCTA={
+            <CTA
+              href="/contact"
+              wrapperClassName="button-group"
               className="request-quote-btn"
-              aria-label="Start your project by filling out the project form"
+              ariaLabel="Request an accessibility consultation with Shaun"
             >
-              Start Your Project
-            </Link>
-          </article>
-          <article className="qa-intro-img">
-            <StaticImage
-              src="../assets/images/QA-service.png"
-              alt="Image of a keyboard and a computer screen with a QA testing interface"
-              className="qa-img"
-              placeholder="blurred"
-            />
-          </article>
-        </section>
-        <section className="qa-blurb-section">
-          <article>
-            <span className="qa-blurb">
-              In today’s digital world, every broken link or layout glitch can
-              cost you users. I offer comprehensive manual QA testing services
-              to make sure your site works exactly as intended—on major
-              browsers, the latest devices, every time. From detailed bug
-              reporting to accessibility audits, I ensure your site is
-              launch-ready and rock solid.
-            </span>
-          </article>
-        </section>
-        <section className="qa-services">
-          <span className="qa-subhead">
-            <h2>What’s Included:</h2>
-          </span>
-        </section>
-        {/* Start Servives Blade 1 */}
-        <section className="qa-included-page">
-          <article>
-            <StaticImage
-              src="../assets/images/Cloud-2.jpg"
-              alt="Word cloud displaying thirty terms related to Manual QA services, including test cases, bug reports, regression testing, usability, and quality assurance"
-              className="qa-img"
-              placeholder="blurred"
-            />
-          </article>
-          <article className="qa-included">
-            <span>
-              <h3>Functional & Compatibility Testing</h3>
-              <h4>Ensures your site behaves as expected</h4>
+              Request a consultation
+            </CTA>
+          }
+        />
 
-              <ul className="qa-custom-indent">
-                <li>
-                  <FaCheck className="included-check" />
-                  <strong>Cross-browser and cross-device testing</strong>
-                  <ul>
-                    <li>
-                      Your website is tested across major browsers (Chrome,
-                      Edge, Safari, Firefox) and modern devices (desktop,
-                      tablet, and mobile) to guarantee a consistent user
-                      experience.
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <FaCheck className="included-check" />
-                  <strong>Pre-launch checks and post-update validation</strong>
-                  <ul>
-                    <li>
-                      I provide a final sweep before site launches or content
-                      goes live, catching last-minute issues that automated
-                      tools may miss.
-                    </li>
-                  </ul>
-                </li>
+        <ServiceBlade
+          id="accessibility-stats"
+          variant="light"
+          layout="three" // <-- important: tells ServiceBlade to use 3-col layout
+          title="Accessibility impacts real customer behavior"
+          subtitle="These aren’t edge cases — they are your customers."
+          columns={[
+            <CartAbandonmentStat key="cart" />,
+
+            <CustomerLoyaltyStat key="loyalty" />,
+
+            // 3rd column – another placeholder stat
+            <div className="stat-card" key="stat-3">
+              <p className="stat-number">1 in 4</p>
+              <p className="stat-label">
+                adults in the U.S. lives with a disability
+              </p>
+              <p className="stat-footnote">
+                Accessible design improves the experience for a huge portion of
+                your audience.
+              </p>
+            </div>,
+          ]}
+        />
+
+        <ServiceBlade
+          id="three-col-specialties"
+          variant="dark"
+          layout="three"
+          title="What I Specialize In"
+          subtitle="Accessibility-first testing and QA"
+          columns={[
+            /* LEFT column */
+            <svg aria-hidden="true" className="stat-icon">
+              {/* icon */}
+            </svg>,
+
+            /* MIDDLE column (✅ items live here) */
+            <>
+              <h3 className="service-includes">But accessibility is also:</h3>
+
+              <ul className="service-includes-list">
+                {[
+                  {
+                    label: "WCAG 2.2 Accessibility Audits",
+                    description:
+                      "Manual and automated testing to catch issues tools miss.",
+                  },
+                  {
+                    label: "Screen Reader Testing",
+                    description:
+                      "NVDA and VoiceOver testing across real user journeys.",
+                  },
+                  {
+                    label: "Keyboard Navigation Review",
+                    description:
+                      "Focus order, traps, modals, menus, and forms.",
+                  },
+                ].map((item, index) => (
+                  <li key={index} className="service-list-item">
+                    <span className="li-icon-wrapper">
+                      <FaCheck className="list-icon" />
+                      <span className="li-label">{item.label}</span>
+                    </span>
+
+                    <p className="li-description">{item.description}</p>
+                  </li>
+                ))}
               </ul>
-            </span>
-          </article>
-        </section>
-        {/* End Servives Blade 1 */}
-        {/* Start Servives Blade 2 */}
-        <section className="qa-included-page hide-desktop">
-          <article className="qa-included">
-            <span>
-              <h3>Accessibility & Visual Consistency</h3>
-              <h4>
-                Makes your website usable for all visitors and visually aligned
-                with your brand
-              </h4>
-              <ul className="qa-custom-indent">
-                <li>
-                  <FaCheck className="included-check" />
-                  <strong>Accessibility compliance (WCAG standards)</strong>
-                  <ul>
-                    <li>
-                      Your website is reviewed against accessibility guidelines
-                      to ensure it’s inclusive and meets industry compliance
-                      standards.
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <FaCheck className="included-check" />
-                  <strong>UI/UX consistency and visual QA</strong>
-                  <ul>
-                    <li>
-                      I compare live pages to design mocks or brand guidelines
-                      to catch layout bugs, spacing issues, and UI
-                      inconsistencies.
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </span>
-          </article>
-          <article className="qa-column">
-            <StaticImage
-              src="../assets/images/Accessibility.jpg"
-              alt="Word cloud displaying thirty terms related to Manual QA services, including test cases, bug reports, regression testing, usability, and quality assurance"
-              className="qa-img"
-              placeholder="blurred"
-            />
-          </article>
-        </section>
-        {/* End Servives Blade 2 */}
-        {/* Start Servives Blade 3 */}
-        <section className="qa-included-page">
-          <article>
-            <StaticImage
-              src="../assets/images/QA-Process-Communication.jpg"
-              alt="Word cloud displaying thirty terms related to Manual QA services, including test cases, bug reports, regression testing, usability, and quality assurance"
-              className="qa-img"
-              placeholder="blurred"
-            />
-          </article>
-          <article className="qa-included">
-            <span>
-              <h3>QA Process & Communication</h3>
-              <h4>
-                Supports your internal team with accurate, documented testing
-                workflows
-              </h4>
-              <ul className="qa-custom-indent">
-                <li>
-                  <FaCheck className="included-check" />
-                  <strong>Manual QA for CMS-driven content</strong>
-                  <ul>
-                    <li>
-                      I check all CMS-published pages for content accuracy,
-                      formatting, and broken links to ensure a seamless end-user
-                      experience.
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <FaCheck className="included-check" />
-                  <strong className="qa-custom-indent">
-                    Documented bugs & Dev Team sync
-                  </strong>
-                  <ul>
-                    <li>
-                      You'll receive detailed test cases and bug reports, with
-                      direct communication to developers to streamline fixes.
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </span>
-          </article>
-        </section>
-        {/* End Servives Blade 3 */}
-        {/* Pricing Overview Blade */}
-        <section className="pricing-blade">
-          <article className="qa-included">
-            <h2>Pricing Overview</h2>
-            <span>
-              <h3 className="services-divider">
-                Manual QA Testing services are flexible and tailored to your
-                project size and scope.
-              </h3>
-              <ul className="pricing-service-includes-list">
-                <li>
-                  <span className="li-icon-wrapper-price">
-                    <FaCheck className="list-icon" />
-                    Cross-browser and cross-device testing
-                  </span>
-                  <ul className="list-custom-style-none">
-                    <li className="list-custom-style">
-                      Starting at $300.00/USD
-                    </li>
-                    <li className="list-custom-style">
-                      For basic QA of up to 3 pages or screens, including
-                      cross-browser testing, accessibility review, and visual
-                      consistency checks.
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <span className="li-icon-wrapper-price">
-                    <FaCheck className="list-icon" />
-                    Larger projects and ongoing QA support available
-                  </span>
-                  <ul className="list-custom-style-none">
-                    <li className="list-custom-style">
-                      Custom quotes provided after a project review.
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              <Link
-                to="/service-request"
-                className="request-quote-btn"
-                aria-label="Request a custom quote by filling out the project form"
-              >
-                Request Custom Quote
-              </Link>
-            </span>
-          </article>
-        </section>
-        {/* End Pricing Overview Blade */}
+            </>,
+
+            /* RIGHT column */
+            <svg aria-hidden="true" className="stat-icon">
+              {/* icon */}
+            </svg>,
+          ]}
+        />
       </main>
     </Layout>
   )
 }
 
-export const query = graphql`
-  {
-    allContentfulPortfolio(
-      sort: { title: ASC }
-      filter: { featured: { eq: true }, title: {} }
-    ) {
-      nodes {
-        id
-        title
-        image {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR)
-        }
-      }
-    }
-  }
-`
-
-export default Services
+export default IndexPage

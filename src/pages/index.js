@@ -1,9 +1,6 @@
 import React from "react"
 import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
-import Skills from "../components/Skills"
-import AllProjects from "../components/AllProjects"
-import ClientFeedback from "../components/ClientFeedback"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
 import { FaCheck } from "react-icons/fa"
@@ -18,43 +15,45 @@ const IndexPage = () => {
         description="Seattle-based QA Tester specializing in accessibility audits, manual testing, and CMS support. Reliable, detail-oriented, and results-driven."
         image="/assets/images/shaun-vine-portfolio.jpg"
       />
-
-      {/* Hero Section */}
-      <header className="hero" id="hero" aria-labelledby="hero-heading">
-        <div className="hero-text">
-          <div className="drop-bounce-text">
-            <h1 id="hero-heading">Digital Accessibility</h1>
-            <h1>+</h1>
-            <h1 className="cms">Manual QA Specialist</h1>
-          </div>
-          <h2 className="hero-subhead">
-            WCAG 2.2 | AXE & Wave | NVDA | VoiceOver | Cross-Browser QA
-          </h2>
-          <p className="hire">
-            I help businesses eliminate accessibility barriers, improve
-            usability, and ensure high-quality digital experiences for all
-            users.
-          </p>
-          <CTA
-            href="/contact"
-            wrapperClassName="button-group"
-            className="request-quote-btn"
-            ariaLabel="Request an accessibility consultation with Shaun"
-          >
-            Request a consultation
-          </CTA>
-        </div>
-      </header>
-
-      {/* Main Content */}
       <main className="page">
+        {/* Hero Section */}
+
+        <header className="hero" id="hero" aria-labelledby="hero-heading">
+          <div className="hero-text">
+            <div className="drop-bounce-text">
+              <h1 id="hero-heading">Digital Accessibility</h1>
+              <h1>+</h1>
+              <h1 className="cms">Manual QA Specialist</h1>
+            </div>
+            <h2 className="hero-subhead">
+              WCAG 2.2 | AXE & Wave | NVDA | VoiceOver | Cross-Browser QA
+            </h2>
+            <p className="hire">
+              I help businesses eliminate accessibility barriers, improve
+              usability, and ensure high-quality digital experiences for all
+              users.
+            </p>
+            <CTA
+              href="/contact"
+              wrapperClassName="button-group"
+              className="request-quote-btn"
+              ariaLabel="Request an accessibility consultation with Shaun"
+            >
+              Request a consultation
+            </CTA>
+          </div>
+        </header>
+
+        {/* Main Content */}
+
         <ServiceBlade
           id="why-accessibility-matters"
           variant="dark"
           layout="single"
           title="Why Accessibility Matters"
           subtitle="Every user deserves equal access."
-          description="But accessibility is also:"
+          description=""
+          listHeading="But accessibility is also:"
           items={[
             {
               label: "A legal requirement (ADA, Section 508, AODA, EAA)",
@@ -122,7 +121,7 @@ const IndexPage = () => {
           variant="light"
           layout="two"
           title="Accessibility impacts real customer behavior"
-          subtitle="These aren’t edge cases — they are your customers."
+          subtitle=""
           columns={[
             <CartAbandonmentStat key="cart" />,
 
@@ -139,12 +138,12 @@ const IndexPage = () => {
             <div>
               <blockquote className="testimonial">
                 <p>
-                  “Shaun helped us identify serious accessibility issues and
+                  Shaun helped us identify serious accessibility issues and
                   guided our dev team through fixing them. Our site has never
-                  been easier to use.”
+                  been easier to use.
                 </p>
                 <footer>
-                  — <cite>Product Manager, Healthcare SaaS</cite>
+                  — <cite>Digital Marketing Director</cite>
                 </footer>
               </blockquote>
             </div>,
@@ -225,7 +224,7 @@ const IndexPage = () => {
 
             // MIDDLE COLUMN (main explanatory content)
             <div>
-              <h3>Why these numbers matter</h3>
+              Why these numbers matter
               <p>
                 Manual QA and accessibility reviews catch the subtle issues that
                 automation often misses—especially on real user journeys.

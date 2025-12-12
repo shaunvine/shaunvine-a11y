@@ -16,27 +16,34 @@ html {
 :root {
   /* Typography & layout (same as before) */
   --defaultFontSize: 100%;
-  --headingFont: "Cabin Sketch", sans-serif;
+  --headingFont: "Lexend", sans-serif;
   --bodyFont: "Atkinson Hyperlegible", sans-serif;
-  --smallText: 0.8em;
-  --extraSmallText: 0.7em;
+  --smallText: 0.9em;
+  --extraSmallText: 0.8em;
 
-  --statMainFont: "Nato Sans", sans-serif;
-  --statMainFill: #383599;
+  /* Stat fonts and colors */
+  --statFont: "Nato Sans", sans-serif;
+  --statFontFill: var(--site-text-dark);
+  --statPercentageFill: #b45309;
+
+  /* 3-COL Background Colors */
+  --col-one-bg: var(--site-surface-alt); /* e.g. #fff7db */
+  --col-two-bg: var(--site-surface-alt); /* e.g. #fff7db */
+  --col-three-bg: var(--site-surface-alt); /* e.g. #fff7db */
 
   --borderRadius: 0.75rem;
   --letterSpacing: 1px;
   --transition: 0.2s ease-in-out;
-  --max-width: 1120px;
+  --max-width: 80rem;
   --fixed-width: 600px;
 
-  --font-size-h1: 3rem;
-  --font-size-h2: 2.441rem;
-  --font-size-h3: 1.8rem;
-  --font-size-h4: 1.5rem;
-  --font-size-h5: 1.25rem;
+  --font-size-h1: clamp(2.5rem, 5vw + 1rem, 3.5rem);
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.75rem;
+  --font-size-h4: 1.375rem;
+  --font-size-h5: 1.125rem;
 
-  /* optional: a slightly larger variant for “section titles” */
+  /* Optional: a slightly larger variant for “section titles” */
   --font-size-section-title: 2.441rem;
 
   --heading-line-height: 1.3;
@@ -44,7 +51,7 @@ html {
   --heading-weight: 400;
 
   /* Overall page + content widths */
-  --page-max-width: 72rem; /* ≈ 1152px, good for multi-col */
+  --page-max-width: 70rem; /* ≈ 1152px, good for multi-col */
   --content-max-width: 46rem; /* single-blade text */
   --blade-padding-inline: 1rem;
   --blade-padding-block: clamp(1rem, 2vw, 2rem);
@@ -861,27 +868,27 @@ a.react {
 /*#########*/
 /* Hero */
 /*#########*/
-
 .hero {
   position: relative;
-  margin: 4rem;
+  max-width: 100%;
+  margin: 4rem auto;
   background-color: var(--blade-light-bg);
   border: 2px solid var(--site-border-strong);
   border-radius: var(--borderRadius);
   padding: 2rem 2rem;
 }
 
-/* .hero-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 90%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-} */
+/* Limit hero subtext line length without cutting words */
+.hero-subhead {
+  font-family: var(--statFont);
+  font-weight: 100;
+  max-width: 60ch; /* ideal readable line length */
+  margin-inline: auto; /* center horizontally */
+  line-height: 1.4; /* improve readability */
+  text-wrap: balance; /* keeps lines visually even */
+  overflow-wrap: normal; /* prevents breaking words */
+  word-break: normal; /* ensures words are kept intact */
+}
 
 .hero-text {
   color: var(--site-text);
@@ -1071,7 +1078,7 @@ ul.pricing-service-includes-list {
   transition: var(--transition);
   text-transform: capitalize;
   font-size: 1.25rem;
-  line-height: 0.5;
+  line-height: 1;
 }
 
 /*#########*/
@@ -2113,11 +2120,6 @@ li.list-custom-style-none {
   .nav-links {
     margin-bottom: 2rem;
   }
-
-  .hero {
-    margin: 1rem;
-  }
-
   .hire {
     margin-bottom: 4rem;
     max-width: 90vw;
@@ -2293,16 +2295,19 @@ li.list-custom-style-none {
 
 .service-title {
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .blade-subtitle {
   font-size: 1.75rem;
   max-width: 38rem;
+  line-height: 1.25;
 }
 
 .blade-description {
   font-size: 1.5rem;
   max-width: 38rem;
+  line-height: 1.25;
 }
 
 /* Lists */
@@ -2338,16 +2343,9 @@ li.list-custom-style-none {
 .blade-two-col,
 .blade-three-col {
   display: grid;
-  grid-template-columns: 1fr; /* ✅ Mobile: stacked */
+  grid-template-columns: 1fr; /* Mobile: stacked */
   gap: 2rem;
   margin-top: 2rem;
-}
-
-.blade-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 /* TWO-COLUMN BLADE
@@ -2368,33 +2366,131 @@ li.list-custom-style-none {
   }
 }
 
-/* THREE-COLUMN BLADE
-   (layout="three")
-   Mobile: 1 col (from base)
-   >= 1024px: 3 cols (side / 46rem / side)
-*/
-
-/* give this blade the wider multi-col width */
+/* 3-COL give this blade the wider multi-col width */
 .blade-layout--three .service-content {
   max-width: var(--page-max-width); /* 72rem */
   margin-inline: auto;
 }
 
-@media (min-width: 1024px) {
+/* ============================
+   3-COL BLADE (mobile-first + aligned rows)
+   ============================ */
+
+/* Mobile: stack cards */
+.blade-layout--three .blade-three-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Card look (border/bg) */
+.blade-layout--three .blade-col.three-col-card {
+  border: 1px solid var(--site-border-strong);
+  background: var(--blade-light-bg);
+  border-radius: var(--borderRadius);
+  padding: 1.25rem;
+}
+
+/* Mobile spacing */
+.blade-layout--three .three-col-heading {
+  margin: 0;
+}
+.blade-layout--three .three-col-subheading {
+  margin: 0.5rem 0 0;
+}
+.blade-layout--three .three-col-list {
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 768px) {
   .blade-layout--three .blade-three-col {
-    grid-template-columns:
-      minmax(0, 1fr) /* left stat / icon */
-      minmax(0, 1fr)
-      minmax(0, 1fr); /* right stat / icon */
-    align-items: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+
+    /* These are the shared ROW tracks we want cards to align to */
+    grid-template-rows: auto auto 1fr;
+    align-items: stretch; /* equal-height cards -> bottom borders align */
   }
 
-  /* Optional: center column text left-aligned, side cols centered */
-  .blade-layout--three .blade-three-col .blade-col:nth-child(2) {
-    text-align: left;
-    align-items: flex-start;
+  /* Turn each card into a grid stack */
+  .blade-layout--three .blade-col.three-col-card {
+    display: grid;
+    grid-template-rows: auto auto 1fr; /* fallback if subgrid not supported */
+    align-content: start; /* don't vertically stretch content */
+    min-width: 0;
+  }
+
+  /* IMPORTANT: make header wrapper not block grid placement */
+  .blade-layout--three .three-col-header {
+    display: contents; /* keeps h3 + p as grid children */
+  }
+
+  /* Place items into the 3 shared rows */
+  .blade-layout--three .three-col-heading {
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .blade-layout--three .three-col-subheading {
+    grid-row: 2;
+    margin: 0;
+  }
+
+  .blade-layout--three .three-col-list {
+    grid-row: 3;
+    margin: 0;
+    padding: 0;
+
+    /* keeps list content from stretching even though row is 1fr */
+    align-self: start;
+  }
+
+  /* Use SUBGRID so row heights match across all 3 cards */
+  @supports (grid-template-rows: subgrid) {
+    .blade-layout--three .blade-col.three-col-card {
+      grid-template-rows: subgrid; /* share row sizing with parent */
+      grid-row: 1 / -1; /* span all three parent rows */
+    }
   }
 }
+
+/* Column-specific backgrounds */
+.blade-layout--three .three-col-card:nth-child(1) {
+  background: var(--col-one-bg);
+}
+
+.blade-layout--three .three-col-card:nth-child(2) {
+  background: var(--col-two-bg);
+}
+
+.blade-layout--three .three-col-card:nth-child(3) {
+  background: var(--col-three-bg);
+}
+
+.description-bold {
+  color: red;
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+
+/* ============================
+   3-COL SUB-LIST Items
+   ============================ */
+
+.li-sublist-heading {
+  margin: 1rem 0 .125rem 0;
+   font-size: var(--smallText);
+}
+
+li .sub-item {
+  font-size: var(--extraSmallText);
+  margin-bottom: 0.125rem;
+  line-height: 1.25;
+}
+
 
 /* ============================
    STAT CARDS – MINIMAL, SAFE
@@ -2444,34 +2540,34 @@ li.list-custom-style-none {
   text-transform: uppercase;
 }
 
-.stat-main {
-  fill: var(--statMainFill);
+.stat-text {
+  fill: var(--statFontFill);
   font-family: var(
-    --statMainFont,
+    --statFont,
     system-ui,
     -apple-system,
     "Segoe UI",
     sans-serif
   );
-  font-size: 2rem;
+  font-size: 1rem;
   padding-top: 1rem;
 }
 
 .stat-percentage {
-  fill: var(--statMainFill);
+  fill: var(--statPercentageFill);
   font-family: var(
-    --statMainFont,
+    --bodyFont,
     system-ui,
     -apple-system,
     "Segoe UI",
     sans-serif
   );
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: 600;
 }
 
 .stat-sub-main {
-  fill: var(--site-text-muted, #78350f);
+  fill: var(--statMainFill);
   font-family: var(
     --statMainFont,
     system-ui,
@@ -2535,71 +2631,30 @@ li.list-custom-style-none {
   font-weight: 600;
 }
 
-/* Bars for comparison */
-.stat-bar {
-  fill: var(--site-border-subtle, #f5e0b7);
-}
-
-.stat-bar--high {
-  fill: var(--site-bg-strong, #b45309);
-}
-
-.stat-bar--low {
-  fill: #fcd34d;
-}
-
-/* Cart icon pieces */
-.cart-basket {
-  fill: var(--site-surface-alt, #fffbeb);
-  stroke: var(--site-border-strong, #b45309);
-  stroke-width: 2;
-}
-
-.cart-handle {
-  fill: none;
-  stroke: var(--site-border-strong, #b45309);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-}
-
-.cart-grid-line {
-  stroke: #fcd34d;
-  stroke-width: 1.5;
-}
-
-.cart-wheel {
-  fill: var(--site-bg-strong, #b45309);
-}
-
-/* ============================
-   CUSTOMER LOYALTY STAT
-   ============================ */
-
-.customer-loyalty-stat .meter-bg {
-  fill: none;
-  stroke: #fcd34d;
-  stroke-width: 10;
-  opacity: 0.4;
-}
-
-.customer-loyalty-stat .heart {
-  fill: #b45309;
+figure.stat-figure {
+  color: var(--statFontFill);
+  margin: 0;
+  padding: 0;
 }
 
 /* ============================
    BLADE COLOR VARIANTS
    ============================ */
 
-/* Light blade */
+/***** Light blade *****/
 .blade--light {
   background-color: var(--blade-light-bg);
   color: var(--blade-light-text);
   border: var(--blade-light-border);
 }
 
-/* Dark blade */
+/***** Dark blade *****/
 .blade--dark .service-title {
   color: var(--blade-dark-title);
+}
+
+.blade--dark h3 {
+  color: var(--site-text-light);
 }
 
 .blade--dark {
@@ -2622,11 +2677,17 @@ li.list-custom-style-none {
   color: var(--site-text-dark);
 }
 
+/***** END Dark blade *****/
+
 /* Strong / highlight blade */
 .blade--strong {
   background-color: var(--blade-strong-bg);
   color: var(--blade-strong-text);
 }
+.blade--strong.blade-layout--three .three-col-card:nth-child(1) {
+  background: red;
+}
+
 /* Make icons and subtext inherit the blade text color */
 .blade--light .list-icon,
 .blade--strong .list-icon,

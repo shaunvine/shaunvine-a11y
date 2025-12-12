@@ -6,7 +6,7 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-;;(require("events").EventEmitter.defaultMaxListeners = 15),
+;;;;(require("events").EventEmitter.defaultMaxListeners = 15),
   (module.exports = {
     /* Your site config here */
     siteMetadata: {
@@ -50,8 +50,8 @@ require("dotenv").config({
           fonts: {
             google: [
               {
-                family: "Cabin Sketch",
-                variants: ["400"],
+                family: "Lexend",
+                variants: ["100", "200", "600", "700"],
               },
               {
                 family: "Atkinson Hyperlegible",
