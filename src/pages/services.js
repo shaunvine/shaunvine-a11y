@@ -17,22 +17,19 @@ const IndexPage = () => {
       />
       <main className="page">
         {/* Hero Section */}
-
         <header className="hero" id="hero" aria-labelledby="hero-heading">
-          <div className="hero-text">
-            <div className="drop-bounce-text">
-              <h1 id="hero-heading">Accessibility Audits</h1>
-              <h1>+</h1>
-              <h1 className="cms">Manual QA Testing Services</h1>
-            </div>
-            <h2 className="hero-subhead">
-              Thorough accessibility testing for WCAG 2.2 compliance — paired
-              with functional QA to ensure your digital product works for every
-              user.
-            </h2>
+          <div>
+            <h1 id="hero-heading" className="hero-heading">
+              <span>Accessibility Audits</span>
+              <span aria-hidden="true">+</span>
+              <span>Manual QA Testing Services</span>
+            </h1>
           </div>
+          <h2 className="hero-subhead">
+            Thorough accessibility testing for WCAG 2.2 compliance — paired with
+            functional QA to ensure your digital product works for every user.
+          </h2>
         </header>
-
         {/* Main Content */}
 
         <ServiceBlade
@@ -77,20 +74,16 @@ const IndexPage = () => {
         />
 
         <ServiceBlade
-          id="service-breakdown-1"
+          id="service-breakdown"
           variant="light"
           layout="three"
           title="Service Breakdown"
-          subtitle=""
-          description=""
           columns={[
             {
               heading: "WCAG 2.2 Accessibility Audit",
-              subheading: "",
               items: [
                 {
                   label: "Automated Testing",
-                  description: "",
                   subList: {
                     heading: "Using:",
                     items: [
@@ -104,9 +97,7 @@ const IndexPage = () => {
                 },
                 {
                   label: "Automated Testing Catches:",
-                  description: "",
                   subList: {
-                    heading: "",
                     items: [
                       "Missing alt text",
                       "Low contrast",
@@ -120,11 +111,9 @@ const IndexPage = () => {
             },
             {
               heading: "Manual Screen-Reader Testing",
-              subheading: "",
               items: [
                 {
                   label: "Testing Includes:",
-                  description: "",
                   subList: {
                     heading: "Using:",
                     items: [
@@ -172,9 +161,6 @@ const IndexPage = () => {
           id="service-breakdown-2"
           variant="light"
           layout="three"
-          title=""
-          subtitle=""
-          description=""
           columns={[
             {
               heading: "Manual Functional QA Testing",
@@ -259,33 +245,130 @@ const IndexPage = () => {
         />
 
         <ServiceBlade
-          id="service-breakdown-2"
-          variant="strong"
+          id="project-packages"
+          variant="light"
           layout="three"
-          title=""
+          title="Project Packages"
           subtitle=""
           description=""
           columns={[
             {
-              heading: "Keyboard-Only Navigation Review",
-              subheading: "",
+              badge: "Ideal for Small Sites",
+              heading: "Basic Accessibility Review",
+              subheading: "Ideal for Small Sites",
+              price: {
+                amount: "$499",
+                note: "one-time",
+              },
+              items: [
+                { label: "Up to 5 pages", description: "" },
+                { label: "AXE + WAVE report", description: "" },
+                { label: "Keyboard review", description: "" },
+                { label: "Quick findings & recommendations", description: "" },
+              ],
+              footerText: "$300–$450",
+              bladeFooterCTA: (
+                <a className="three-col-cta" href="/contact">
+                  Footer CTA
+                </a>
+              ),
+            },
+            {
+              heading: "Standard WCAG 2.2 Audit",
+              subheading: "Most Popular",
               items: [
                 {
-                  label: "Testing Includes:",
+                  label: "Up to 20 pages",
                   description: "",
                   subList: {
                     heading: "Using:",
-                    items: [
-                      "NVDA (Windows)",
-                      "VoiceOver (Mac & iOS)",
-                      "Full page reading order",
-                      "Landmarks",
-                      "Forms & validation",
-                      "Modals, dropdowns, tabbed content",
-                      "Navigation menus",
-                      "Buttons & links",
-                      "Alerts & announcements",
-                    ],
+                    items: [],
+                  },
+                },
+                {
+                  label: "Full manual audit",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Screen-reader testing",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Keyboard testing",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Screenshotdocumentation",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Prioritized remediation guide",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Final retest",
+                  description: "",
+                  subList: {
+                    heading: "Using:",
+                    items: [],
+                  },
+                },
+              ],
+            },
+            {
+              heading: "Premium Enterprise Audit",
+              subheading: "",
+              items: [
+                {
+                  label: "20+ pages",
+                  description: "",
+                  subList: {
+                    heading: "",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Deep manual testing",
+                  description: "",
+                  subList: {
+                    heading: "",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Multi-device + multi-browser QA",
+                  description: "",
+                  subList: {
+                    heading: "",
+                    items: [],
+                  },
+                },
+                {
+                  label: "Monthly monitoring",
+                  description: "",
+                  subList: {
+                    heading: "",
+                    items: [],
                   },
                 },
               ],
@@ -294,53 +377,13 @@ const IndexPage = () => {
         />
 
         <ServiceBlade
-          id="what-i-specialize-in"
-          variant="light"
-          layout="single"
-          title="What I Specialize In"
-          subtitle=""
-          description=""
-          items={[
-            {
-              label: "WCAG 2.2 Accessibility Audits",
-              description:
-                "Using AXE, Wave, and manual techniques to identify issues that automated tools miss.",
-            },
-            {
-              label: "Manual Screen-Reader Testing",
-              description:
-                "NVDA (Windows) and VoiceOver (macOS/iOS) Real-world testing with real assistive technologies.",
-            },
-            {
-              label: "Keyboard-Only Navigation Review",
-              description:
-                "Verifying focus order, keyboard traps, drop-downs, modals, sliders, forms.",
-            },
-            {
-              label: "Manual QA Testing",
-              description:
-                "Functional testing to ensure smooth, consistent experiences across devices.",
-            },
-            ,
-            {
-              label: "Accessibility Remediation Guidance",
-              description:
-                "Actionable, developer-friendly recommendations to fix accessibility barriers.",
-            },
-            {
-              label: "Ongoing Accessibility Monitoring",
-              description: "Monthly or quarterly reviews for updated websites.",
-            },
-          ]}
-          footerText="I help organizations identify issues before they become costly risks."
-        />
-
-        <ServiceBlade
           id="book-a-consultation"
           variant="light"
           layout="single"
-          title="Ready to Make Your Website Accessible?"
-          subtitle="Let’s remove barriers and deliver an inclusive experience for all."
+          title="Ready to Improve Usability & Compliance?
+"
+          subtitle="Accessibility protects your users — and your business.
+"
           description=""
           items={[]}
           footerCTA={
@@ -353,84 +396,6 @@ const IndexPage = () => {
               Request a consultation
             </CTA>
           }
-        />
-
-        <ServiceBlade
-          id="accessibility-stats"
-          variant="light"
-          layout="three" // <-- important: tells ServiceBlade to use 3-col layout
-          title="Accessibility impacts real customer behavior"
-          subtitle="These aren’t edge cases — they are your customers."
-          columns={[
-            <CartAbandonmentStat key="cart" />,
-
-            <CustomerLoyaltyStat key="loyalty" />,
-
-            // 3rd column – another placeholder stat
-            <div className="stat-card" key="stat-3">
-              <p className="stat-number">1 in 4</p>
-              <p className="stat-label">
-                adults in the U.S. lives with a disability
-              </p>
-              <p className="stat-footnote">
-                Accessible design improves the experience for a huge portion of
-                your audience.
-              </p>
-            </div>,
-          ]}
-        />
-
-        <ServiceBlade
-          id="three-col-specialties"
-          variant="dark"
-          layout="three"
-          title="What I Specialize In"
-          subtitle="Accessibility-first testing and QA"
-          columns={[
-            /* LEFT column */
-            <svg aria-hidden="true" className="stat-icon">
-              {/* icon */}
-            </svg>,
-
-            /* MIDDLE column items live here) */
-            <>
-              <h3 className="service-includes">But accessibility is also:</h3>
-
-              <ul className="service-includes-list">
-                {[
-                  {
-                    label: "WCAG 2.2 Accessibility Audits",
-                    description:
-                      "Manual and automated testing to catch issues tools miss.",
-                  },
-                  {
-                    label: "Screen Reader Testing",
-                    description:
-                      "NVDA and VoiceOver testing across real user journeys.",
-                  },
-                  {
-                    label: "Keyboard Navigation Review",
-                    description:
-                      "Focus order, traps, modals, menus, and forms.",
-                  },
-                ].map((item, index) => (
-                  <li key={index} className="service-list-item">
-                    <span className="li-icon-wrapper">
-                      <FaCheck className="list-icon" />
-                      <span className="li-label">{item.label}</span>
-                    </span>
-
-                    <p className="li-description">{item.description}</p>
-                  </li>
-                ))}
-              </ul>
-            </>,
-
-            /* RIGHT column */
-            <svg aria-hidden="true" className="stat-icon">
-              {/* icon */}
-            </svg>,
-          ]}
         />
       </main>
     </Layout>

@@ -723,6 +723,50 @@ svg.logo {
 }
 
 /*#########*/
+/* Hero */
+/*#########*/
+.hero {
+  position: relative;
+  max-width: 100%;
+  margin: 4rem auto;
+  background-color: var(--blade-light-bg);
+  border: 2px solid var(--site-border-strong);
+  border-radius: var(--borderRadius);
+  padding: 2rem 2rem;
+}
+
+.hero-heading span {
+  display: block; /* each span becomes its own line */
+  text-align: center;
+}
+
+.hero-heading span[aria-hidden="true"] {
+  display: block;
+}
+
+/* Limit hero subtext line length without cutting words */
+.hero-subhead {
+  font-family: var(--statFont);
+  font-weight: 100;
+  max-width: 60ch; /* ideal readable line length */
+  margin-inline: auto; /* center horizontally */
+  line-height: 1.4; /* improve readability */
+  text-wrap: balance; /* keeps lines visually even */
+  overflow-wrap: normal; /* prevents breaking words */
+  word-break: normal; /* ensures words are kept intact */
+  text-align: center;
+}
+
+.hire {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--site-text-muted);
+  max-width: 50vw;
+  margin: 3rem auto 0 auto;
+  text-align: center;
+}
+
+/*#########*/
 /* Footer */
 /*#########*/
 
@@ -863,45 +907,6 @@ a.react {
   text-transform: capitalize;
   letter-spacing: var(--letterSpacing);
   color: var(--site-text);
-}
-
-/*#########*/
-/* Hero */
-/*#########*/
-.hero {
-  position: relative;
-  max-width: 100%;
-  margin: 4rem auto;
-  background-color: var(--blade-light-bg);
-  border: 2px solid var(--site-border-strong);
-  border-radius: var(--borderRadius);
-  padding: 2rem 2rem;
-}
-
-/* Limit hero subtext line length without cutting words */
-.hero-subhead {
-  font-family: var(--statFont);
-  font-weight: 100;
-  max-width: 60ch; /* ideal readable line length */
-  margin-inline: auto; /* center horizontally */
-  line-height: 1.4; /* improve readability */
-  text-wrap: balance; /* keeps lines visually even */
-  overflow-wrap: normal; /* prevents breaking words */
-  word-break: normal; /* ensures words are kept intact */
-}
-
-.hero-text {
-  color: var(--site-text);
-  text-align: center;
-  line-height: 0.5;
-}
-
-.hire {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color: var(--site-text-muted);
-  max-width: 50vw;
-  margin: 3rem auto 0 auto;
 }
 
 /*#########*/
@@ -1557,65 +1562,6 @@ p.iterations-count {
   stroke: var(--cta-bg);
 }
 
-/*#########*/
-/* Animation bounce of site title - first visit only */
-/*#########*/
-
-/* Base: hide initially */
-.drop-bounce-text span {
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(0);
-  display: block;
-  font-size: 2em;
-  color: var(--hero-text);
-  margin-bottom: 0.5em;
-}
-
-/* Animate on first visit only */
-body.first-visit .drop-bounce-text span {
-  visibility: visible;
-  animation: dropBounce 0.75s ease-out forwards;
-}
-
-/* Delay sequence */
-body.first-visit .drop-bounce-text span:nth-child(1) {
-  animation-delay: 0s;
-}
-
-body.first-visit .drop-bounce-text span:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-body.first-visit .drop-bounce-text span:nth-child(3) {
-  animation-delay: 1s;
-}
-
-/* On later visits: show instantly */
-body.visited .drop-bounce-text span {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Keyframes */
-@keyframes dropBounce {
-  0% {
-    transform: translateY(-80px);
-    opacity: 0;
-  }
-  60% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  80% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
 /*#########*/
 /* Pricing Overview Blade */
@@ -1940,10 +1886,6 @@ li.list-custom-style-none {
 
   .skills-col li {
     padding: 0.25rem 0;
-  }
-
-  .cms h1 {
-    line-height: 0.5;
   }
 }
 
@@ -2409,16 +2351,15 @@ li.list-custom-style-none {
   .blade-layout--three .blade-three-col {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
-
     /* These are the shared ROW tracks we want cards to align to */
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto 1fr auto;
     align-items: stretch; /* equal-height cards -> bottom borders align */
   }
 
   /* Turn each card into a grid stack */
   .blade-layout--three .blade-col.three-col-card {
     display: grid;
-    grid-template-rows: auto auto 1fr; /* fallback if subgrid not supported */
+    grid-template-rows: auto auto 1fr auto; /* fallback if subgrid not supported */
     align-content: start; /* don't vertically stretch content */
     min-width: 0;
   }
@@ -2443,9 +2384,18 @@ li.list-custom-style-none {
     grid-row: 3;
     margin: 0;
     padding: 0;
-
+    align-self: start;
     /* keeps list content from stretching even though row is 1fr */
     align-self: start;
+  }
+
+  /* Footer container */
+  .blade-layout--three .three-col-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* space between text and CTA */
+    grid-row: 4;
+    align-self: end;
   }
 
   /* Use SUBGRID so row heights match across all 3 cards */
@@ -2454,6 +2404,64 @@ li.list-custom-style-none {
       grid-template-rows: subgrid; /* share row sizing with parent */
       grid-row: 1 / -1; /* span all three parent rows */
     }
+  }
+
+  /* NEW: footer sits in the bottom shared row */
+  .blade-layout--three .three-col-footer {
+    grid-row: 4;
+    align-self: end;
+    margin-top: 1rem;
+  }
+}
+
+/* Footer text (per-column) */
+.blade-layout--three .three-col-footer-text {
+  margin: 0 0 0.75rem 0;
+  /* font-size: var(--smallText); */
+  color: var(--site-text);
+  text-align: center;
+}
+
+/* CTA that matches your site CTAs (link styled as button) */
+.blade-layout--three .three-col-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%; /* makes all CTAs align nicely */
+  padding: 0.85rem 1rem;
+
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--site-border-strong);
+
+  background: var(--site-bg-strong);
+  color: var(--blade-light-bg);
+
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Hover / focus */
+.blade-layout--three .three-col-cta:hover {
+  filter: brightness(0.95);
+}
+
+.blade-layout--three .three-col-cta:focus-visible {
+  outline: 3px solid var(--site-focus, #000);
+  outline-offset: 3px;
+}
+
+/* Mobile only */
+@media (max-width: 767px) {
+  .blade-layout--three .blade-col.three-col-card {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+  }
+
+  .blade-layout--three .three-col-footer {
+    align-self: end;
+    margin-top: 1rem;
   }
 }
 
@@ -2481,8 +2489,8 @@ li.list-custom-style-none {
    ============================ */
 
 .li-sublist-heading {
-  margin: 1rem 0 .125rem 0;
-   font-size: var(--smallText);
+  margin: 1rem 0 0.125rem 0;
+  font-size: var(--smallText);
 }
 
 li .sub-item {
@@ -2491,6 +2499,51 @@ li .sub-item {
   line-height: 1.25;
 }
 
+/* ============================
+   3-COL BADGE / RIBBON
+   ============================ */
+
+/* Card must be positioning context */
+.blade-layout--three .three-col-card {
+  position: relative;
+}
+
+/* Badge base */
+.blade-layout--three .three-col-badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--site-accent, #b45309);
+  color: #fff;
+
+  font-size: var(--extraSmallText);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+
+  white-space: nowrap;
+  line-height: 1;
+
+  /* visual polish */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: variant styling (Most Popular) */
+.blade-layout--three .three-col-card .three-col-badge[data-variant="popular"] {
+  background: var(--site-highlight, #16a34a);
+}
+
+/* Mobile safety */
+@media (max-width: 767px) {
+  .blade-layout--three .three-col-badge {
+    top: -0.5rem;
+    font-size: 0.7rem;
+  }
+}
 
 /* ============================
    STAT CARDS – MINIMAL, SAFE

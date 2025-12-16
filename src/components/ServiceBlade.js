@@ -12,12 +12,16 @@ const ServiceBlade = ({
   subtitle,
   description,
   listHeading,
+  badge,
   items = [],
   footerText,
-  footerCTA,
-  columns = [], // NEW: content for two- or three-column layouts
+  bladeFooterCTA,
+  columns = [], // Content for two- or three-column layouts
 }) => {
   const headingId = id ? `${id}-heading` : undefined
+
+  // Detect whether any heading content exists (so aria-labelledby won't break)
+  const hasHeadingContent = [title, subtitle, description].some(v => v?.trim())
 
   /* --------------------------------------------------------
      VARIANT → CSS CLASS MAP
@@ -35,15 +39,18 @@ const ServiceBlade = ({
      LAYOUT VARIANT → CSS CLASS MAP
      (single | two | three)
      -------------------------------------------------------- */
-  const allowedLayouts = ["single", "two", "three"] // NEW
-  const safeLayout = allowedLayouts.includes(layout) ? layout : "single" // NEW
-  const layoutClass = `blade-layout--${safeLayout}` // NEW
+  const allowedLayouts = ["single", "two", "three"]
+  const safeLayout = allowedLayouts.includes(layout) ? layout : "single"
+  const layoutClass = `blade-layout--${safeLayout}`
 
   return (
     <section
       id={id}
       className={`services-grid ${bladeClass} ${layoutClass}`}
-      aria-labelledby={headingId}
+      // Only set aria-labelledby when the heading element will exist
+      aria-labelledby={hasHeadingContent ? headingId : undefined}
+      // Fallback label so the region is still named when no heading is rendered
+      aria-label={!hasHeadingContent ? "Service section" : undefined}
       role="region"
     >
       <div className="service-column">
@@ -51,12 +58,14 @@ const ServiceBlade = ({
           {/* ==========================
               CENTRALIZED HEADING
              ========================== */}
-          <BladeHeading
-            id={headingId}
-            title={title}
-            subtitle={subtitle}
-            description={description}
-          />
+          {hasHeadingContent && ( // (re-uses the new variable)
+            <BladeHeading
+              id={headingId}
+              title={title}
+              subtitle={subtitle}
+              description={description}
+            />
+          )}
 
           {/* ==========================
              LIST SECTION (single / two only)
@@ -110,6 +119,15 @@ const ServiceBlade = ({
             <div className="blade-three-col">
               {columns.map((col, index) => (
                 <div className="blade-col three-col-card" key={index}>
+                  {col.badge && (
+                    <span
+                      className="three-col-badge"
+                      aria-label={`Plan highlight: ${col.badge}`}
+                    >
+                      {col.badge}
+                    </span>
+                  )}
+
                   {/* Per-column heading + subheading */}
                   {(col.heading || col.subheading) && (
                     <>
@@ -121,7 +139,6 @@ const ServiceBlade = ({
                       )}
                     </>
                   )}
-
                   {/* Per-column list with label + description */}
                   {col.items && col.items.length > 0 && (
                     <ul className="service-includes-list three-col-list">
@@ -146,7 +163,9 @@ const ServiceBlade = ({
 
                               <ul className="li-sublist-items">
                                 {item.subList.items.map((subItem, idx) => (
-                                  <li className="sub-item" key={idx}>{subItem}</li>
+                                  <li className="sub-item" key={idx}>
+                                    {subItem}
+                                  </li>
                                 ))}
                               </ul>
                             </div>
@@ -155,15 +174,34 @@ const ServiceBlade = ({
                       ))}
                     </ul>
                   )}
+                  {/* ==========================
+                      COLUMN FOOTER TEXT
+                     ========================== */}
+                  {(col.footerText || col.bladeFooterCTA) && (
+                    <div className="three-col-footer">
+                      {col.footerText && (
+                        <h4 className="service-includes three-col-footer-text">
+                          {col.footerText}
+                        </h4>
+                      )}
+                      {col.bladeFooterCTA && (
+                        <div className="three-col-footer-cta">
+                          {col.bladeFooterCTA}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           )}
 
           {/* ==========================
-              FOOTER CTA (optional)
+              BLADE FOOTER CTA (optional)
               ========================== */}
-          {footerCTA && <div className="blade-footer-cta">{footerCTA}</div>}
+          {bladeFooterCTA && (
+            <div className="blade-footer-cta">{bladeFooterCTA}</div>
+          )}
         </div>
       </div>
     </section>
@@ -173,8 +211,8 @@ const ServiceBlade = ({
 ServiceBlade.propTypes = {
   id: PropTypes.string,
   variant: PropTypes.oneOf(["light", "strong", "dark"]),
-  layout: PropTypes.oneOf(["single", "two", "three"]), // NEW
-  title: PropTypes.string.isRequired,
+  layout: PropTypes.oneOf(["single", "two", "three"]),
+  title: PropTypes.string,
   subtitle: PropTypes.string,
   listHeading: PropTypes.string,
   items: PropTypes.arrayOf(
@@ -183,10 +221,12 @@ ServiceBlade.propTypes = {
       description: PropTypes.string,
     })
   ),
+
   footerText: PropTypes.string,
-  footerCTA: PropTypes.node,
+
   columns: PropTypes.arrayOf(
     PropTypes.shape({
+      badge: PropTypes.string,
       heading: PropTypes.string,
       subheading: PropTypes.string,
       items: PropTypes.arrayOf(
@@ -199,6 +239,8 @@ ServiceBlade.propTypes = {
           }),
         })
       ),
+      footerText: PropTypes.string,
+      bladeFooterCTA: PropTypes.node,
     })
   ),
 }
