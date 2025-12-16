@@ -100,9 +100,7 @@ Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby f
 
 # <!-- AUTO-GENERATED-CONTENT:END -->
 
-# shaunvine-portfolio
-
-Work as of 2024
+# shaunvine-business
 
 Site built with Gatsby and Contentul.
 
