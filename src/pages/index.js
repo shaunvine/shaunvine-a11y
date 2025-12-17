@@ -168,9 +168,7 @@ const IndexPage = () => {
           layout="single"
           title="Ready to Make Your Website Accessible?"
           subtitle="Let’s remove barriers and deliver an inclusive experience for all."
-          description=""
-          items={[]}
-          footerCTA={
+          bladeFooterCTA={
             <CTA
               href="/contact"
               wrapperClassName="button-group"

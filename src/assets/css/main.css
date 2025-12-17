@@ -2420,6 +2420,7 @@ li.list-custom-style-none {
   /* font-size: var(--smallText); */
   color: var(--site-text);
   text-align: center;
+  font-weight: 600;
 }
 
 /* CTA that matches your site CTAs (link styled as button) */
@@ -2464,6 +2465,8 @@ li.list-custom-style-none {
     margin-top: 1rem;
   }
 }
+
+
 
 /* Column-specific backgrounds */
 .blade-layout--three .three-col-card:nth-child(1) {

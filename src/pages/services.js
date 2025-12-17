@@ -80,78 +80,77 @@ const IndexPage = () => {
           title="Service Breakdown"
           columns={[
             {
-              heading: "WCAG 2.2 Accessibility Audit",
+              heading: "WCAG 2.2–Aligned Accessibility Audits",
               items: [
                 {
-                  label: "Automated Testing",
+                  label:
+                    "Human-led accessibility audits aligned with WCAG 2.2 (Levels A & AA)",
+                },
+                {
+                  label:
+                    "Scaled by site size, page count, and depth of testing",
+                },
+                {
+                  label:
+                    "Identifies accessibility barriers that may impact usability and user experience",
+                },
+                {
+                  label:
+                    "Audits identify barriers and risks but do not constitute legal certification or guarantees of compliance",
+                },
+              ],
+            },
+            {
+              heading: "Automated & Manual Accessibility Testing",
+              items: [
+                {
+                  label:
+                    "Automated testing is used to efficiently identify common accessibility issues",
                   subList: {
                     heading: "Using:",
                     items: [
                       "AXE DevTools",
-                      "Wave",
-                      "NVDA (Windows)",
-                      "VoiceOver (macOS)",
-                      "VoiceOver (iOS)",
+                      "WAVE",
+                      "Browser accessibility devtools (Chrome, Firefox, Safari)",
                     ],
                   },
                 },
                 {
-                  label: "Automated Testing Catches:",
-                  subList: {
-                    items: [
-                      "Missing alt text",
-                      "Low contrast",
-                      "Missing form labels",
-                      "AIRA misuse",
-                      "Structural issues",
-                    ],
-                  },
+                  label: "Manual validation of automated findings",
+                },
+                {
+                  label: "Visual review of content structure and presentation",
+                },
+                {
+                  label:
+                    "Automation supports — but does not replace — human judgment",
                 },
               ],
             },
             {
-              heading: "Manual Screen-Reader Testing",
+              heading: "Screen Reader & Keyboard Testing",
               items: [
                 {
-                  label: "Testing Includes:",
+                  label: "Manual keyboard-only navigation review",
+                  subList: {
+                    heading: "Using:",
+                    items: ["Native keyboard navigation"],
+                  },
+                },
+                {
+                  label:
+                    "Screen reader testing focused on real-world usability",
                   subList: {
                     heading: "Using:",
                     items: [
-                      "NVDA (Windows)",
-                      "VoiceOver (Mac & iOS)",
-                      "Full page reading order",
-                      "Landmarks",
-                      "Forms & validation",
-                      "Modals, dropdowns, tabbed content",
-                      "Navigation menus",
-                      "Buttons & links",
-                      "Alerts & announcements",
+                      "NVDA (Windows) — primary",
+                      "VoiceOver (macOS / iOS) — selective, key workflows only",
                     ],
                   },
                 },
-              ],
-            },
-            {
-              heading: "Keyboard-Only Navigation Review",
-              subheading: "",
-              items: [
                 {
-                  label: "Testing For:",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [
-                      "Focus order",
-                      "Keyboard traps",
-                      "Operability of interactive elements",
-                      "Skip links",
-                      "Modals that lock focus",
-                      "Carousels/sliders",
-                      "Buttons & links",
-                      "Form fields",
-                      "Accessible name and role",
-                    ],
-                  },
+                  label:
+                    "Evaluation of reading order, navigation, forms, and interactive components",
                 },
               ],
             },
@@ -163,82 +162,62 @@ const IndexPage = () => {
           layout="three"
           columns={[
             {
-              heading: "Manual Functional QA Testing",
-              subheading: "",
+              heading: "Accessibility-Focused Functional QA",
               items: [
                 {
-                  label: "Cross-Browser Testing",
-                  description: "",
+                  label:
+                    "Manual testing of accessibility-impacting functionality",
                   subList: {
                     heading: "Using:",
                     items: [
-                      "Chrome",
-                      "Safari",
-                      "Firefox",
-                      "Edge",
-                      "Mobile browsers",
-                      "Responsive views",
+                      "Chrome, Safari, Firefox",
+                      "Responsive browser tools",
                     ],
                   },
                 },
                 {
-                  label: "Checks include:",
-                  description: "",
-                  subList: {
-                    heading: "",
-                    items: [
-                      "Navigation",
-                      "Forms",
-                      "Buttons",
-                      "Checkout flows",
-                      "Filters/sorting",
-                      "Modals",
-                      "Dynamic components",
-                    ],
-                  },
+                  label:
+                    "Review of navigation menus, forms, modals, and dynamic content",
+                },
+                {
+                  label:
+                    "Focused on predictable behavior and accessibility support",
+                },
+                {
+                  label: "Not full regression or performance QA",
                 },
               ],
             },
             {
               heading: "Accessibility Remediation Guidance",
-              subheading: "",
               items: [
                 {
-                  label: "You will receive:",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [
-                      "Clear issue descriptions",
-                      "WCAG reference for each issue",
-                      "Developer-ready instructions",
-                      "Code examples (when applicable)",
-                      "Prioritized fix roadmap",
-                      "Estimated impact / severity",
-                    ],
-                  },
+                  label: "Clear descriptions of identified issues",
+                },
+                {
+                  label: "WCAG references for each finding",
+                },
+                {
+                  label: "Prioritized remediation roadmap",
+                },
+                {
+                  label: "Developer-ready guidance and recommendations",
+                },
+                {
+                  label: "Code examples provided when applicable",
                 },
               ],
             },
             {
               heading: "Post-Fix Verification (Re-Test)",
-              subheading: "",
               items: [
+                { label: "Re-testing of previously identified issues:" },
+                { label: "Validation of fixes against WCAG success criteria" },
                 {
-                  label: "After your team completes fixes, I’ll:",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [
-                      "Re-test all previous issues",
-                      "Validate improvements",
-                      "Ensure no new issues were introduced",
-                      "Confirm WCAG compliance",
-                      "Update your accessibility score",
-                      "Provide a final “Verified Fix” summary report",
-                    ],
-                  },
+                  label:
+                    "Confirmation that critical barriers have been addressed:",
                 },
+                { label: "Summary of verified improvements" },
               ],
             },
           ]}
@@ -249,129 +228,68 @@ const IndexPage = () => {
           variant="light"
           layout="three"
           title="Project Packages"
-          subtitle=""
-          description=""
+          description="All packages include a WCAG 2.2–aligned accessibility audit, scaled by site size and depth of testing."
           columns={[
             {
               badge: "Ideal for Small Sites",
               heading: "Basic Accessibility Review",
-              subheading: "Ideal for Small Sites",
-              price: {
-                amount: "$499",
-                note: "one-time",
-              },
+              subheading: "Ideal for small sites and early-stage projects.",
               items: [
-                { label: "Up to 5 pages", description: "" },
-                { label: "AXE + WAVE report", description: "" },
-                { label: "Keyboard review", description: "" },
-                { label: "Quick findings & recommendations", description: "" },
+                { label: "Up to 5 representative pages" },
+                { label: "WCAG 2.2–aligned snapshot audit" },
+                { label: "Automated testing with manual review" },
+                { label: "Keyboard accessibility check of core user flows" },
+                { label: "High-level findings and recommendations" },
               ],
               footerText: "$300–$450",
               bladeFooterCTA: (
                 <a className="three-col-cta" href="/contact">
-                  Footer CTA
+                  Request a Consultation
                 </a>
               ),
             },
             {
+              badge: "Most Popular",
               heading: "Standard WCAG 2.2 Audit",
-              subheading: "Most Popular",
+              subheading: "Best for small businesses and non-profits.",
               items: [
-                {
-                  label: "Up to 20 pages",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Full manual audit",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Screen-reader testing",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Keyboard testing",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Screenshotdocumentation",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Prioritized remediation guide",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Final retest",
-                  description: "",
-                  subList: {
-                    heading: "Using:",
-                    items: [],
-                  },
-                },
+                { label: "Up to 20 pages or templates" },
+                { label: "Full WCAG 2.2–aligned audit" },
+                { label: "Automated and manual testing" },
+                { label: "Screen reader testing (NVDA primary)" },
+                { label: "Keyboard-only navigation review" },
+                { label: "Accessibility-focused functional QA" },
+                { label: "Screenshot and documentation" },
+                { label: "Prioritized remediation guide" },
+                { label: "One post-fix verification pass" },
               ],
+              footerText: "$1,200–$2,000",
+              bladeFooterCTA: (
+                <a className="three-col-cta" href="/contact">
+                  Request a Consultation
+                </a>
+              ),
             },
             {
-              heading: "Premium Enterprise Audit",
-              subheading: "",
+              badge: "Extended Support",
+              heading: "Premium Accessibility Partnership",
+              subheading: "For growing organizations and mission-driven teams.",
               items: [
-                {
-                  label: "20+ pages",
-                  description: "",
-                  subList: {
-                    heading: "",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Deep manual testing",
-                  description: "",
-                  subList: {
-                    heading: "",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Multi-device + multi-browser QA",
-                  description: "",
-                  subList: {
-                    heading: "",
-                    items: [],
-                  },
-                },
-                {
-                  label: "Monthly monitoring",
-                  description: "",
-                  subList: {
-                    heading: "",
-                    items: [],
-                  },
-                },
+                { label: "20+ pages or templates" },
+                { label: "Extended WCAG 2.2–aligned audit coverage" },
+                { label: "Manual testing of complex components" },
+                { label: "Supplemental VoiceOver testing for key workflows" },
+                { label: "Multi-browser and responsive testing" },
+                { label: "Remediation planning and implementation support" },
+                { label: "Scheduled post-fix verification" },
+                { label: "Optional ongoing accessibility monitoring" },
               ],
+              footerText: "Custom Quote",
+              bladeFooterCTA: (
+                <a className="three-col-cta" href="/contact">
+                  Request a Consultation
+                </a>
+              ),
             },
           ]}
         />
@@ -380,13 +298,9 @@ const IndexPage = () => {
           id="book-a-consultation"
           variant="light"
           layout="single"
-          title="Ready to Improve Usability & Compliance?
-"
-          subtitle="Accessibility protects your users — and your business.
-"
-          description=""
-          items={[]}
-          footerCTA={
+          title="Ready to Improve Usability & Compliance?"
+          subtitle="Accessibility protects your users — and your business."
+          bladeFooterCTA={
             <CTA
               href="/contact"
               wrapperClassName="button-group"
