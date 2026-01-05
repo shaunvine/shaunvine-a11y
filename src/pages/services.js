@@ -4,8 +4,8 @@ import Layout from "../components/Layout"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
 import { FaCheck } from "react-icons/fa"
-import CustomerLoyaltyStat from "../components/CustomerLoyaltyStat"
-import CartAbandonmentStat from "../components/CartAbandonmentStat"
+import SeoStat from "../components/SeoStat"
+import OneInFour from "../components/OneInFour"
 
 const IndexPage = () => {
   return (
@@ -64,13 +64,9 @@ const IndexPage = () => {
           id="accessibility-stats"
           variant="light"
           layout="two"
-          title="Accessibility impacts real customer behavior"
+          title="Accessibility Impacts People and Performance"
           subtitle=""
-          columns={[
-            <CartAbandonmentStat key="cart" />,
-
-            <CustomerLoyaltyStat key="loyalty" />,
-          ]}
+          columns={[<OneInFour key="cart" />, <SeoStat key="loyalty" />]}
         />
 
         <ServiceBlade
