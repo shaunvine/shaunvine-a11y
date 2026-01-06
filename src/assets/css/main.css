@@ -746,7 +746,7 @@ svg.logo {
 
 /* Limit hero subtext line length without cutting words */
 .hero-subhead {
-  font-family: var(--statFont);
+  font-family: var(--bodyFont);
   font-weight: 100;
   max-width: 60ch; /* ideal readable line length */
   margin-inline: auto; /* center horizontally */
@@ -2584,13 +2584,7 @@ li .sub-item {
 /* Text styles */
 .stat-label {
   fill: var(--site-text-muted, #78350f);
-  font-family: var(
-    --bodyFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2598,65 +2592,35 @@ li .sub-item {
 
 .stat-text {
   fill: var(--statFontFill);
-  font-family: var(
-    --statFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 1rem;
   padding-top: 1rem;
 }
 
 .stat-percentage {
   fill: var(--statPercentageFill);
-  font-family: var(
-    --bodyFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 3rem;
   font-weight: 600;
 }
 
 .stat-sub-main {
   fill: var(--statMainFill);
-  font-family: var(
-    --statMainFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 1rem;
   font-weight: 200;
 }
 
 .stat-sub-secondary {
   fill: var(--site-text-muted, #78350f);
-  font-family: var(
-    --statMainFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 1rem;
   font-weight: 200;
 }
 
 .stat-percentage-secondary {
   fill: var(--statMainFill);
-  font-family: var(
-    --statMainFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -2664,25 +2628,13 @@ li .sub-item {
 /* Secondary comparison text */
 .stat-secondary-label {
   fill: var(--site-text-muted, #78350f);
-  font-family: var(
-    --bodyFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 0.7rem;
 }
 
 .stat-secondary-value {
   fill: var(--site-text, #b45309);
-  font-family: var(
-    --bodyFont,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif
-  );
+  font-family: var(--bodyFont);
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -2752,8 +2704,4 @@ figure.stat-figure {
 .blade--strong .service-includes,
 .blade--dark .service-includes {
   color: currentColor;
-}
-
-html, body, * {
-  font-family: var(--bodyFont) !important;
 }
