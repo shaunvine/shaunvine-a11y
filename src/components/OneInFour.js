@@ -35,11 +35,10 @@ const OneInFour = () => {
                     letter-spacing="0em"
                   >
                     <tspan x="52" y="61.58">
-                      1{" "}
+                      1
                     </tspan>
                     <tspan x="117.297" y="61.58">
-                      {" "}
-                      4{" "}
+                      4
                     </tspan>
                   </text>
                   <text
@@ -321,8 +320,8 @@ const OneInFour = () => {
               One in four adults live with a disability.
             </span>
             <span aria-hidden="true">
-              Source: CDC reports that 26% of adults in the U.S. live with
-              at least one disability.
+              Source: CDC reports that 26% of adults in the U.S. live with at
+              least one disability.
             </span>
           </figcaption>
         </figure>

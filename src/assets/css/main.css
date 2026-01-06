@@ -14,7 +14,7 @@ html {
    BASE TOKENS (always defined)
    ============================ */
 :root {
-  /* Typography & layout (same as before) */
+  /* Typography & layout */
   --defaultFontSize: 100%;
   --headingFont: "Lexend", sans-serif;
   --bodyFont: "Atkinson Hyperlegible", sans-serif;
@@ -2752,4 +2752,8 @@ figure.stat-figure {
 .blade--strong .service-includes,
 .blade--dark .service-includes {
   color: currentColor;
+}
+
+html, body, * {
+  font-family: var(--bodyFont) !important;
 }
