@@ -22,7 +22,7 @@ const CmsServices = ({
         <section className="qa-page">
           <article className="qa-info">
             <span className="qa-subhead">
-              <h1>Keep Your Website Content Fresh, Accurate, and Error-Free</h1>
+              <h1>Keep Your Website Content Fresh and Accurate.</h1>
             </span>
             <span className="qa-intro">
               Managing content across today’s dynamic digital platforms takes
