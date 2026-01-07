@@ -3,7 +3,6 @@ import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
-import { FaCheck } from "react-icons/fa"
 import SeoStat from "../components/SeoStat"
 import OneInFour from "../components/OneInFour"
 
@@ -288,6 +287,55 @@ const IndexPage = () => {
               ),
             },
           ]}
+        />
+
+        <ServiceBlade
+          id="additional-services"
+          variant="light"
+          layout="single"
+          title="Additional Support Services"
+          subtitle="While my core specialty is Accessibility & QA, I also assist with the tasks required to implement accessibility improvements"
+          items={[
+            {
+              label: "CMS content updates",
+              description: "WordPress, Contentful, Squarespace, Optimizely",
+            },
+            {
+              label: "Text alternatives & content fixes",
+              description:
+                "Adding or correcting alt text, link text, and button names",
+            },
+            {
+              label: "Headings & semantic structure",
+              description: "Improving heading hierarchy and HTML semantics",
+            },
+            {
+              label: "Forms & labels",
+              description:
+                "Labeling form fields and improving accessible instructions",
+            },
+            {
+              label: "ARIA cleanup & corrections",
+              description:
+                "Fixing misused or missing ARIA attributes where appropriate",
+            },
+            {
+              label: "Interactive component accessibility",
+              description:
+                "Improving existing sliders, modals, and accordions for keyboard and screen reader use",
+            },
+            {
+              label: "Keyboard & focus enhancements",
+              description:
+                "Implementing skip links, focus management, and logical tab order",
+            },
+            {
+              label: "Post-audit content support",
+              description:
+                "Managing accessibility-related content updates after an audit",
+            },
+          ]}
+          footerText="Additional services focus on accessibility improvements to existing content and components and do not include full redesign or application development."
         />
 
         <ServiceBlade

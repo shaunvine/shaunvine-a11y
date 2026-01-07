@@ -218,3 +218,113 @@ export default function ExamplePage() {
 
 - “Don’t pass empty strings for title/subtitle/description (WAVE empty heading).”
 - “Use `col.badge`, `col.footerText`, `col.bladeFooterCTA` inside 3-col columns.”
+
+
+// Standard twoCards (matches 3-column cards)
+// Use this for text-only cards without images or paragraphs.
+<ServiceBlade
+  id="about-my-work"
+  variant="light"
+  layout="twoCards"
+  title="About My Work"
+  subtitle=""
+  description=""
+  columns={[
+    {
+      heading: "Accessibility & QA",
+      subheading: "What I focus on",
+      items: [
+        { label: "WCAG 2.2 audits" },
+        { label: "Manual QA testing" },
+        { label: "Keyboard & screen reader testing" },
+        { label: "Real user flow validation" },
+      ],
+      footerText: "Accessibility-first testing approach",
+      bladeFooterCTA: (
+        <a className="three-col-cta" href="/accessibility">
+          Learn more
+        </a>
+      ),
+    },
+    {
+      heading: "Who I Work With",
+      subheading: "Teams & organizations",
+      items: [
+        { label: "Small businesses" },
+        { label: "Agencies" },
+        { label: "Startups" },
+        { label: "In-house product teams" },
+      ],
+      footerText: "Flexible engagement options",
+      bladeFooterCTA: (
+        <a className="three-col-cta" href="/contact">
+          Get in touch
+        </a>
+      ),
+    },
+  ]}
+/>
+
+// twoCardsMedia — Use this when one or both cards include an image or rich content. This is used on the About page (text + image).
+
+<ServiceBlade
+          layout="twoCards"
+          title="About My Work"
+          columns={[
+            {
+              heading: "Accessibility & QA",
+              subheading: "What I focus on",
+
+              // Fills the “blank space” area
+              body: (
+                <p className="card-paragraph">
+                  Shaun is a Web Content Engineer and Manual QA tester with 8
+                  years experience. He is an active Professional Member of the
+                  International Association of Accessibility Professionals
+                  (IAAP)
+                </p>
+              ),
+
+              items: [
+                { label: "WCAG 2.2 audits" },
+                { label: "Manual QA testing" },
+              ],
+            },
+            {
+              image: (
+                <article>
+                  <StaticImage
+                    src="../assets/images/About.png"
+                    alt="Shaun Vine in snowboarding gear climbing a mountain with friends"
+                    className="about-img"
+                    placeholder="blurred"
+                  />
+                </article>
+              ),
+            },
+          ]}
+        />
+
+
+// Testimonial Blade 
+
+<ServiceBlade
+            id="client-testimonials"
+            variant="dark"
+            layout="two"
+            title="Client Feedback"
+            columns={[
+              <ClientTestimonial
+                key="t1"
+                highlight="Shaun provides the rare combination of an eye for design with knowledge in current web development tools."
+                quote="He has taken one of my client's website and converted it to WordPress, matching the original design so well and even improving it for extensibility. I was impressed with Shaun's attention to detail and the client was very happy with the result. Now she can update her website herself, which gives clients a lot of flexibility. I recommend Shaun for anyone who needs a website (based on WordPress or not). Shaun is very trustworthy and delivers great results!"
+                name="Melissa"
+              />,
+              <ClientTestimonial
+                key="t2"
+                highlight="Even schooling himself to learn new website design and coding techniques to meet those demanding expectations."
+                quote="As an architect, I had some very clear ideas on how I wanted my site to look and feel. Shaun worked extra hard to meet all of my expectations. I couldn't be more pleased with the results! I would recommend him to any small business owner just getting started with their online presence. He is good at what he does, and as a bonus, he's a charming and lovely fellow who is a pleasure to work with!"
+                name="Kit"
+              />,
+            ]}
+          />

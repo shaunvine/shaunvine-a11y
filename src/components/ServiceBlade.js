@@ -37,9 +37,9 @@ const ServiceBlade = ({
 
   /* --------------------------------------------------------
      LAYOUT VARIANT → CSS CLASS MAP
-     (single | two | three)
+     (single | two | three | twoCards)
      -------------------------------------------------------- */
-  const allowedLayouts = ["single", "two", "three"]
+  const allowedLayouts = ["single", "two", "three", "twoCards"] // NEW TODAY
   const safeLayout = allowedLayouts.includes(layout) ? layout : "single"
   const layoutClass = `blade-layout--${safeLayout}`
 
@@ -113,88 +113,114 @@ const ServiceBlade = ({
           )}
 
           {/* ==========================
-              THREE-COLUMN CONTENT
+              STRUCTURED CARD CONTENT
+              (three | twoCards)
              ========================== */}
-          {layout === "three" && columns.length === 3 && (
-            <div className="blade-three-col">
-              {columns.map((col, index) => (
-                <div className="blade-col three-col-card" key={index}>
-                  {col.badge && (
-                    <span
-                      className="three-col-badge"
-                      aria-label={`Plan highlight: ${col.badge}`}
-                    >
-                      {col.badge}
-                    </span>
-                  )}
+          {(layout === "three" || layout === "twoCards") &&
+            columns.length === (layout === "three" ? 3 : 2) && ( // NEW TODAY
+              <div
+                className={
+                  layout === "three" ? "blade-three-col" : "blade-two-col-cards" // NEW TODAY
+                }
+              >
+                {columns.map((col, index) => (
+                  <div className="blade-col three-col-card" key={index}>
+                    {col.badge && (
+                      <span
+                        className="three-col-badge"
+                        aria-label={`Plan highlight: ${col.badge}`}
+                      >
+                        {col.badge}
+                      </span>
+                    )}
 
-                  {/* Per-column heading + subheading */}
-                  {(col.heading || col.subheading) && (
-                    <>
-                      {col.heading && (
-                        <h3 className="three-col-heading">{col.heading}</h3>
-                      )}
-                      {col.subheading && (
-                        <p className="three-col-subheading">{col.subheading}</p>
-                      )}
-                    </>
-                  )}
-                  {/* Per-column list with label + description */}
-                  {col.items && col.items.length > 0 && (
-                    <ul className="service-includes-list three-col-list">
-                      {col.items.map((item, i) => (
-                        <li key={i} className="service-list-item">
-                          <span className="li-icon-wrapper">
-                            <FaCheck className="list-icon" />
-                            <span className="li-label">{item.label}</span>
-                          </span>
+                    {/* Per-column heading + subheading */}
+                    {(col.heading || col.subheading) && (
+                      <>
+                        {col.heading && (
+                          <h3 className="three-col-heading">{col.heading}</h3>
+                        )}
+                        {col.subheading && (
+                          <p className="three-col-subheading">
+                            {col.subheading}
+                          </p>
+                        )}
+                      </>
+                    )}
+                    {/* NEW TODAY: middle content area (image + body) */}
+                    {(col.image || col.body) && (
+                      <div className="two-cards-body">
+                        {col.image && (
+                          <div className="three-col-image">{col.image}</div>
+                        )}
+                        {col.body && (
+                          <div className="two-cards-body-content">
+                            {col.body}
+                          </div>
+                        )}
+                      </div>
+                    )}
 
-                          {item.description && (
-                            <p className="li-description">{item.description}</p>
-                          )}
-                          {/* OPTIONAL nested list */}
-                          {item.subList && item.subList.items?.length > 0 && (
-                            <div className="li-sublist">
-                              {item.subList.heading && (
-                                <p className="li-sublist-heading">
-                                  {item.subList.heading}
-                                </p>
-                              )}
+                    {/* Per-column list */}
+                    {col.items && col.items.length > 0 && (
+                      <ul className="service-includes-list three-col-list">
+                        {col.items.map((item, i) => (
+                          <li key={i} className="service-list-item">
+                            <span className="li-icon-wrapper">
+                              <FaCheck className="list-icon" />
+                              <span className="li-label">{item.label}</span>
+                            </span>
 
-                              <ul className="li-sublist-items">
-                                {item.subList.items.map((subItem, idx) => (
-                                  <li className="sub-item" key={idx}>
-                                    {subItem}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {/* ==========================
-                      COLUMN FOOTER TEXT
-                     ========================== */}
-                  {(col.footerText || col.bladeFooterCTA) && (
-                    <div className="three-col-footer">
-                      {col.footerText && (
-                        <h4 className="service-includes three-col-footer-text">
-                          {col.footerText}
-                        </h4>
-                      )}
-                      {col.bladeFooterCTA && (
-                        <div className="three-col-footer-cta">
-                          {col.bladeFooterCTA}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+                            {item.description && (
+                              <p className="li-description">
+                                {item.description}
+                              </p>
+                            )}
+
+                            {/* OPTIONAL nested list */}
+                            {item.subList && item.subList.items?.length > 0 && (
+                              <div className="li-sublist">
+                                {item.subList.heading && (
+                                  <p className="li-sublist-heading">
+                                    {item.subList.heading}
+                                  </p>
+                                )}
+
+                                <ul className="li-sublist-items">
+                                  {item.subList.items.map((subItem, idx) => (
+                                    <li className="sub-item" key={idx}>
+                                      {subItem}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {/* ==========================
+                        COLUMN FOOTER (shared)
+                       ========================== */}
+                    {(col.footerText || col.bladeFooterCTA) && (
+                      <div className="three-col-footer">
+                        {col.footerText && (
+                          <h4 className="service-includes three-col-footer-text">
+                            {col.footerText}
+                          </h4>
+                        )}
+                        {col.bladeFooterCTA && (
+                          <div className="three-col-footer-cta">
+                            {col.bladeFooterCTA}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
 
           {/* ==========================
               BLADE FOOTER CTA (optional)
@@ -211,7 +237,7 @@ const ServiceBlade = ({
 ServiceBlade.propTypes = {
   id: PropTypes.string,
   variant: PropTypes.oneOf(["light", "strong", "dark"]),
-  layout: PropTypes.oneOf(["single", "two", "three"]),
+  layout: PropTypes.oneOf(["single", "two", "three", "twoCards"]), // NEW TODAY
   title: PropTypes.string,
   subtitle: PropTypes.string,
   listHeading: PropTypes.string,

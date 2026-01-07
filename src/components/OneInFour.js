@@ -37,7 +37,7 @@ const OneInFour = () => {
                     <tspan x="52" y="61.58">
                       1
                     </tspan>
-                    <tspan x="117.297" y="61.58">
+                    <tspan x="134.297" y="61.58">
                       4
                     </tspan>
                   </text>

@@ -1562,7 +1562,6 @@ p.iterations-count {
   stroke: var(--cta-bg);
 }
 
-
 /*#########*/
 /* Pricing Overview Blade */
 /*#########*/
@@ -2305,7 +2304,26 @@ li.list-custom-style-none {
 @media (min-width: 768px) {
   .blade-layout--two .blade-two-col {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
   }
+  .blade-layout--two .blade-two-col > .blade-col {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .blade-layout--two .blade-two-col > .blade-col > blockquote {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .blade-layout--two .blade-two-col > .blade-col > blockquote .client-name {
+    display: block;
+    margin-top: auto;
+  }
+}
+
+.client-name {
+  color: var(--site-text);
 }
 
 /* 3-COL give this blade the wider multi-col width */
@@ -2465,8 +2483,6 @@ li.list-custom-style-none {
     margin-top: 1rem;
   }
 }
-
-
 
 /* Column-specific backgrounds */
 .blade-layout--three .three-col-card:nth-child(1) {
@@ -2704,4 +2720,85 @@ figure.stat-figure {
 .blade--strong .service-includes,
 .blade--dark .service-includes {
   color: currentColor;
+}
+
+/* ============================
+   twoCards — CLEAN + CONSTRAINED
+   (paste as the ONLY twoCards CSS)
+   ============================ */
+
+/* Container */
+.blade-layout--twoCards .blade-two-col-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Desktop: 2 cards */
+@media (min-width: 768px) {
+  .blade-layout--twoCards .blade-two-col-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch; /* equal card heights */
+  }
+}
+
+/* Card look (match your 3-col cards) */
+.blade-layout--twoCards .three-col-card {
+  border: 1px solid var(--site-border-strong);
+  background: var(--blade-light-bg);
+  border-radius: var(--borderRadius);
+  padding: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Heading spacing */
+.blade-layout--twoCards .three-col-heading {
+  margin: 0;
+}
+
+.blade-layout--twoCards .three-col-subheading {
+  margin: 0.5rem 0 0;
+}
+
+/* Middle wrapper (body + image) */
+.blade-layout--twoCards .two-cards-body {
+  margin-top: 1rem;
+}
+
+/* Body text wrapper */
+.blade-layout--twoCards .two-cards-body-content {
+  margin-top: 0.75rem; /* if body appears under image */
+}
+
+/* List always stacks under the body block */
+.blade-layout--twoCards .three-col-list {
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+/* ✅ CRITICAL: constrain image so it can’t escape the card */
+.blade-layout--twoCards .three-col-image {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--borderRadius);
+}
+
+/* Gatsby image wrapper must obey parent width */
+.blade-layout--twoCards .three-col-image .gatsby-image-wrapper {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+/* Crop instead of overflow */
+.blade-layout--twoCards .three-col-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

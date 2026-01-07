@@ -73,7 +73,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
           >
             Services
           </Link>
-          <Link
+          {/* <Link
             to="/cms-services"
             className="nav-link"
             activeClassName="active-link"
@@ -81,7 +81,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
             onClick={() => setShow(false)}
           >
             CMS Services
-          </Link>
+          </Link> */}
           <Link
             to="/about"
             className="nav-link"

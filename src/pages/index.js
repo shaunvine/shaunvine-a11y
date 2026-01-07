@@ -3,7 +3,7 @@ import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
-import { FaCheck } from "react-icons/fa"
+import ClientTestimonial from "../components/ClientTestimonial"
 import CustomerLoyaltyStat from "../components/CustomerLoyaltyStat"
 import CartAbandonmentStat from "../components/CartAbandonmentStat"
 
@@ -79,8 +79,6 @@ const IndexPage = () => {
           variant="light"
           layout="single"
           title="What I Specialize In"
-          subtitle=""
-          description=""
           items={[
             {
               label: "WCAG 2.2 Accessibility Audits",
@@ -132,33 +130,20 @@ const IndexPage = () => {
           id="client-testimonials"
           variant="dark"
           layout="two"
-          title="What My Clients Say"
-          subtitle=""
+          title="Client Feedback"
           columns={[
-            <div>
-              <blockquote className="testimonial">
-                <p>
-                  Shaun helped us identify serious accessibility issues and
-                  guided our dev team through fixing them. Our site has never
-                  been easier to use.
-                </p>
-                <footer>
-                  — <cite>Digital Marketing Director</cite>
-                </footer>
-              </blockquote>
-            </div>,
-            <div>
-              <blockquote class="testimonial">
-                <p>
-                  Shaun quickly identified accessibility issues we had missed
-                  and provided clear, actionable guidance. Our site is now
-                  WCAG-compliant and far more usable.
-                </p>
-                <footer>
-                  — <cite>Product Manager, Healthcare SaaS</cite>
-                </footer>
-              </blockquote>
-            </div>,
+            <ClientTestimonial
+              key="t1"
+              highlight="Shaun provides the rare combination of an eye for design with knowledge in current web development tools."
+              quote="He has taken one of my client's website and converted it to WordPress, matching the original design so well and even improving it for extensibility. I was impressed with Shaun's attention to detail and the client was very happy with the result. Now she can update her website herself, which gives clients a lot of flexibility. I recommend Shaun for anyone who needs a website (based on WordPress or not). Shaun is very trustworthy and delivers great results!"
+              name="Melissa"
+            />,
+            <ClientTestimonial
+              key="t2"
+              highlight="Even schooling himself to learn new website design and coding techniques to meet those demanding expectations."
+              quote="As an architect, I had some very clear ideas on how I wanted my site to look and feel. Shaun worked extra hard to meet all of my expectations. I couldn't be more pleased with the results! I would recommend him to any small business owner just getting started with their online presence. He is good at what he does, and as a bonus, he's a charming and lovely fellow who is a pleasure to work with!"
+              name="Kit"
+            />,
           ]}
         />
 
