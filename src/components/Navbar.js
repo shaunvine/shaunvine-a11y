@@ -52,26 +52,28 @@ const Navbar = ({ theme, onToggleTheme }) => {
     setShow(false)
   }, [location.pathname])
 
-  // NEW: focus management
+  // NEW: focus management (improved)
+  // When menu opens, move focus into it.
+  // When menu closes, do NOT force focus anywhere.
   useEffect(() => {
-    if (show) {
-      requestAnimationFrame(() => {
-        firstLinkRef.current?.focus()
-      })
-    } else {
-      requestAnimationFrame(() => {
-        menuButtonRef.current?.focus()
-      })
-    }
+    if (!show) return
+
+    requestAnimationFrame(() => {
+      firstLinkRef.current?.focus()
+    })
   }, [show])
 
   return (
     <nav className="navbar">
       <div className="nav-center">
         <div className="nav-header">
-          {/* Logo */}
-          <Link to="/" aria-label="Shaun Vine home" className="logo-mark">
-            <LogoMark /> {/* NEW */}
+          <Link
+            to="/"
+            aria-label="Shaun Vine home"
+            className="logo-mark"
+            onClick={closeMenu} // NEW: close menu even if already on "/"
+          >
+            <LogoMark />
           </Link>
 
           {/* Mobile controls */}
@@ -141,11 +143,11 @@ const Navbar = ({ theme, onToggleTheme }) => {
 
             {/* Desktop theme toggle */}
             {ENABLE_THEME_TOGGLE && (
-            <ThemeToggle
-              theme={theme}
-              onToggleTheme={onToggleTheme}
-              className="theme-toggle theme-toggle--desktop"
-            />
+              <ThemeToggle
+                theme={theme}
+                onToggleTheme={onToggleTheme}
+                className="theme-toggle theme-toggle--desktop"
+              />
             )}
           </div>
         </div>

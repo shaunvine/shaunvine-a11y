@@ -8,14 +8,19 @@ const CTA = ({
   ariaLabel,
   className = "",
   wrapperClassName = "",
+  onClick, // NEW
+  ...linkProps // NEW: allow passing other Link props safely (e.g., partiallyActive)
 }) => {
   const Wrapper = wrapperClassName ? "div" : React.Fragment
+
   return (
     <Wrapper {...(wrapperClassName ? { className: wrapperClassName } : {})}>
       <Link
         to={href}
         className={`cta ${className}`.trim()}
         aria-label={ariaLabel || undefined}
+        onClick={onClick} // NEW
+        {...linkProps} // NEW
       >
         {children}
       </Link>
@@ -23,15 +28,13 @@ const CTA = ({
   )
 }
 
-
 CTA.propTypes = {
   href: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   ariaLabel: PropTypes.string,
-
-  // NEW:
   className: PropTypes.string,
-  wrapperClass: PropTypes.string,
+  wrapperClassName: PropTypes.string, // FIXED: was wrapperClass
+  onClick: PropTypes.func, // NEW
 }
 
 export default CTA
