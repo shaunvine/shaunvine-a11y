@@ -12,231 +12,236 @@ html {
 
 /* ============================
    BASE TOKENS (always defined)
+   Defaults = LIGHT THEME
    ============================ */
 :root {
-  /* Typography & layout */
+  /* ----------------------------
+     Typography & sizing
+     ---------------------------- */
   --defaultFontSize: 100%;
   --headingFont: "Lexend", sans-serif;
   --bodyFont: "Atkinson Hyperlegible", sans-serif;
   --smallText: 0.9em;
   --extraSmallText: 0.8em;
 
-  /* Stat fonts and colors */
-  --statFont: "Nato Sans", sans-serif;
-  --statFontFill: var(--site-text-dark);
-  --statPercentageFill: #b45309;
-
-  /* 3-COL Background Colors */
-  --col-one-bg: var(--site-surface-alt); /* e.g. #fff7db */
-  --col-two-bg: var(--site-surface-alt); /* e.g. #fff7db */
-  --col-three-bg: var(--site-surface-alt); /* e.g. #fff7db */
-
-  --borderRadius: 0.75rem;
-  --letterSpacing: 1px;
-  --transition: 0.2s ease-in-out;
-  --max-width: 80rem;
-  --fixed-width: 600px;
-
   --font-size-h1: clamp(2.5rem, 5vw + 1rem, 3.5rem);
   --font-size-h2: 2rem;
   --font-size-h3: 1.75rem;
   --font-size-h4: 1.375rem;
   --font-size-h5: 1.125rem;
-
-  /* Optional: a slightly larger variant for “section titles” */
   --font-size-section-title: 2.441rem;
 
   --heading-line-height: 1.3;
   --heading-margin-bottom: 1.25rem;
   --heading-weight: 400;
 
-  /* Overall page + content widths */
-  --page-max-width: 70rem; /* ≈ 1152px, good for multi-col */
-  --content-max-width: 46rem; /* single-blade text */
+  /* ----------------------------
+     Layout & geometry
+     ---------------------------- */
+  --borderRadius: 0.75rem;
+  --letterSpacing: 1px;
+  --transition: 0.2s ease-in-out;
+
+  --max-width: 80rem;
+  --fixed-width: 600px;
+
+  --page-max-width: 70rem;
+  --content-max-width: 46rem;
   --blade-padding-inline: 1rem;
   --blade-padding-block: clamp(1rem, 2vw, 2rem);
 
-  /* ===== SEMANTIC COLOR ROLES (defaults = LIGHT THEME) ===== */
-
+  /* ----------------------------
+     Semantic color roles (LIGHT defaults)
+     ---------------------------- */
   /* Page-level */
-  --site-bg: #fef3c7; /* page background */
+  --site-bg: #fef3c7;
   --site-bg-strong: #b45309;
   --site-bg-light: #fffbeb;
-  --site-surface: #fff7db; /* cards, panels, blades */
-  --site-surface-alt: #fffbeb; /* lighter variant for sections */
-  --site-text: #b45309; /* main text color */
+
+  /* Surfaces */
+  --site-surface: #fff7db;
+  --site-surface-alt: #fffbeb;
+
+  /* Text */
+  --site-text: #b45309;
   --site-text-dark: #451a03;
   --site-text-light: #fef3c7;
-  --site-text-muted: #78350f; /* secondary text */
+  --site-text-muted: #78350f;
+
+  /* Hero Text Colors */
+  --hero-h1-color: #78350f;
+  --hero-h2-color: #b45309;
+
+  /* Borders */
   --site-border-subtle: #f5e0b7;
   --site-border-strong: #b45309;
+
+  /* Logo */
+  --logo-stroke: #451a03; /* dark in light theme */
+  --logo-fill: var(--logo-stroke);
 
   /* Navigation */
   --nav-bg: var(--site-bg);
   --nav-link: var(--site-text);
-  --nav-link-hover: #451a03; /* light accent */
+  --nav-link-hover: #451a03;
   --nav-link-active: #451a03;
 
-  /* Primary actions / CTAs (LIGHT accent = #451a03) */
+  /* CTAs */
   --cta-bg: #451a03;
   --cta-bg-hover: #7c2d12;
   --cta-text: #fef3c7;
 
-  /* Links in body copy */
+  /* Links */
   --link-text: #7c2d12;
   --link-hover-text: #451a03;
 
-  /* Focus */
-  --focus-ring: #fa5e24;
-  --focus-ring-bg: #fa5e24;
-  --focus-ring-offset: 3px;
-  --focus-ring-size: 1px;
-
-  /* Elevation (used by cards, modals, etc.) */
+  /* ----------------------------
+     Elevation
+     ---------------------------- */
   --elevation-soft: 0 1px 2px rgba(15, 23, 42, 0.08);
   --elevation-medium: 0 4px 12px rgba(15, 23, 42, 0.14);
 
-  /* Backwards-compat aliases (old names in your CSS) */
+  /* ----------------------------
+     Stats
+     ---------------------------- */
+  --statFont: "Nato Sans", sans-serif;
+  --statFontFill: var(--site-text-dark);
+  --statPercentageFill: #b45309;
+
+  /* ----------------------------
+     3-COL backgrounds
+     ---------------------------- */
+  --col-one-bg: var(--site-surface-alt);
+  --col-two-bg: var(--site-surface-alt);
+  --col-three-bg: var(--site-surface-alt);
+
+  /* ----------------------------
+     Backwards-compat aliases
+     ---------------------------- */
   --backgroundColor: var(--site-bg);
   --textColor: var(--site-text);
   --shadow-1: var(--elevation-soft);
   --shadow-2: var(--elevation-medium);
 
-  /* Minimal neutrals still used elsewhere */
+  /* ----------------------------
+     Minimal neutrals (legacy usage)
+     ---------------------------- */
   --grey-0: #ffffff;
   --grey-500: #6b7280;
   --grey-700: #374151;
   --grey-800: #1f2937;
   --grey-1000: #f2f2f2;
   --white: #ffffff;
+
   --red-dark: #b91c1c;
   --green-dark: #166534;
   --green-light: #dcfce7;
   --red-light: #fee2e2;
+
   --line: 1px solid #e5e7eb;
 
-  /* Form tokens (tie to surfaces) */
+  /* ----------------------------
+     Form tokens
+     ---------------------------- */
+  --radius: 8px;
+
   --field-bg: #ffffff;
   --field-border: #c7cedb;
   --field-text: #111827;
-  --focus-width: 3px;
-  --focus-gap: 2px;
-  --radius: 8px;
+
+  /* Focus ring system */
+  --focus-color: #fa5e24;
+  --focus-gap: 3px;
+  --focus-width: 5px;
+  --focus-gap-color: var(--site-bg);
 }
 
 /* ============================
    LIGHT THEME OVERRIDES
-   (matches the defaults above)
+   Keep ONLY things that differ from :root.
+   Right now: blade roles live here.
    ============================ */
 :root[data-theme="light"] {
-  --site-bg: #fef3c7;
-  --site-bg-strong: #b45309;
-  --site-surface: #fff7db;
-  --site-surface-alt: #fffbeb;
-  --site-text: #b45309;
-  --site-text-light: #fef3c7;
-  --site-text-muted: #78350f;
-  --site-border-subtle: #f5e0b7;
-  --site-border-strong: #b45309;
-
-  --nav-bg: var(--site-bg);
-  --nav-link: var(--site-text);
-  --nav-link-hover: #451a03;
-  --nav-link-active: #451a03;
-
-  --cta-bg: #451a03; /* Option 2 light accent */
-  --cta-bg-hover: #7c2d12;
-  --cta-text: #fef3c7;
-
-  --link-text: #7c2d12;
-  --link-hover-text: #451a03;
-
-  /* Focus */
-  --focus-ring: #fa5e24;
-  --focus-ring-bg: #fa5e24;
-  --focus-ring-offset: 3px;
-  --focus-ring-size: 1px;
-
-  --elevation-soft: 0 1px 2px rgba(15, 23, 42, 0.08);
-  --elevation-medium: 0 4px 12px rgba(15, 23, 42, 0.14);
-
-  /* ============================
-     BLADE SEMANTIC ROLES (DEFAULT = LIGHT THEME)
-     ============================ */
-
-  /* "Light" blade on light theme – subtle section */
-  --blade-light-bg: var(--site-surface); /* e.g. #fff7db */
-  --blade-light-text: var(--site-text); /* e.g. #b45309 */
-
+  /* ----------------------------
+     Blade semantic roles (LIGHT)
+     ---------------------------- */
+  --blade-light-bg: var(--site-surface);
+  --blade-light-text: var(--site-text);
   --blade-light-border: 2px solid var(--site-border-strong);
 
-  /* "Strong" blade – highlight-ish section */
-  --blade-strong-bg: #fbbf24; /* warm gold accent */
-  --blade-strong-text: #451a03; /* dark text for contrast */
+  --blade-strong-bg: #fbbf24;
+  --blade-strong-text: #451a03;
 
-  /* "Dark" blade – darker panel on light page */
-  --blade-dark-bg: #7c2d12; /* deeper amber/brown */
-  --blade-dark-text: #fef3c7; /* light text */
+  --blade-dark-bg: #7c2d12;
+  --blade-dark-text: #fef3c7;
 }
 
 /* ============================
    DARK THEME OVERRIDES
+   Only overrides what changes.
    ============================ */
 :root[data-theme="dark"] {
-  /* Invert bg/text */
+  /* ----------------------------
+     Semantic color roles (DARK)
+     ---------------------------- */
   --site-bg: #b45309;
-  --site-bg-dark: #3b2303; /* page background */
-  --site-surface: #7c2d12; /* card / panel background */
+  --site-bg-dark: #3b2303; /* kept as-is for your usage */
+  --site-surface: #7c2d12;
   --site-surface-alt: #451a03;
-  --site-text: #fef3c7; /* main text */
 
+  --site-text: #3b2303;
   --site-text-muted: #fffbeb;
+
   --site-border-subtle: rgba(254, 243, 199, 0.3);
   --site-border-strong: #fed7aa;
 
-  /* Nav sits on the dark bg */
+  /* Logo */
+  --logo-stroke: #fef3c7; /* light in dark theme */
+  --logo-fill: var(--logo-stroke); /* stays matched automatically */
+
+  /* Navigation */
   --nav-bg: var(--site-bg);
-  --nav-link: var(--site-text);
-  --nav-link-hover: #fcd34d; /* Option 2 dark accent */
-  --nav-link-active: #fcd34d;
+  --nav-link: var(--site-text-light);
+  --nav-link-hover: #3b2303;
 
-  /* CTAs use the light gold accent (Option 2 dark accent) */
-  --cta-bg: #fcd34d;
+  /* CTAs */
+  /* --cta-bg: #fcd34d;
   --cta-bg-hover: #fbbf24;
-  --cta-text: #451a03; /* dark text on light button */
+  --cta-text: #451a03; */
 
-  /* Links in body copy */
+  /* Links */
   --link-text: #fcd34d;
   --link-hover-text: #fbbf24;
 
-  /* Focus ring */
-  --focus-ring: #fa5e24;
-  --focus-ring-bg: #fa5e24;
-  --focus-ring-offset: 3px;
-  --focus-ring-size: 1px;
+  /* Focus */
+  --field-bg: #151922;
+  --field-border: #333844;
+  --field-text: #f2f2f2;
 
-  /* Dark-mode elevation */
+  /* Keep focus ring visible on dark backgrounds */
+  --focus-gap-color: var(--site-bg);
+  /* Optional: tweak focus-color if needed for contrast */
+  /* --focus-color: #ff8a5c; */
+
+  /* Elevation */
   --elevation-soft: 0 1px 2px rgba(0, 0, 0, 0.55);
   --elevation-medium: 0 6px 18px rgba(0, 0, 0, 0.75);
 
+  /* Backwards-compat aliases (only if you want them to point at dark tokens) */
   --backgroundColor: var(--site-bg);
   --textColor: var(--site-text);
 
-  /* ============================
-     BLADE SEMANTIC ROLES (DARK THEME)
-     ============================ */
+  /* ----------------------------
+     Blade semantic roles (DARK)
+     ---------------------------- */
+  --blade-light-bg: #fef3c7;
+  --blade-light-text: #3b2303;
 
-  /* "Light" blade on dark theme – light panel */
-  --blade-light-bg: #fef3c7; /* light block on dark page */
-  --blade-light-text: #3b2303; /* dark text on light panel */
-
-  /* "Strong" blade – still a highlight section */
-  --blade-strong-bg: #fbbf24; /* same gold works on dark */
+  --blade-strong-bg: #fbbf24;
   --blade-strong-text: #451a03;
 
-  /* "Dark" blade – panel that blends with page */
-  --blade-dark-bg: var(--site-surface); /* e.g. #7c2d12 or similar */
-  --blade-dark-text: var(--site-text); /* #fef3c7 */
+  --blade-dark-bg: var(--site-surface);
+  --blade-dark-text: var(--site-text);
 }
 
 html {
@@ -354,7 +359,8 @@ a {
 
 .form {
   width: 100%;
-  background: var(--accent-soft);
+  background: var(--blade-light-bg);
+  border: var(--blade-light-border);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
@@ -363,7 +369,7 @@ a {
 label {
   display: block;
   font-size: 1rem;
-  color: #000;
+  color: var(--site-text);
   margin-bottom: 0.5rem;
   text-transform: capitalize;
 }
@@ -443,7 +449,7 @@ button.btn {
   cursor: pointer;
   appearance: none;
   color: var(--cta-text);
-  background: var(--accent);
+  background: var(--cta-bg);
   border: none;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
@@ -457,24 +463,28 @@ button.btn {
 
 button:hover,
 .btn:hover,
-.request-quote-btn:hover {
+.request-quote-btn:hover,
+.blade-layout--three .three-col-cta:hover {
   background-color: var(--cta-bg-hover);
   transform: translateY(-1px);
   box-shadow: var(--elevation-medium);
 }
 
-/* Accessible replacement focus style */
+/* Accessible replacement focus style (FIXED) */
 :focus-visible {
-  outline: none; /* remove default blue */
-  box-shadow: 0 0 0 var(--focus-ring-offset) var(--focus-ring),
-    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-size))
-      var(--focus-ring);
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
 }
 
-.request-quote-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--site-bg), 0 0 0 6px var(--focus-ring);
-  background-color: var(--focus-ring-bg);
+/* Button focus (FIXED) */
+.request-quote-btn:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
+
+  /* Optional: keep your “ring” look without relying on undefined tokens */
+  box-shadow: 0 0 0 var(--focus-gap) var(--focus-gap-color),
+    0 0 0 calc(var(--focus-gap) + var(--focus-width)) var(--focus-color);
 }
 
 button.small {
@@ -647,7 +657,7 @@ svg.logo {
   text-align: center;
   font-size: 1.75rem;
   text-transform: capitalize;
-  color: var(--site-text);
+  color: var(--nav-link);
   letter-spacing: var(--letterSpacing);
   /* margin: 0.25rem 1rem 0.25rem 1rem; */
   padding: 1rem 0;
@@ -738,6 +748,7 @@ svg.logo {
 .hero-heading span {
   display: block; /* each span becomes its own line */
   text-align: center;
+  color: var(--hero-h1-color);
 }
 
 .hero-heading span[aria-hidden="true"] {
@@ -757,10 +768,14 @@ svg.logo {
   text-align: center;
 }
 
+h2.hero-subhead {
+  color: var(--hero-h2-color);
+}
+
 .hire {
   font-size: 1.25rem;
   line-height: 1.5;
-  color: var(--site-text-muted);
+  /* color: var(--site-text-muted); */
   max-width: 50vw;
   margin: 3rem auto 0 auto;
   text-align: center;
@@ -803,6 +818,11 @@ a.react {
   padding: 0 0 0 0.25em;
 }
 
+.manage-cookies-link {
+  
+  font-size: var(--smallText);
+  padding: .25rem .5rem;
+}
 /*#########*/
 /* Back To Top */
 /*#########*/
@@ -831,11 +851,6 @@ a.react {
 
 .back-to-top:hover {
   color: var(--site-surface);
-}
-
-.back-to-top:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 4px;
 }
 
 .visually-hidden {
@@ -1527,15 +1542,22 @@ p.iterations-count {
 /* Transitions and Transforms */
 /*#########*/
 
-.logo-animate {
+.logo-mark .logo-animate {
   animation-name: draw;
-  stroke: var(--site-text);
-  stroke-width: 8px;
+  stroke: var(--logo-stroke);
+  stroke-width: 12px;
   stroke-dasharray: 4352;
   animation-duration: 3s;
   animation-iteration-count: 1;
   animation-direction: reverse;
   fill: none;
+  transition: fill 550ms ease-in-out;
+}
+
+/* Hover + keyboard focus */
+.logo-mark:hover .logo-animate,
+.logo-mark:focus-visible .logo-animate {
+  fill: var(--logo-fill);
 }
 
 @keyframes draw {
@@ -1547,19 +1569,6 @@ p.iterations-count {
     stroke-dashoffset: 4352;
     fill-opacity: 100%;
   }
-}
-
-.logo-static {
-  stroke: var(--site-text);
-  stroke-width: 12px;
-  fill: none;
-}
-
-/* Change logo color when the LINK is hovered */
-.logo-mark:hover .cls-1,
-.logo-mark:focus-visible .cls-1 {
-  fill: var(--cta-bg); /* accent / CTA color */
-  stroke: var(--cta-bg);
 }
 
 /*#########*/
@@ -1795,7 +1804,6 @@ li.list-custom-style-none {
     width: 120px;
     padding: 2px;
     fill: none;
-    /* border: 1px solid red; */
   }
 
   .project-hero {
@@ -2067,6 +2075,19 @@ li.list-custom-style-none {
   }
 }
 
+@media (max-width: 498px) {
+  .request-quote-btn {
+    padding: 1.25rem 0.25rem;
+  }
+}
+
+/* ============================
+   A11Y FORM (DROP-IN REPLACEMENT)
+   Uses tokens:
+   --field-bg, --field-border, --field-text, --radius
+   --focus-color, --focus-gap, --focus-width, --focus-gap-color
+   ============================ */
+
 /* Base controls */
 .a11y-form input,
 .a11y-form textarea,
@@ -2076,32 +2097,41 @@ li.list-custom-style-none {
   font: inherit;
   color: var(--field-text);
   background: var(--field-bg);
-  border: 1px solid var(--field-border);
+
+  /* Keep border thickness constant to prevent layout shift */
+  border: 2px solid var(--field-border); /* NEW */
   border-radius: var(--radius);
+
   padding: 0.625rem 0.75rem;
   line-height: 1.4;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease,
-    background 0.15s ease;
+
+  /* Smoother, consistent interaction motion */
+  transition: /* NEW */ border-color 250ms ease-in-out,
+    box-shadow 250ms ease-in-out, background 250ms ease-in-out;
 }
 
-/* Strong keyboard focus */
+/* Strong keyboard focus (field itself: subtle) */
 .a11y-form input:focus-visible,
 .a11y-form textarea:focus-visible,
 .a11y-form select:focus-visible {
   outline: none;
-  border-color: var(--focus-ring);
-  box-shadow: 0 0 0 var(--focus-gap) #fff,
-    0 0 0 calc(var(--focus-gap) + var(--focus-width)) var(--focus-color);
+
+  /* Only change color; do not change width/margins => no shift */
+ border-color: var(--field-border); /* NEW */
+
+  /* Avoid double-ring confusion (row handles the strong ring) */
+  box-shadow: none; /* NEW */
 }
 
-/* Ring the whole row */
+/* Ring the whole row (primary focus indicator) */
 .a11y-form .form-row {
   position: relative;
   border-radius: calc(var(--radius) + 2px);
 }
 
 .a11y-form .form-row:focus-within {
-  box-shadow: 0 0 0 var(--focus-gap) #fff,
+  box-shadow: /* NEW: no hard-coded #fff */ 0 0 0 var(--focus-gap)
+      var(--focus-gap-color),
     0 0 0 calc(var(--focus-gap) + var(--focus-width)) var(--focus-color);
 }
 
@@ -2119,7 +2149,10 @@ li.list-custom-style-none {
 /* Buttons */
 .a11y-form button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 var(--focus-width) var(--focus-color);
+
+  /* Match the same ring system used elsewhere */
+  box-shadow: /* NEW */ 0 0 0 var(--focus-gap) var(--focus-gap-color),
+    0 0 0 calc(var(--focus-gap) + var(--focus-width)) var(--focus-color);
 }
 
 /* High-contrast support */
@@ -2136,11 +2169,15 @@ li.list-custom-style-none {
   }
 }
 
+
+
+
+
 .skip-link {
   position: absolute;
   top: 0;
   left: 0;
-  background: #683d85;
+  background: var(--cta-bg);
   color: #fff;
   padding: 0.75rem 1rem;
   z-index: 1000;
@@ -2151,8 +2188,11 @@ li.list-custom-style-none {
 }
 
 .skip-link:focus,
-.skip-link:active {
+.skip-link:active,
+.skip-link:focus-visible {
   transform: translateY(0);
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
 }
 
 .sr-only {
@@ -2446,29 +2486,16 @@ li.list-custom-style-none {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   width: 100%; /* makes all CTAs align nicely */
   padding: 0.85rem 1rem;
-
   border-radius: var(--borderRadius);
-  border: 2px solid var(--site-border-strong);
-
-  background: var(--site-bg-strong);
+  border: none;
+  background: var(--cta-bg);
   color: var(--blade-light-bg);
-
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-}
-
-/* Hover / focus */
-.blade-layout--three .three-col-cta:hover {
-  filter: brightness(0.95);
-}
-
-.blade-layout--three .three-col-cta:focus-visible {
-  outline: 3px solid var(--site-focus, #000);
-  outline-offset: 3px;
+  transition: var(--transition);
 }
 
 /* Mobile only */
@@ -2606,10 +2633,17 @@ li .sub-item {
   text-transform: uppercase;
 }
 
+.stat-text-heading {
+  fill: var(--statFontFill);
+  font-family: var(--bodyFont);
+  font-size: 1.2rem;
+  padding-top: 1rem;
+}
+
 .stat-text {
   fill: var(--statFontFill);
   font-family: var(--bodyFont);
-  font-size: 1rem;
+  font-size: 0.75rem;
   padding-top: 1rem;
 }
 
@@ -2659,6 +2693,10 @@ figure.stat-figure {
   color: var(--statFontFill);
   margin: 0;
   padding: 0;
+}
+
+span.stat-source {
+  font-style: italic;
 }
 
 /* ============================

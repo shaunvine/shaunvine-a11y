@@ -1,12 +1,9 @@
 import React from "react"
 import SEOmeta from "../components/SEOmeta"
-import { graphql } from "gatsby"
 import Layout from "../components/Layout"
-import ProjectsList from "../components/ProjectsList"
 import { Link } from "gatsby"
 
-const ServiceThankYou = ({ data }) => {
-  const projects = data.allContentfulPortfolio.nodes
+const ServiceThankYou = () => {
   return (
     <Layout>
       <main className="page">
@@ -23,38 +20,29 @@ const ServiceThankYou = ({ data }) => {
               1–2 business days.
             </p>
             <p>
-              If you need anything urgent, feel free to reach out directly at
+              If you need anything urgent, feel free to reach out directly at{" "}
               <Link className="service-link" to="/contact">
-                {" "}
                 Contact
               </Link>
               . Looking forward to connecting. — Shaun
             </p>
           </div>
         </section>
+
+        {/* Optional: keep the section for layout consistency without Contentful */}
         <section className="featured-projects">
-          <ProjectsList projects={projects} />
+          <article className="contact-info">
+            <h3 className="section-title">In the meantime</h3>
+            <p>
+              If you have additional details to share, reply to your
+              confirmation email or send a follow-up message via the contact
+              page.
+            </p>
+          </article>
         </section>
       </main>
     </Layout>
   )
 }
-
-export const query = graphql`
-  {
-    allContentfulPortfolio(
-      sort: { title: ASC }
-      filter: { featured: { eq: true }, title: {} }
-    ) {
-      nodes {
-        id
-        title
-        image {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR)
-        }
-      }
-    }
-  }
-`
 
 export default ServiceThankYou

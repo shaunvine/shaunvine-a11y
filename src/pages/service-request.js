@@ -1,12 +1,9 @@
 import React, { useState } from "react"
-import SEOmeta from "../components/SEOmeta"
-import { graphql } from "gatsby"
 import { navigate } from "gatsby"
+import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
-import ProjectsList from "../components/ProjectsList"
 
-const ServicerequestForm = ({ data }) => {
-  const projects = data.allContentfulPortfolio.nodes
+const ServicerequestForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,17 +22,13 @@ const ServicerequestForm = ({ data }) => {
     try {
       const response = await fetch("https://formspree.io/f/mnndqpew", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
       if (response.ok) {
-        // Successful form submission
         navigate("/service-thankyou")
       } else {
-        // Handle error
         console.error("Form submission failed:", response)
       }
     } catch (error) {
@@ -47,6 +40,24 @@ const ServicerequestForm = ({ data }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
+  const handleStartDateChange = e => {
+    // allow only digits and auto-insert slashes
+    let v = e.target.value.replace(/[^\d]/g, "")
+    if (v.length > 8) v = v.slice(0, 8)
+    if (v.length > 2) v = v.slice(0, 2) + "/" + v.slice(2)
+    if (v.length > 4) v = v.slice(0, 5) + "/" + v.slice(5)
+    setFormData({ ...formData, startDate: v })
+  }
+
+  const handleStartDateBlur = e => {
+    // basic validation for format MM/DD/YYYY
+    const value = e.target.value
+    const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/
+    if (value && !regex.test(value)) {
+      alert("Please enter a valid date in MM/DD/YYYY format.")
+    }
+  }
+
   return (
     <Layout>
       <SEOmeta
@@ -56,8 +67,8 @@ const ServicerequestForm = ({ data }) => {
       />
       <main className="page">
         <section className="service-request-page">
-          <article className="ervice-request-info">
-            <h3>Ready to get started? </h3>
+          <article className="service-request-info">
+            <h3>Ready to get started?</h3>
             <h3>Need a custom Quote?</h3>
             <p className="service-request-intro">
               Whether you need expert QA testing or CMS content management, I am
@@ -69,8 +80,12 @@ const ServicerequestForm = ({ data }) => {
             <div>Thanks,</div>
             <div>Shaun</div>
           </article>
+
           <article>
-            <form className="a11y-form service-form contact-form" onSubmit={handleSubmit}>
+            <form
+              className="a11y-form service-form contact-form"
+              onSubmit={handleSubmit}
+            >
               <div className="form-row">
                 <label htmlFor="name">
                   your name<sup aria-hidden="true">*</sup>
@@ -87,6 +102,7 @@ const ServicerequestForm = ({ data }) => {
                   required
                 />
               </div>
+
               <div className="form-row">
                 <label htmlFor="email">
                   your email<sup aria-hidden="true">*</sup>
@@ -103,6 +119,7 @@ const ServicerequestForm = ({ data }) => {
                   required
                 />
               </div>
+
               <div className="form-row">
                 <label htmlFor="company">Company/Organization</label>
                 <input
@@ -115,6 +132,7 @@ const ServicerequestForm = ({ data }) => {
                   onChange={handleChange}
                 />
               </div>
+
               <div className="form-row">
                 <label htmlFor="servicetype">
                   Service Type<sup aria-hidden="true">*</sup>
@@ -139,6 +157,7 @@ const ServicerequestForm = ({ data }) => {
                   <option value="Other">Other</option>
                 </select>
               </div>
+
               <div className="form-row">
                 <label htmlFor="description">
                   Description of your project<sup aria-hidden="true">*</sup>
@@ -152,11 +171,12 @@ const ServicerequestForm = ({ data }) => {
                   value={formData.description}
                   onChange={handleChange}
                   required
-                ></textarea>
+                />
               </div>
+
               <div className="form-row">
                 <label htmlFor="website">
-                  your website address<sup aria-hidden="true">*</sup>
+                  your website address<sup aria-hidden="true">*</sup>{" "}
                   <span className="website-lower-case">
                     (https://your-website.com)
                   </span>
@@ -173,6 +193,7 @@ const ServicerequestForm = ({ data }) => {
                   required
                 />
               </div>
+
               <div className="form-row">
                 <label htmlFor="start-date">
                   Ideal Start Date (MM/DD/YYYY)
@@ -185,22 +206,8 @@ const ServicerequestForm = ({ data }) => {
                   placeholder="MM/DD/YYYY"
                   aria-label="Your Ideal Start Date (MM/DD/YYYY)"
                   value={formData.startDate}
-                  onChange={e => {
-                    // allow only digits and auto-insert slashes
-                    let v = e.target.value.replace(/[^\d]/g, "")
-                    if (v.length > 8) v = v.slice(0, 8)
-                    if (v.length > 2) v = v.slice(0, 2) + "/" + v.slice(2)
-                    if (v.length > 4) v = v.slice(0, 5) + "/" + v.slice(5)
-                    setFormData({ ...formData, startDate: v })
-                  }}
-                  onBlur={e => {
-                    // optional: basic validation for format MM/DD/YYYY
-                    const value = e.target.value
-                    const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/
-                    if (value && !regex.test(value)) {
-                      alert("Please enter a valid date in MM/DD/YYYY format.")
-                    }
-                  }}
+                  onChange={handleStartDateChange}
+                  onBlur={handleStartDateBlur}
                 />
               </div>
 
@@ -216,15 +223,16 @@ const ServicerequestForm = ({ data }) => {
                   <option value="">Select One</option>
                   <option value="Under $1,000">Under $1,000</option>
                   <option value="$1,000 – $2,500">$1,000 – $2,500</option>
-                  <option value="$2,500 – $5,000"> $2,500 – $5,000</option>
-                  <option value="$5,000 – $10,000"> $5,000 – $10,000</option>
-                  <option value="Over $10,000"> Over $10,000</option>
-                  <option value="Not sure yet"> Not sure yet</option>
+                  <option value="$2,500 – $5,000">$2,500 – $5,000</option>
+                  <option value="$5,000 – $10,000">$5,000 – $10,000</option>
+                  <option value="Over $10,000">Over $10,000</option>
+                  <option value="Not sure yet">Not sure yet</option>
                 </select>
               </div>
+
               <div className="form-row">
                 <label htmlFor="referral">
-                  How did you hear about me?<sup>*</sup>
+                  How did you hear about me?<sup aria-hidden="true">*</sup>
                 </label>
                 <input
                   type="text"
@@ -238,6 +246,7 @@ const ServicerequestForm = ({ data }) => {
                   required
                 />
               </div>
+
               <button
                 type="submit"
                 className="btn block"
@@ -248,30 +257,20 @@ const ServicerequestForm = ({ data }) => {
             </form>
           </article>
         </section>
+
+        {/* Optional: keep the section for layout consistency without Contentful */}
         <section className="featured-projects">
-          <ProjectsList projects={projects} />
+          <article className="contact-info">
+            <h3 className="section-title">What happens next</h3>
+            <p>
+              I’ll review your request and follow up within 1–2 business days to
+              schedule next steps.
+            </p>
+          </article>
         </section>
       </main>
     </Layout>
   )
 }
-
-export const query = graphql`
-  {
-    allContentfulPortfolio(
-      sort: { title: ASC }
-      filter: { featured: { eq: true }, title: {} }
-    ) {
-      nodes {
-        id
-        title
-        image {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR)
-        }
-        imageAltText
-      }
-    }
-  }
-`
 
 export default ServicerequestForm

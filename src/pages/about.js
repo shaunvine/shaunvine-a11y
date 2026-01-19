@@ -64,7 +64,7 @@ const About = () => {
               image: (
                 <article>
                   <StaticImage
-                    src="../assets/images/About.png"
+                    src="../assets/images/general/about.png"
                     alt="Shaun Vine in snowboarding gear climbing a mountain with friends"
                     className="about-img"
                     placeholder="blurred"

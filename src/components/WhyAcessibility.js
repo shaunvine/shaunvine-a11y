@@ -57,14 +57,6 @@ const Why = () => {
               risks.
             </p>
           </div>
-          {/* <div className="button-group">
-            <Link to="/manual-qa-services" className="request-quote-btn">
-              More about QA Services
-            </Link>
-            <Link to="/service-request" className="request-quote-btn">
-              Start Your Project
-            </Link>
-          </div> */}
         </div>
  </div>
       </div>

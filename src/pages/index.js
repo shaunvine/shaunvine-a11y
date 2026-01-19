@@ -4,8 +4,8 @@ import Layout from "../components/Layout"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
 import ClientTestimonial from "../components/ClientTestimonial"
-import CustomerLoyaltyStat from "../components/CustomerLoyaltyStat"
-import CartAbandonmentStat from "../components/CartAbandonmentStat"
+import CustomerLoyaltyStat from "../components/Stats/CustomerLoyaltyStat"
+import CartAbandonmentStat from "../components/Stats/CartAbandonmentStat"
 
 const IndexPage = () => {
   return (
@@ -100,7 +100,6 @@ const IndexPage = () => {
               description:
                 "Functional testing to ensure smooth, consistent experiences across devices.",
             },
-            ,
             {
               label: "Accessibility Remediation Guidance",
               description:

@@ -142,7 +142,7 @@ const SEO = ({ title, description, image }) => {
   ]
 
   return (
-    <Helmet htmlAttributes={{ lang: "en" }} title={`${title} | ${siteTitle}`}>
+    <Helmet htmlAttributes={{ lang: "en" }} title={pageTitle}>
       <meta name="description" content={metaDescription} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="canonical" href={canonicalUrl} />

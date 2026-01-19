@@ -3,8 +3,8 @@ import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
 import CTA from "../components/CTA"
 import ServiceBlade from "../components/ServiceBlade"
-import SeoStat from "../components/SeoStat"
-import OneInFour from "../components/OneInFour"
+import SeoStat from "../components/Stats/SeoStat"
+import OneInFour from "../components/Stats/OneInFour"
 
 const IndexPage = () => {
   return (

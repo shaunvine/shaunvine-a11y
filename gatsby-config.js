@@ -6,7 +6,7 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-;;;;(require("events").EventEmitter.defaultMaxListeners = 15),
+;(require("events").EventEmitter.defaultMaxListeners = 15),
   (module.exports = {
     /* Your site config here */
     siteMetadata: {
@@ -33,17 +33,17 @@ require("dotenv").config({
         resolve: `gatsby-source-filesystem`,
         options: {
           name: `images`,
-          path: `${__dirname}/src/assets/images`,
+          path: `${__dirname}/src/assets/images/general/`,
         },
       },
       {
-        resolve: `gatsby-source-contentful`,
+        resolve: `gatsby-source-filesystem`,
         options: {
-          spaceId: `er6tmlqx991h`,
-          // Learn about environment variables: https://gatsby.dev/env-vars
-          accessToken: process.env.CONTENTFUL_API_KEY,
+          name: `outdoors`,
+          path: `${__dirname}/src/assets/images/outdoors/`,
         },
       },
+      
       {
         resolve: `gatsby-plugin-webfonts`,
         options: {

@@ -1,6 +1,6 @@
 import React from "react"
 import { FaReact } from "react-icons/fa"
-import logo from "../assets/images/Shaun Vine IAAP.png" // <-- Update this path
+import logo from "../assets/images/general/Shaun Vine IAAP.png" // <-- Update this path
 
 const Footer = () => {
   return (
@@ -31,6 +31,16 @@ const Footer = () => {
             <FaReact />
           </a>
         </p>
+        {/* Manage Cookies button */}
+        <div style={{ textAlign: "center", marginTop: "0.75rem" }}>
+          <button
+            type="button"
+            id="manage-cookies"
+            className="manage-cookies-link"
+          >
+            Manage cookies
+          </button>
+        </div>
       </div>
     </footer>
   )

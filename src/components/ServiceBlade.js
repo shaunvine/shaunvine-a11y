@@ -51,7 +51,6 @@ const ServiceBlade = ({
       aria-labelledby={hasHeadingContent ? headingId : undefined}
       // Fallback label so the region is still named when no heading is rendered
       aria-label={!hasHeadingContent ? "Service section" : undefined}
-      role="region"
     >
       <div className="service-column">
         <div className="service-content">

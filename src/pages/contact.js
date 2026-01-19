@@ -1,12 +1,10 @@
 import React, { useState } from "react"
 import SEOmeta from "../components/SEOmeta"
-import { graphql } from "gatsby"
 import { navigate } from "gatsby"
 import Layout from "../components/Layout"
-import ProjectsList from "../components/ProjectsList"
+import OutdoorImages from "../components/OutdoorImages"
 
-const ContactForm = ({ data }) => {
-  const projects = data.allContentfulPortfolio.nodes
+const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,17 +17,13 @@ const ContactForm = ({ data }) => {
     try {
       const response = await fetch("https://formspree.io/f/mleqabja", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
       if (response.ok) {
-        // Successful form submission
         navigate("/thankyou")
       } else {
-        // Handle error
         console.error("Form submission failed:", response)
       }
     } catch (error) {
@@ -51,11 +45,13 @@ const ContactForm = ({ data }) => {
       <main className="page">
         <section className="contact-page">
           <article className="contact-info">
-            <h3 className="section-title contact-info">Want to get in touch?</h3>
-
+            <h3 className="section-title contact-info">
+              Want to get in touch?
+            </h3>
             <p>Please complete the form and I will respond to your message.</p>
             <p>Thanks, Shaun</p>
           </article>
+
           <article>
             <form
               className="form a11y-form contact-form"
@@ -69,14 +65,13 @@ const ContactForm = ({ data }) => {
                   type="text"
                   name="name"
                   id="name"
-                  aria-label="Your Name"
-                  aria-required="true"
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleChange}
                   required
                 />
               </div>
+
               <div className="form-row">
                 <label htmlFor="email">
                   your email<sup>*</sup>
@@ -85,14 +80,13 @@ const ContactForm = ({ data }) => {
                   type="email"
                   name="email"
                   id="email"
-                  aria-label="Your Email"
-                  aria-required="true"
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={handleChange}
                   required
                 />
               </div>
+
               <div className="form-row">
                 <label htmlFor="message">
                   your message<sup>*</sup>
@@ -100,14 +94,13 @@ const ContactForm = ({ data }) => {
                 <textarea
                   name="message"
                   id="message"
-                  aria-label="Your Message"
-                  aria-required="true"
                   placeholder="Your Message"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                ></textarea>
+                />
               </div>
+
               <button
                 type="submit"
                 className="btn block"
@@ -118,30 +111,13 @@ const ContactForm = ({ data }) => {
             </form>
           </article>
         </section>
-        <section className="featured-projects">
-          <ProjectsList projects={projects} />
+
+        <section>
+          <OutdoorImages />
         </section>
       </main>
     </Layout>
   )
 }
-
-export const query = graphql`
-  {
-    allContentfulPortfolio(
-      sort: { title: ASC }
-      filter: { featured: { eq: true }, title: {} }
-    ) {
-      nodes {
-        id
-        title
-        image {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: DOMINANT_COLOR)
-        }
-        imageAltText
-      }
-    }
-  }
-`
 
 export default ContactForm

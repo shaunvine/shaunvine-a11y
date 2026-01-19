@@ -65,8 +65,8 @@ const Layout = ({ children }) => {
       <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
 
       <main id="main-content">{children}</main>
-      <BackToTop />
       <Footer />
+      <BackToTop />
     </>
   )
 }
