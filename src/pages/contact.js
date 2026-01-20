@@ -48,7 +48,7 @@ const ContactForm = () => {
             <h3 className="section-title contact-info">
               Want to get in touch?
             </h3>
-            <p>Please complete the form and I will respond to your message.</p>
+            <p>Please complete the form and I will respond to your message within one business day.</p>
             <p>Thanks, Shaun</p>
           </article>
 
