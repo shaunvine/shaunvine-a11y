@@ -43,7 +43,7 @@ require("dotenv").config({
           path: `${__dirname}/src/assets/images/outdoors/`,
         },
       },
-      
+
       {
         resolve: `gatsby-plugin-webfonts`,
         options: {
@@ -51,7 +51,7 @@ require("dotenv").config({
             google: [
               {
                 family: "Lexend",
-                variants: ["100", "200", "600", "700"],
+                variants: ["100", "200", "600", "400", "700"],
               },
               {
                 family: "Atkinson Hyperlegible",
