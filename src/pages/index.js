@@ -10,14 +10,8 @@ import CartAbandonmentStat from "../components/Stats/CartAbandonmentStat"
 const IndexPage = () => {
   return (
     <Layout>
-      <SEOmeta
-        title="Website QA, Accessibility Audits & CMS Help | Shaun Vine"
-        description="Seattle-based QA Tester specializing in accessibility audits, manual testing, and CMS support. Reliable, detail-oriented, and results-driven."
-        image="/assets/images/shaun-vine-portfolio.jpg"
-      />
       <main className="page">
         {/* Hero Section */}
-
         <header className="hero" id="hero" aria-labelledby="hero-heading">
           <div>
             <h1 id="hero-heading" className="hero-heading">
@@ -45,7 +39,6 @@ const IndexPage = () => {
         </header>
 
         {/* Main Content */}
-
         <ServiceBlade
           id="why-accessibility-matters"
           variant="dark"
@@ -55,21 +48,11 @@ const IndexPage = () => {
           description=""
           listHeading="But accessibility is also:"
           items={[
-            {
-              label: "A legal requirement (ADA, Section 508, AODA, EAA)",
-            },
-            {
-              label: "A trust signal for customers",
-            },
-            {
-              label: "A quality signal for search engines",
-            },
-            {
-              label: "A protection against lawsuits",
-            },
-            {
-              label: "A way to expand your audience",
-            },
+            { label: "A legal requirement (ADA, Section 508, AODA, EAA)" },
+            { label: "A trust signal for customers" },
+            { label: "A quality signal for search engines" },
+            { label: "A protection against lawsuits" },
+            { label: "A way to expand your audience" },
           ]}
           footerText="I help organizations identify issues before they become costly risks."
         />
@@ -121,10 +104,10 @@ const IndexPage = () => {
           subtitle=""
           columns={[
             <CartAbandonmentStat key="cart" />,
-
             <CustomerLoyaltyStat key="loyalty" />,
           ]}
         />
+
         <ServiceBlade
           id="client-testimonials"
           variant="dark"
@@ -169,3 +152,14 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+// Homepage Head: keep your LocalBusiness/Person/Service JSON-LD here
+export const Head = ({ location }) => (
+  <SEOmeta
+    title="Website QA, Accessibility Audits & CMS Help"
+    description="Seattle-based QA tester specializing in WCAG 2.2 accessibility audits, manual QA, and CMS support. Practical, detail-oriented guidance."
+    image="/assets/images/shaun-vine-portfolio.jpg"
+    pathname={location?.pathname}
+    includeJsonLd={true}
+  />
+)
