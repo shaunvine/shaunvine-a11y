@@ -4,7 +4,7 @@ require("dotenv").config({
 ;(require("events").EventEmitter.defaultMaxListeners = 15),
   (module.exports = {
     siteMetadata: {
-      title: "Manual QA Tester | CMS Content Manager | Seattle | Shaun Vine",
+      title: "Shaun Vine Seattle",
       siteDescription:
         "Manual QA Testing and content workflow optimization. Improve website quality, streamline your CMS, and ensure your content is error-free.",
       author: "Shaun Vine",
