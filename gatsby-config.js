@@ -1,20 +1,16 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 ;(require("events").EventEmitter.defaultMaxListeners = 15),
   (module.exports = {
-    /* Your site config here */
     siteMetadata: {
       title: "Manual QA Tester | CMS Content Manager | Seattle | Shaun Vine",
       siteDescription:
-        "Manual QA Testing, and content workflow optimization. Let me help you improve your website performance, streamline your CMS, and ensure your content is always error-free.",
+        "Manual QA Testing and content workflow optimization. Improve website quality, streamline your CMS, and ensure your content is error-free.",
       author: "Shaun Vine",
-      siteUrl: "https://shaunvine.com", // Set the site URL here
+      siteUrl: "https://shaunvine.com",
+      // NEW: used by SEOmeta.js when a page doesn't pass an image prop
+      defaultImage: "/assets/images/About.png",
     },
     plugins: [
       {
@@ -43,29 +39,7 @@ require("dotenv").config({
           path: `${__dirname}/src/assets/images/outdoors/`,
         },
       },
-
-      {
-        resolve: `gatsby-plugin-webfonts`,
-        options: {
-          fonts: {
-            google: [
-              {
-                family: "Lexend",
-                variants: ["100", "200", "600", "400", "700"],
-              },
-              {
-                family: "Atkinson Hyperlegible",
-                variants: ["400", "700"],
-              },
-              {
-                family: "Noto Sans",
-                variants: ["100", "200", "600", "700"],
-              },
-            ],
-          },
-        },
-      },
-      `gatsby-plugin-react-helmet`,
+      
       `gatsby-plugin-sitemap`,
     ],
   })
