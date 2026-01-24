@@ -12,17 +12,40 @@ const IndexPage = () => {
     <Layout>
       <main className="page">
         {/* Hero Section */}
-        <header className="hero" id="hero" aria-labelledby="hero-heading">
+        <header className="hero" id="hero">
           <div>
-            <h1 id="hero-heading" className="hero-heading">
-              <span>Digital Accessibility</span>
-              <span aria-hidden="true">+</span>
-              <span>Manual QA Specialist</span>
+            <h1
+              id="hero-heading"
+              className="hero-heading"
+              aria-label="Digital Accessibility plus Manual QA Specialist"
+            >
+              <span aria-hidden="true" className="hero-heading__line">
+                Digital Accessibility
+              </span>
+              <span aria-hidden="true" className="hero-heading__plus">
+                +
+              </span>
+              <span aria-hidden="true" className="hero-heading__line">
+                Manual QA Specialist
+              </span>
             </h1>
           </div>
-          <h2 className="hero-subhead">
-            WCAG 2.2 | AXE & Wave | NVDA | VoiceOver | Cross-Browser QA
+
+          <h2
+            className="hero-subhead"
+            aria-label="WCAG 2.2, AXE and Wave, NVDA, VoiceOver, Cross-Browser QA"
+          >
+            <span aria-hidden="true">WCAG 2.2</span>
+            <span aria-hidden="true"> | </span>
+            <span aria-hidden="true">AXE &amp; Wave</span>
+            <span aria-hidden="true"> | </span>
+            <span aria-hidden="true">NVDA</span>
+            <span aria-hidden="true"> | </span>
+            <span aria-hidden="true">VoiceOver</span>
+            <span aria-hidden="true"> | </span>
+            <span aria-hidden="true">Cross-Browser QA</span>
           </h2>
+
           <p className="hire">
             I help businesses eliminate accessibility barriers, improve
             usability, and ensure high-quality digital experiences for all
