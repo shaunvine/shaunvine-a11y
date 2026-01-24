@@ -745,19 +745,28 @@ svg.logo {
   padding: 2rem 2rem;
 }
 
-.hero-heading span {
-  display: block; /* each span becomes its own line */
+.hero-heading {
   text-align: center;
   color: var(--hero-h1-color);
+  margin: 0;
 }
 
-.hero-heading span[aria-hidden="true"] {
+/* Guaranteed line breaks */
+.hero-heading__line,
+.hero-heading__plus {
   display: block;
+}
+
+/* Optional: tighten/adjust the plus line spacing */
+.hero-heading__plus {
+  line-height: 1;
+  margin-block: 0.15em; /* tweak or remove */
 }
 
 /* Limit hero subtext line length without cutting words */
 .hero-subhead {
   font-family: var(--bodyFont);
+  color: var(--hero-h2-color);
   font-weight: 100;
   max-width: 60ch; /* ideal readable line length */
   margin-inline: auto; /* center horizontally */
@@ -768,8 +777,15 @@ svg.logo {
   text-align: center;
 }
 
-h2.hero-subhead {
-  color: var(--hero-h2-color);
+/* Keep all parts inline */
+.hero-subhead__item,
+.hero-subhead__sep {
+  display: inline;
+}
+
+/* Visual spacing for decorative separators only */
+.hero-subhead__sep {
+  margin: 0 0.5ch;
 }
 
 .hire {
@@ -819,9 +835,8 @@ a.react {
 }
 
 .manage-cookies-link {
-  
   font-size: var(--smallText);
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
 }
 /*#########*/
 /* Back To Top */
@@ -2117,7 +2132,7 @@ li.list-custom-style-none {
   outline: none;
 
   /* Only change color; do not change width/margins => no shift */
- border-color: var(--field-border); /* NEW */
+  border-color: var(--field-border); /* NEW */
 
   /* Avoid double-ring confusion (row handles the strong ring) */
   box-shadow: none; /* NEW */
@@ -2168,10 +2183,6 @@ li.list-custom-style-none {
     border-color: CanvasText;
   }
 }
-
-
-
-
 
 .skip-link {
   position: absolute;
