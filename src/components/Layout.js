@@ -107,17 +107,42 @@ const Layout = ({ children }) => {
     setTheme(prev => (prev === "light" ? "dark" : "light"))
   }
 
+  // Find first focusable element inside a container (used by skip link)
+  const focusFirstInMain = () => {
+    const main = document.getElementById("main-content")
+    if (!main) return
+
+    const focusable = main.querySelector(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+
+    // Wait one tick so the hash jump completes, then set focus
+    setTimeout(() => {
+      if (focusable && typeof focusable.focus === "function") {
+        focusable.focus()
+      } else {
+        main.focus()
+      }
+    }, 0)
+  }
+
   return (
     <>
       {/* Accessibility: Skip link */}
-      <a href="#main-content" className="skip-link">
+      <a
+        href="#main-content"
+        className="skip-link"
+        onClick={() => focusFirstInMain()}
+      >
         Skip to main content
       </a>
 
       {/* Navbar still receives theme props for future use */}
       <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
 
-      <main id="main-content">{children}</main>
+      <main id="main-content" tabIndex={-1}>
+        {children}
+      </main>
 
       <Footer />
       <BackToTop />

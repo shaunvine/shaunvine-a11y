@@ -1,16 +1,19 @@
 import React from "react"
 import { FaReact } from "react-icons/fa"
-import logo from "../assets/images/general/Shaun Vine IAAP.png" // <-- Update this path
+import logo from "../assets/images/general/IAAP-Cert.png" // <-- Update this path
 
 const Footer = () => {
   return (
     <footer className="page-footer">
       <div className="footer-content">
         <div className="footer-logo">
-          <img src={logo} alt="Shaun Vine logo" />
+          <img
+            src={logo}
+            alt="IAAP Certified Professional in Accessibility Core Competencies (CPACC) "
+          />
         </div>
         <p className="footer-text">
-          &copy; {new Date().getFullYear()} shaunvine.com — Built with{" "}
+          &copy; {new Date().getFullYear()} shaunvine.com — Built with
           <a
             aria-label="Contentful Website | Opens in new tab"
             className="gatsby"
