@@ -1,7 +1,5 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import { useLocation } from "@reach/router"
 
 const query = graphql`
   {
@@ -10,161 +8,170 @@ const query = graphql`
         title
         siteDescription
         siteUrl
+        defaultImage
       }
     }
   }
 `
 
-const SEO = ({ title, description, image }) => {
+const SEOmeta = ({
+  title,
+  description,
+  image,
+  pathname = "/",
+  includeJsonLd = false,
+}) => {
   const { site } = useStaticQuery(query)
-  const location = useLocation()
 
-  const metaDescription = description || site.siteMetadata.siteDescription
   const siteTitle = site.siteMetadata.title
-  const siteUrl = site.siteMetadata.siteUrl || ""
+  const siteDescription = site.siteMetadata.siteDescription
+  const siteUrl = site.siteMetadata.siteUrl?.replace(/\/$/, "") || ""
+  const defaultImage = site.siteMetadata.defaultImage || ""
 
-  // Build a single pageTitle value for everything
+  const metaDescription = (description || siteDescription || "").trim()
+
+  // Use ONE consistent pageTitle everywhere
   const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
 
-  const canonicalUrl = `${siteUrl}${location.pathname}`
-  const imageUrl = image ? `${siteUrl}${image}` : null
+  // Canonical
+  const safePath = pathname?.startsWith("/") ? pathname : `/${pathname || ""}`
+  const canonicalUrl = `${siteUrl}${safePath}`
 
-  const imagePath = "/assets/images/About.png" // your relative path
-  const fullImageUrl = `${siteUrl}${imagePath}` // becomes full URL
+  // Social image
+  const imagePath = image || defaultImage || ""
+  const imageUrl = imagePath
+    ? `${siteUrl}${imagePath.startsWith("/") ? imagePath : `/${imagePath}`}`
+    : null
 
-  const jsonLd = [
-    // LocalBusiness schema
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://shaunvine.com#business",
-      name: "Shaun D. Vine – Manual QA & Accessibility Services",
-      url: "https://shaunvine.com",
-      image: fullImageUrl,
-      description:
-        "Manual QA Testing, Accessibility Audits (WCAG), and CMS support for businesses, agencies, and developers in Seattle.",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Seattle",
-        addressRegion: "WA",
-        addressCountry: "US",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 47.6062,
-        longitude: -122.3321,
-      },
-      founder: {
-        "@id": "https://shaunvine.com#person",
-      },
-      sameAs: ["https://www.linkedin.com/in/shaunvine"],
-    },
-
-    // Person schema
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": "https://shaunvine.com#person",
-      name: "Shaun D. Vine",
-      jobTitle: "Manual QA Tester & Accessibility Consultant",
-      url: "https://shaunvine.com",
-      worksFor: {
-        "@id": "https://shaunvine.com#business",
-      },
-      sameAs: ["https://www.linkedin.com/in/shaunvine"],
-    },
-
-    // Service: Manual QA Testing
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "Manual QA Testing",
-      serviceType: "Website Quality Assurance",
-      provider: {
-        "@id": "https://shaunvine.com#business",
-      },
-      areaServed: {
-        "@type": "Place",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Seattle",
-          addressRegion: "WA",
-          addressCountry: "US",
+  // JSON-LD (optional)
+  const jsonLd = includeJsonLd
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": `${siteUrl}#business`,
+          name: "Shaun D. Vine – Manual QA & Accessibility Services",
+          url: siteUrl,
+          image: imageUrl || undefined,
+          description:
+            "Manual QA Testing, Accessibility Audits (WCAG), and CMS support for businesses, agencies, and developers in Seattle.",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Seattle",
+            addressRegion: "WA",
+            addressCountry: "US",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 47.6062,
+            longitude: -122.3321,
+          },
+          founder: { "@id": `${siteUrl}#person` },
+          sameAs: ["https://www.linkedin.com/in/shaunvine"],
         },
-      },
-      description:
-        "Manual website testing for usability, broken links, responsive design, cross-browser and functional QA before launch.",
-    },
-
-    // Service: CMS Management
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "CMS Management",
-      serviceType: "Content Management Services",
-      provider: {
-        "@id": "https://shaunvine.com#business",
-      },
-      areaServed: {
-        "@type": "Place",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Seattle",
-          addressRegion: "WA",
-          addressCountry: "US",
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "@id": `${siteUrl}#person`,
+          name: "Shaun D. Vine",
+          jobTitle: "Manual QA Tester & Accessibility Consultant",
+          url: siteUrl,
+          worksFor: { "@id": `${siteUrl}#business` },
+          sameAs: ["https://www.linkedin.com/in/shaunvine"],
         },
-      },
-      description:
-        "Custom CMS updates, plugin maintenance, content entry, and layout QA for WordPress, Contentful, Optmizely, and other platforms.",
-    },
-
-    // Service: Accessibility Audits
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "Accessibility Audits",
-      serviceType: "Website Accessibility Evaluation",
-      provider: {
-        "@id": "https://shaunvine.com#business",
-      },
-      areaServed: {
-        "@type": "Place",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Seattle",
-          addressRegion: "WA",
-          addressCountry: "US",
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Manual QA Testing",
+          serviceType: "Website Quality Assurance",
+          provider: { "@id": `${siteUrl}#business` },
+          areaServed: {
+            "@type": "Place",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Seattle",
+              addressRegion: "WA",
+              addressCountry: "US",
+            },
+          },
+          description:
+            "Manual website testing for usability, broken links, responsive design, cross-browser and functional QA before launch.",
         },
-      },
-      description:
-        "Website audits for accessibility compliance with WCAG 2.1, including keyboard navigation, screen reader testing, and color contrast.",
-    },
-  ]
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "CMS Management",
+          serviceType: "Content Management Services",
+          provider: { "@id": `${siteUrl}#business` },
+          areaServed: {
+            "@type": "Place",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Seattle",
+              addressRegion: "WA",
+              addressCountry: "US",
+            },
+          },
+          description:
+            "Custom CMS updates, plugin maintenance, content entry, and layout QA for WordPress, Contentful, Optimizely, and other platforms.",
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Accessibility Audits",
+          serviceType: "Website Accessibility Evaluation",
+          provider: { "@id": `${siteUrl}#business` },
+          areaServed: {
+            "@type": "Place",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Seattle",
+              addressRegion: "WA",
+              addressCountry: "US",
+            },
+          },
+          description:
+            "Website audits for accessibility compliance with WCAG, including keyboard navigation, screen reader testing, and color contrast.",
+        },
+      ]
+    : null
 
   return (
-    <Helmet htmlAttributes={{ lang: "en" }} title={pageTitle}>
-      <meta name="description" content={metaDescription} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <>
+      <html lang="en" />
+      <title>{pageTitle}</title>
+
+      {/* Primary SEO */}
+      {metaDescription && <meta name="description" content={metaDescription} />}
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Open Graph */}
-      <meta property="og:title" content={`${title} | ${siteTitle}`} />
-      <meta property="og:description" content={metaDescription} />
+      <meta property="og:title" content={pageTitle} />
+      {metaDescription && (
+        <meta property="og:description" content={metaDescription} />
+      )}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:locale" content="en_US" />
       {imageUrl && <meta property="og:image" content={imageUrl} />}
 
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${title} | ${siteTitle}`} />
-      <meta name="twitter:description" content={metaDescription} />
+      {/* Twitter */}
+      <meta
+        name="twitter:card"
+        content={imageUrl ? "summary_large_image" : "summary"}
+      />
+      <meta name="twitter:title" content={pageTitle} />
+      {metaDescription && (
+        <meta name="twitter:description" content={metaDescription} />
+      )}
       {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
-      {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+      {/* JSON-LD (optional) */}
+      {jsonLd && (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      )}
+    </>
   )
 }
 
-export default SEO
+export default SEOmeta

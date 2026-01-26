@@ -2,7 +2,29 @@ import React from "react"
 
 export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
   setHeadComponents([
+    // -------------------------------
+    // Google Fonts (global)
+    // -------------------------------
+    <link
+      key="preconnect-google-fonts"
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />,
+    <link
+      key="preconnect-gstatic"
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossOrigin="anonymous"
+    />,
+    <link
+      key="google-fonts-css"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;400;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=Noto+Sans:wght@100;200;600;700&display=swap"
+    />,
+
+    // -------------------------------
     // Set default consent mode BEFORE GTM loads
+    // -------------------------------
     <script
       key="gtag-consent-default"
       dangerouslySetInnerHTML={{
@@ -18,7 +40,10 @@ export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
         `,
       }}
     />,
-    // Load GTM unconditionally — Consent Mode will block actual tracking
+
+    // -------------------------------
+    // Load GTM (Consent Mode handles blocking)
+    // -------------------------------
     <script
       key="gtm-loader"
       dangerouslySetInnerHTML={{

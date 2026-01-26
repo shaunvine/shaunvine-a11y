@@ -1,8 +1,9 @@
+// src/pages/contact.js
 import React, { useState } from "react"
-import SEOmeta from "../components/SEOmeta"
 import { navigate } from "gatsby"
 import Layout from "../components/Layout"
 import OutdoorImages from "../components/OutdoorImages"
+import SEOmeta from "../components/SEOmeta"
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -37,18 +38,17 @@ const ContactForm = () => {
 
   return (
     <Layout>
-      <SEOmeta
-        title="Contact"
-        siteDescription="This is the Contact Page for Shaun Vine Portfolio React App"
-        image="/images/shaun-vine-portfolio.jpg"
-      />
       <main className="page">
         <section className="contact-page">
           <article className="contact-info">
+            <h1>Contact Me</h1>
             <h3 className="section-title contact-info">
               Want to get in touch?
             </h3>
-            <p>Please complete the form and I will respond to your message within one business day.</p>
+            <p>
+              Please complete the form and I will respond to your message within
+              one business day.
+            </p>
             <p>Thanks, Shaun</p>
           </article>
 
@@ -121,3 +121,15 @@ const ContactForm = () => {
 }
 
 export default ContactForm
+
+// Gatsby Head API: ONE place per page to output <title> + meta, etc.
+export const Head = ({ location }) => (
+  <SEOmeta
+    title="Contact Form"
+    description="Contact Shaun Vine for Manual QA Testing, accessibility audits, or CMS support."
+    image="/images/shaun-vine-portfolio.jpg"
+    pathname={location?.pathname}
+    // For non-home pages, you usually do NOT need to repeat LocalBusiness/Person/Service JSON-LD.
+    includeJsonLd={false}
+  />
+)

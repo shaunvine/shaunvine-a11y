@@ -82,7 +82,11 @@ const ServiceBlade = ({
                   {items.map((item, index) => (
                     <li key={index} className="service-list-item">
                       <span className="li-icon-wrapper">
-                        <FaCheck className="list-icon" />
+                        <FaCheck
+                          className="list-icon"
+                          aria-hidden="true" // A11Y FIX
+                          focusable="false" // A11Y FIX
+                        />
                         <span className="li-label">{item.label}</span>
                       </span>
 
@@ -166,7 +170,11 @@ const ServiceBlade = ({
                         {col.items.map((item, i) => (
                           <li key={i} className="service-list-item">
                             <span className="li-icon-wrapper">
-                              <FaCheck className="list-icon" />
+                              <FaCheck
+                                className="list-icon"
+                                aria-hidden="true" // A11Y FIX
+                                focusable="false" // A11Y FIX
+                              />
                               <span className="li-label">{item.label}</span>
                             </span>
 
