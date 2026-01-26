@@ -812,9 +812,19 @@ svg.logo {
 }
 
 .footer-logo img {
-  width: 120px; /* Responsive size */
+  width: 80px; /* Responsive size */
   height: auto;
   max-width: 40vw; /* Shrinks on mobile */
+
+}
+
+.cpacc-logo img {
+  width: 80px; /* Responsive size */
+  height: auto;
+  max-width: 40vw; /* Shrinks on mobile */
+  padding: .5rem;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .footer-text a {
