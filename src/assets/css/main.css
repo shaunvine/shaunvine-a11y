@@ -24,8 +24,8 @@ html {
   --smallText: 0.9em;
   --extraSmallText: 0.8em;
 
-  --font-size-h1: clamp(2.5rem, 5vw + 1rem, 3.5rem);
-  --font-size-h2: 2rem;
+  --font-size-h1: clamp(1.75rem, 5vw + 1rem, 3.5rem);
+  --font-size-h2: clamp(1.25rem, 3.5vw + 0.75rem, 2.25rem);
   --font-size-h3: 1.75rem;
   --font-size-h4: 1.375rem;
   --font-size-h5: 1.125rem;
@@ -815,14 +815,13 @@ svg.logo {
   width: 80px; /* Responsive size */
   height: auto;
   max-width: 40vw; /* Shrinks on mobile */
-
 }
 
 .cpacc-logo img {
   width: 80px; /* Responsive size */
   height: auto;
   max-width: 40vw; /* Shrinks on mobile */
-  padding: .5rem;
+  padding: 0.5rem;
   justify-content: flex-end;
   align-items: center;
 }
@@ -2102,10 +2101,12 @@ li.list-custom-style-none {
 
 @media (max-width: 498px) {
   .request-quote-btn {
-    padding: 1.25rem 0.25rem;
+    text-align: center;
+  }
+  .hero-heading {
+    margin-bottom: 1rem;
   }
 }
-
 /* ============================
    A11Y FORM (DROP-IN REPLACEMENT)
    Uses tokens:
