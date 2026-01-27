@@ -12,7 +12,7 @@ const IndexPage = () => {
     <Layout>
       <main className="page">
         {/* Hero Section */}
-        <header className="hero" id="hero" aria-labelledby="hero-heading">
+        <header className="hero" id="hero">
           <div>
             <h1
               id="hero-heading"

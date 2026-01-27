@@ -31,7 +31,7 @@ const SEOmeta = ({
   const metaDescription = (description || siteDescription || "").trim()
 
   // Use ONE consistent pageTitle everywhere
-  const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
+  const pageTitle = title ? `${title} — ${siteTitle}` : siteTitle
 
   // Canonical
   const safePath = pathname?.startsWith("/") ? pathname : `/${pathname || ""}`

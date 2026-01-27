@@ -4,6 +4,7 @@ import { useLocation } from "@reach/router" // NEW
 import { FiAlignJustify, FiSun, FiMoon } from "react-icons/fi" // NEW
 import CTA from "../components/CTA"
 import LogoMark from "../components/LogoMark" // NEW
+// import logo from "../assets/images/general/IAAP-Cert.png"
 
 const ENABLE_THEME_TOGGLE = false
 
@@ -140,6 +141,17 @@ const Navbar = ({ theme, onToggleTheme }) => {
             >
               Contact
             </CTA>
+
+            {/* <Link
+              className="cpacc-logo img nav-link"
+              to="https://www.accessibilityassociation.org/certification-overview"
+              aria-label="IAAP Certified Professional in Accessibility Core Competencies (CPACC) "
+            >
+              <img
+                src={logo}
+                alt="IAAP Certified Professional in Accessibility Core Competencies (CPACC) "
+              />
+            </Link> */}
 
             {/* Desktop theme toggle */}
             {ENABLE_THEME_TOGGLE && (
