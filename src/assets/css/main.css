@@ -2420,6 +2420,7 @@ li.list-custom-style-none {
 }
 .blade-layout--three .three-col-subheading {
   margin: 0.5rem 0 0;
+  color: var(--site-text-dark);
 }
 .blade-layout--three .three-col-list {
   margin: 1rem 0 0;

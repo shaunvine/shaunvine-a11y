@@ -228,15 +228,17 @@ const IndexPage = () => {
             {
               badge: "Ideal for Small Sites",
               heading: "Basic Accessibility Review",
-              subheading: "Ideal for small sites and early-stage projects.",
+              subheading:
+                "A focused, manual-assisted accessibility review of representative pages to identify high-impact barriers affecting keyboard and screen reader users. This is not a full WCAG conformance audit, but a prioritized snapshot aligned with WCAG 2.2 Level AA.",
               items: [
+                { label: "Ideal for small sites and early-stage projects" },
                 { label: "Up to 5 representative pages" },
                 { label: "WCAG 2.2–aligned snapshot audit" },
                 { label: "Automated testing with manual review" },
                 { label: "Keyboard accessibility check of core user flows" },
                 { label: "High-level findings and recommendations" },
               ],
-              footerText: "$300–$450",
+              footerText: "$450–$600",
               bladeFooterCTA: (
                 <a className="three-col-cta" href="/contact">
                   Request a Consultation
@@ -246,8 +248,12 @@ const IndexPage = () => {
             {
               badge: "Most Popular",
               heading: "Standard WCAG 2.2 Audit",
-              subheading: "Best for small businesses and non-profits.",
+              subheading:
+                "A comprehensive, manual accessibility audit of key pages and templates to evaluate conformance with WCAG 2.2 Level AA. This audit identifies accessibility barriers across structure, interaction, visual presentation, and assistive technology support, and provides prioritized, developer-ready remediation guidance with a post-fix verification pass.",
               items: [
+                {
+                  label: "Best for small businesses and non-profits.",
+                },
                 { label: "Up to 20 pages or templates" },
                 { label: "Full WCAG 2.2–aligned audit" },
                 { label: "Automated and manual testing" },
@@ -258,7 +264,7 @@ const IndexPage = () => {
                 { label: "Prioritized remediation guide" },
                 { label: "One post-fix verification pass" },
               ],
-              footerText: "$1,200–$2,000",
+              footerText: "$2,200–$2,800",
               bladeFooterCTA: (
                 <a className="three-col-cta" href="/contact">
                   Request a Consultation
@@ -268,8 +274,10 @@ const IndexPage = () => {
             {
               badge: "Extended Support",
               heading: "Premium Accessibility Partnership",
-              subheading: "For growing organizations and mission-driven teams.",
+              subheading:
+                "An extended WCAG 2.2 Level AA accessibility audit for complex sites and larger page sets, including deeper evaluation of custom components, responsive behavior, and key user workflows. The engagement includes prioritized findings, remediation planning support, scheduled verification, and optional ongoing accessibility monitoring.",
               items: [
+                { label: "For growing organizations and mission-driven teams" },
                 { label: "20+ pages or templates" },
                 { label: "Extended WCAG 2.2–aligned audit coverage" },
                 { label: "Manual testing of complex components" },
