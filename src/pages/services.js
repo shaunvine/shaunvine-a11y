@@ -9,12 +9,7 @@ import OneInFour from "../components/Stats/OneInFour"
 const IndexPage = () => {
   return (
     <Layout>
-      <SEOmeta
-        title="Website QA, Accessibility Audits & CMS Help | Shaun Vine"
-        description="Seattle-based QA Tester specializing in accessibility audits, manual testing, and CMS support. Reliable, detail-oriented, and results-driven."
-        image="/assets/images/shaun-vine-portfolio.jpg"
-      />
-      <main className="page">
+      <div className="page">
         {/* Hero Section */}
         <header className="hero" id="hero" aria-labelledby="hero-heading">
           <div>
@@ -363,9 +358,19 @@ const IndexPage = () => {
             </CTA>
           }
         />
-      </main>
+      </div>
     </Layout>
   )
 }
 
 export default IndexPage
+
+export const Head = ({ location }) => (
+  <SEOmeta
+    title="Website QA, Accessibility Audits & CMS Help | Shaun Vine"
+    description="Seattle-based QA Tester specializing in accessibility audits, manual testing, and CMS support. Reliable, detail-oriented, and results-driven."
+    image="/assets/images/shaun-vine-portfolio.jpg"
+    pathname={location?.pathname || "/services"}
+    includeJsonLd={false}
+  />
+)

@@ -188,9 +188,9 @@ const ServiceBlade = ({
                             {item.subList && item.subList.items?.length > 0 && (
                               <div className="li-sublist">
                                 {item.subList.heading && (
-                                  <p className="li-sublist-heading">
+                                  <span className="li-sublist-heading">
                                     {item.subList.heading}
-                                  </p>
+                                  </span>
                                 )}
 
                                 <ul className="li-sublist-items">
@@ -213,9 +213,9 @@ const ServiceBlade = ({
                     {(col.footerText || col.bladeFooterCTA) && (
                       <div className="three-col-footer">
                         {col.footerText && (
-                          <h4 className="service-includes three-col-footer-text">
+                          <p className="service-includes three-col-footer-text">
                             {col.footerText}
-                          </h4>
+                          </p>
                         )}
                         {col.bladeFooterCTA && (
                           <div className="three-col-footer-cta">
