@@ -13,15 +13,29 @@ const IndexPage = () => {
         {/* Hero Section */}
         <header className="hero" id="hero" aria-labelledby="hero-heading">
           <div>
-            <h1 id="hero-heading" className="hero-heading">
-              <span>Accessibility Audits</span>
-              <span aria-hidden="true">+</span>
-              <span>Manual QA Testing Services</span>
+            <h1
+              id="hero-heading"
+              className="hero-heading"
+              aria-label="Accessibility Audits plus Manual QA Testing Services"
+            >
+              <span aria-hidden="true" className="hero-heading__line">
+                Accessibility Audits
+              </span>
+              <span aria-hidden="true" className="hero-heading__plus">
+                +
+              </span>
+              <span aria-hidden="true" className="hero-heading__line">
+                Manual QA Testing Services
+              </span>
             </h1>
           </div>
-          <h2 className="hero-subhead">
-            Thorough accessibility testing for WCAG 2.2 compliance — paired with
-            functional QA to ensure your digital product works for every user.
+          <h2
+            className="hero-subhead"
+            aria-label="Accessibility testing for WCAG 2.2 compliance"
+          >
+            <span aria-hidden="true">
+              Accessibility testing for WCAG 2.2 compliance.
+            </span>
           </h2>
         </header>
         {/* Main Content */}
