@@ -19,6 +19,7 @@ const SEOmeta = ({
   description,
   image,
   pathname = "/",
+  lang = "en",
   includeJsonLd = false,
 }) => {
   const { site } = useStaticQuery(query)
@@ -29,21 +30,16 @@ const SEOmeta = ({
   const defaultImage = site.siteMetadata.defaultImage || ""
 
   const metaDescription = (description || siteDescription || "").trim()
-
-  // Use ONE consistent pageTitle everywhere
   const pageTitle = title ? `${title} — ${siteTitle}` : siteTitle
 
-  // Canonical
   const safePath = pathname?.startsWith("/") ? pathname : `/${pathname || ""}`
   const canonicalUrl = `${siteUrl}${safePath}`
 
-  // Social image
   const imagePath = image || defaultImage || ""
   const imageUrl = imagePath
     ? `${siteUrl}${imagePath.startsWith("/") ? imagePath : `/${imagePath}`}`
     : null
 
-  // JSON-LD (optional)
   const jsonLd = includeJsonLd
     ? [
         {
@@ -138,14 +134,14 @@ const SEOmeta = ({
 
   return (
     <>
-      <html lang="en" />
+      {/* Gatsby Head API: set html attributes like this */}
+      <html lang={lang} />
+
       <title>{pageTitle}</title>
 
-      {/* Primary SEO */}
       {metaDescription && <meta name="description" content={metaDescription} />}
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* Open Graph */}
       <meta property="og:title" content={pageTitle} />
       {metaDescription && (
         <meta property="og:description" content={metaDescription} />
@@ -155,7 +151,6 @@ const SEOmeta = ({
       <meta property="og:locale" content="en_US" />
       {imageUrl && <meta property="og:image" content={imageUrl} />}
 
-      {/* Twitter */}
       <meta
         name="twitter:card"
         content={imageUrl ? "summary_large_image" : "summary"}
@@ -166,7 +161,6 @@ const SEOmeta = ({
       )}
       {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
-      {/* JSON-LD (optional) */}
       {jsonLd && (
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       )}

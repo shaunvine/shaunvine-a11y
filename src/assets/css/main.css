@@ -815,16 +815,6 @@ svg.logo {
   width: 80px; /* Responsive size */
   height: auto;
   max-width: 40vw; /* Shrinks on mobile */
-
-}
-
-.cpacc-logo img {
-  width: 80px; /* Responsive size */
-  height: auto;
-  max-width: 40vw; /* Shrinks on mobile */
-  padding: .5rem;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 .cpacc-logo img {

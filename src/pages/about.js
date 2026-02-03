@@ -9,12 +9,7 @@ import OutdoorImages from "../components/OutdoorImages"
 const About = () => {
   return (
     <Layout>
-      <SEOmeta
-        title="About Shaun Vine | Manual QA Tester & Accessibility Consultant in Seattle"
-        description="Shaun Vine is a Seattle-based Manual QA Tester and Accessibility Consultant helping businesses improve website quality, usability, and compliance. Learn more about his approach and experience."
-        image="/images/shaun-vine-portfolio.jpg"
-      />
-      <main className="page">
+      <div className="page">
         <ServiceBlade
           layout="twoCards"
           title="About My Work"
@@ -80,8 +75,6 @@ const About = () => {
           variant="light"
           layout="twoCards"
           title="About My Work"
-          subtitle=""
-          description=""
           columns={[
             {
               heading: "My Approach:",
@@ -132,9 +125,20 @@ const About = () => {
         <section>
           <OutdoorImages />
         </section>
-      </main>
+      </div>
     </Layout>
   )
 }
 
 export default About
+
+export const Head = ({ location }) => (
+  <SEOmeta
+    title="About Shaun Vine | Manual QA Tester & Accessibility Consultant in Seattle"
+    description="Shaun Vine is a Seattle-based Manual QA Tester and Accessibility Consultant helping businesses improve website quality, usability, and compliance. Learn more about his approach and experience."
+    image="/images/shaun-vine-portfolio.jpg"
+    pathname={location?.pathname || "/about"}
+    includeJsonLd={false}
+  />
+)
+
