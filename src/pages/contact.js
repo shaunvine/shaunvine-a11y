@@ -59,7 +59,7 @@ const ContactForm = () => {
             >
               <div className="form-row">
                 <label htmlFor="name">
-                  your name<sup>*</sup>
+                  your name<sup aria-hidden="true">*</sup>
                 </label>
                 <input
                   type="text"
@@ -74,7 +74,7 @@ const ContactForm = () => {
 
               <div className="form-row">
                 <label htmlFor="email">
-                  your email<sup>*</sup>
+                  your email<sup aria-hidden="true">*</sup>
                 </label>
                 <input
                   type="email"
@@ -89,7 +89,7 @@ const ContactForm = () => {
 
               <div className="form-row">
                 <label htmlFor="message">
-                  your message<sup>*</sup>
+                  your message<sup aria-hidden="true">*</sup>
                 </label>
                 <textarea
                   name="message"
