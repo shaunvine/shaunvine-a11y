@@ -3,7 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const OutdoorList = ({ outdoors = [] }) => {
   return (
-    <div className="projects-list">
+    <div className="outdoor-list">
       {outdoors.map((outdoor, index) => {
         const { id, title, image, altText } = outdoor
         const pathToImage = getImage(image)
@@ -12,7 +12,7 @@ const OutdoorList = ({ outdoors = [] }) => {
           <GatsbyImage
             key={id || title || index} // Prefer a unique id if available
             image={pathToImage}
-            className="project-img"
+            className="outdoor-img"
             alt={altText || title} // Use imageAlt, fallback
           />
         )

@@ -111,6 +111,16 @@ const Navbar = ({ theme, onToggleTheme }) => {
           aria-label="Primary navigation" // NEW
         >
           <Link
+            to="/findings"
+            className="nav-link"
+            activeClassName="active-link"
+            onClick={closeMenu}
+            ref={firstLinkRef} // NEW
+          >
+            Findings
+          </Link>
+
+          <Link
             to="/services"
             className="nav-link"
             activeClassName="active-link"
