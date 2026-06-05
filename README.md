@@ -104,10 +104,6 @@ Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby f
 
 Site built with Gatsby and Contentul.
 
-Udemy: Gatsby.js Tutorial and Projects Course
-John Silmga
-https://www.udemy.com/course/draft/2176554/learn/lecture/25760100#overview
-
 NVM use 20
 
 Local Dev setup:
@@ -117,6 +113,6 @@ Local Dev setup:
 3. Start local server so that Contentful refreshes automatically >
    "ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop"
 
-Local folder is in Documents: shaunvine-portfolio
+Local folder is in Documents: shaunvine-business
 
 > > > > > > > 315abe61f22364b97c04fa37f5968d7d7848e6
