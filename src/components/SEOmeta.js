@@ -24,8 +24,16 @@ const SEOmeta = ({
 }) => {
   const { site } = useStaticQuery(query)
 
-  const siteTitle = site.siteMetadata.title
-  const siteDescription = site.siteMetadata.siteDescription
+  const fallbackTitle =
+    "Accessibility Auditor + Manual QA Specialist | Shaun Vine"
+
+  const fallbackDescription =
+    "CPACC Certified Accessibility Auditor and Manual QA Specialist helping organizations identify accessibility, usability, and quality issues."
+
+  const siteTitle = site.siteMetadata.title || fallbackTitle
+  const siteDescription =
+    site.siteMetadata.siteDescription || fallbackDescription
+
   const siteUrl = site.siteMetadata.siteUrl?.replace(/\/$/, "") || ""
   const defaultImage = site.siteMetadata.defaultImage || ""
 
@@ -44,24 +52,12 @@ const SEOmeta = ({
     ? [
         {
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
+          "@type": "ProfessionalService",
           "@id": `${siteUrl}#business`,
-          name: "Shaun D. Vine – Manual QA & Accessibility Services",
+          name: "Shaun Vine Accessibility and Manual QA",
           url: siteUrl,
           image: imageUrl || undefined,
-          description:
-            "Manual QA Testing, Accessibility Audits (WCAG), and CMS support for businesses, agencies, and developers in Seattle.",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Seattle",
-            addressRegion: "WA",
-            addressCountry: "US",
-          },
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: 47.6062,
-            longitude: -122.3321,
-          },
+          description: fallbackDescription,
           founder: { "@id": `${siteUrl}#person` },
           sameAs: ["https://www.linkedin.com/in/shaunvine"],
         },
@@ -70,71 +66,16 @@ const SEOmeta = ({
           "@type": "Person",
           "@id": `${siteUrl}#person`,
           name: "Shaun D. Vine",
-          jobTitle: "Manual QA Tester & Accessibility Consultant",
+          jobTitle: "Accessibility Auditor and Manual QA Specialist",
           url: siteUrl,
           worksFor: { "@id": `${siteUrl}#business` },
           sameAs: ["https://www.linkedin.com/in/shaunvine"],
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Manual QA Testing",
-          serviceType: "Website Quality Assurance",
-          provider: { "@id": `${siteUrl}#business` },
-          areaServed: {
-            "@type": "Place",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Seattle",
-              addressRegion: "WA",
-              addressCountry: "US",
-            },
-          },
-          description:
-            "Manual website testing for usability, broken links, responsive design, cross-browser and functional QA before launch.",
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "CMS Management",
-          serviceType: "Content Management Services",
-          provider: { "@id": `${siteUrl}#business` },
-          areaServed: {
-            "@type": "Place",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Seattle",
-              addressRegion: "WA",
-              addressCountry: "US",
-            },
-          },
-          description:
-            "Custom CMS updates, plugin maintenance, content entry, and layout QA for WordPress, Contentful, Optimizely, and other platforms.",
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Accessibility Audits",
-          serviceType: "Website Accessibility Evaluation",
-          provider: { "@id": `${siteUrl}#business` },
-          areaServed: {
-            "@type": "Place",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Seattle",
-              addressRegion: "WA",
-              addressCountry: "US",
-            },
-          },
-          description:
-            "Website audits for accessibility compliance with WCAG, including keyboard navigation, screen reader testing, and color contrast.",
         },
       ]
     : null
 
   return (
     <>
-      {/* Gatsby Head API: set html attributes like this */}
       <html lang={lang} />
 
       <title>{pageTitle}</title>
