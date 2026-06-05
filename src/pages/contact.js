@@ -41,10 +41,9 @@ const ContactForm = () => {
       <main className="page">
         <section className="contact-page">
           <article className="contact-info">
-            <h1>Contact Me</h1>
-            <h3 className="section-title contact-info">
+            <h1>
               Want to get in touch?
-            </h3>
+            </h1>
             <p>
               Please complete the form and I will respond to your message within
               one business day.
