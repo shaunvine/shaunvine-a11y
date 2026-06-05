@@ -10,7 +10,7 @@ require("dotenv").config({
       author: "Shaun Vine",
       siteUrl: "https://shaunvine.com",
       // NEW: used by SEOmeta.js when a page doesn't pass an image prop
-      defaultImage: "/assets/images/About.png",
+      defaultImage: "/assets/images/shaun-vine-portfolio.jpg",
     },
     plugins: [
       {
