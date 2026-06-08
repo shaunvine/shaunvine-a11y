@@ -857,49 +857,42 @@ svg.logo {
 /* END How I Test Section */
 
 /* Start Accessibility Findings Section */
-.findings {
-  margin: 4rem auto;
-}
-
 .findings__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  max-width: 100%;
-  margin-inline: auto;
 }
 
 .finding-card {
-  display: grid;
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: var(--blade-light-bg);
   border: var(--blade-light-border);
   border-radius: var(--borderRadius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-1);
+  overflow: hidden;
 }
 
 .finding-card__media {
   display: block;
-  border-radius: var(--borderRadius);
-  overflow: hidden;
 }
 
 .finding-card__image {
   width: 100%;
   display: block;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: var(--borderRadius);
 }
 
 .finding-card__content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  flex: 1;
+  padding: 2rem;
 }
 
 .finding-card__category {
-  margin: 0 0 0.5rem 0;
+  margin-bottom: 0.75rem;
   font-size: var(--smallText);
   color: var(--site-text-muted);
   font-weight: 600;
@@ -907,13 +900,11 @@ svg.logo {
 }
 
 .finding-card__title {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .finding-card__summary {
-  max-width: 60ch;
-  margin: 0 0 1rem 0;
-  line-height: 1.5;
+  margin-bottom: 2rem;
 }
 
 .finding-card__cta {
@@ -921,11 +912,15 @@ svg.logo {
 }
 
 @media (min-width: 768px) {
-  .finding-card {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    align-items: center;
+  .findings__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
   }
 }
+
+/* End Accessibility Findings */
+
+/* Start Accessibility Findings PAGE */
 
 .findings-page__intro {
   font-size: var(--font-size-lead);
@@ -937,7 +932,7 @@ svg.logo {
   text-align: left;
 }
 
-/* End Accessibility Findings */
+/* End Accessibility Findings PAGE */
 
 /* Start My Process Section */
 

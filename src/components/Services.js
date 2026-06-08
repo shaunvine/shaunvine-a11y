@@ -1,6 +1,6 @@
 import React from "react"
 import CTA from "./CTA"
-import { FaUniversalAccess, FaCheckCircle } from "react-icons/fa"
+import { FaUniversalAccess } from "react-icons/fa"
 import { FaClipboardCheck } from "react-icons/fa"
 
 const services = [
