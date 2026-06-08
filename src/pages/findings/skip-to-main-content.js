@@ -1,7 +1,6 @@
 import React from "react"
 import Layout from "../../components/Layout"
 import SEOmeta from "../../components/SEOmeta"
-import CTA from "../../components/CTA"
 
 const SkipToMainContentPage = () => {
   return (

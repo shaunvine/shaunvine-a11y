@@ -1,9 +1,6 @@
 import React from "react"
 import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
-import CTA from "../components/CTA"
-import SeoStat from "../components/Stats/SeoStat"
-import OneInFour from "../components/Stats/OneInFour"
 import Services from "../components/Services"
 
 const IndexPage = () => {
