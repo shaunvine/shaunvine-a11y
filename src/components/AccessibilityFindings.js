@@ -8,7 +8,7 @@ const findings = [
     title: "Skip to Main Content",
     summary:
       "A quick review of how skip links improve keyboard navigation and help users reach page content faster.",
-    image: "/assets/images/skip-to-main-content-thumbnail.jpg",
+    image: "/assets/video-covers/skip-to-main-thumbnail.jpg",
     imageAlt: "Screenshot showing a Skip to Main Content accessibility check",
   },
 
@@ -21,6 +21,17 @@ const findings = [
     image: "/assets/video-covers/decade-slider-thumbnail.jpg",
     imageAlt:
       "Title card reading Fixing an Unlabeled Slider with the subtitle Screen Reader Support",
+  },
+
+  {
+    slug: "bypassing-an-inaccessible-map",
+    category: "Accessibility Quick Check",
+    title: "Bypassing an Inaccessible Map",
+    summary:
+      "Google Maps markers are not fully keyboard accessible. This review shows how one site provides a keyboard-accessible alternative so users are not left behind.",
+    image: "/assets/video-covers/bypassing-an-inaccessible-map-thumbnail.jpg",
+    imageAlt:
+      "Title card reading Bypassing an Inaccessible Map with the subtitle Keyboard & Screen Reader Support",
   },
 ]
 
