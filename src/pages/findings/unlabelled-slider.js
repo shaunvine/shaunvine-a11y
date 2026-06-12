@@ -1,6 +1,7 @@
 import React from "react"
 import Layout from "../../components/Layout"
 import SEOmeta from "../../components/SEOmeta"
+import Transcript from "../../components/Transcript"
 
 const DecadeSliderAccessibilityPage = () => {
   return (
@@ -95,6 +96,7 @@ const DecadeSliderAccessibilityPage = () => {
               </section>
             </div>
           </div>
+          <Transcript />
         </article>
       </main>
     </Layout>

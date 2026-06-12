@@ -1148,6 +1148,64 @@ svg.logo {
   }
 }
 
+/* START Transcript */
+
+.finding-transcript {
+  margin-top: 3rem;
+  border-top: 1px solid var(--site-border-strong);
+  padding-top: 1.5rem;
+}
+
+.finding-transcript__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 1px solid var(--site-border-strong);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--site-text);
+  font-family: inherit;
+}
+
+.finding-transcript__toggle h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.finding-transcript__toggle:hover h3,
+.finding-transcript__toggle:hover .finding-transcript__icon {
+  color: var(--site-text-light);
+}
+
+.finding-transcript__icon {
+  font-size: 0.75rem;
+  color: inherit;
+}
+
+.finding-transcript__body {
+  margin-top: 1.25rem;
+}
+
+.finding-transcript__body[hidden] {
+  display: none;
+}
+
+.finding-transcript__content {
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 70ch;
+  color: var(--site-text);
+}
+
+.finding-transcript__content p {
+  margin-bottom: 1rem;
+}
+
+/* END Transcript */
+
 /* END Findings Detail Page */
 
 /* Start Servces Page */
