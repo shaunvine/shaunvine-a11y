@@ -1,7 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 const Transcript = ({ transcript }) => {
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    if (window.location.hash === "#transcript") {
+      setIsOpen(true)
+    }
+  }, [])
 
   if (!transcript) return null
 
