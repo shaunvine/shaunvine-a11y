@@ -60,6 +60,10 @@ const BypassingInaccessibleMapPage = () => {
               shows how one map-based site provides a keyboard-accessible
               alternative so users are not left behind.
             </p>
+
+            <a href="#transcript" className="finding-detail__transcript-link">
+              Read the full transcript ↓
+            </a>
           </header>
 
           <div className="finding-detail__layout">

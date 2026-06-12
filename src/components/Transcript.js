@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react"
 
 const Transcript = ({ transcript }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.location.hash === "#transcript"
+    }
+    return false
+  })
 
   useEffect(() => {
     if (window.location.hash === "#transcript") {
