@@ -148,6 +148,7 @@ html {
   --field-bg: #ffffff;
   --field-border: #c7cedb;
   --field-text: #111827;
+  --form-alert: #ff0000;
 
   /* Focus ring system */
   --focus-color: #fa5e24;
@@ -390,10 +391,19 @@ textarea {
 }
 
 .form-alert {
-  color: var(--red-dark);
+  color: var(--form-alert);
   font-size: var(--extraSmallText);
   letter-spacing: var(--letterSpacing);
   text-transform: capitalize;
+  margin-top: 0.375rem;
+}
+
+/* Red border on any input or textarea that has failed validation.
+   aria-invalid="true" is set by our JavaScript when an error exists. */
+.form input[aria-invalid="true"],
+.form textarea[aria-invalid="true"] {
+  border-color: var(--form-alert);
+  outline-color: var(--form-alert);
 }
 
 sup {
