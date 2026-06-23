@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../../components/Layout"
 import SEOmeta from "../../components/SEOmeta"
 import Transcript from "../../components/Transcript"
+import { FaExternalLinkAlt } from "react-icons/fa"
 
 const transcriptContent = (
   <>
@@ -36,7 +37,15 @@ const transcriptContent = (
     </p>
     <p>
       When a fix isn't possible, provide an equivalent alternative. This
-      approach satisfies WCAG 2.4.1 — Bypass Blocks.
+      approach satisfies{" "}
+      <a
+        href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html"
+        target="_blank"
+        rel="noreferrer"
+      >
+        WCAG 2.4.1 — Bypass Blocks (Level A){" "}
+        <FaExternalLinkAlt aria-label="opens in new tab" style={{ display: "inline", verticalAlign: "middle", fontSize: "0.75em" }} />
+      </a>.
     </p>
   </>
 )
@@ -124,6 +133,22 @@ const BypassingInaccessibleMapPage = () => {
               </section>
 
               <section className="finding-detail__section">
+                <h2>WCAG Reference</h2>
+                <ul className="finding-detail__skills">
+                  <li>
+                    <a
+                      href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      WCAG 2.4.1 — Bypass Blocks (Level A){" "}
+                      <FaExternalLinkAlt aria-label="opens in new tab" style={{ display: "inline", verticalAlign: "middle", fontSize: "0.75em" }} />
+                    </a>
+                  </li>
+                </ul>
+              </section>
+
+              <section className="finding-detail__section">
                 <h2>Related Skills</h2>
 
                 <ul className="finding-detail__skills">
@@ -131,7 +156,6 @@ const BypassingInaccessibleMapPage = () => {
                   <li>Keyboard Navigation</li>
                   <li>Screen Reader Support</li>
                   <li>Manual QA</li>
-                  <li>WCAG 2.4.1</li>
                 </ul>
               </section>
             </div>

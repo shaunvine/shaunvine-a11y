@@ -8,7 +8,7 @@ const findings = [
     title: "Skip to Main Content",
     summary:
       "A quick review of how skip links improve keyboard navigation and help users reach page content faster.",
-    image: "/assets/video-covers/skip-to-main-thumbnail.jpg",
+    image: "/assets/video-covers/skip-to-main-content-thumbnail.jpg",
     imageAlt: "Screenshot showing a Skip to Main Content accessibility check",
   },
 
@@ -32,6 +32,17 @@ const findings = [
     image: "/assets/video-covers/bypassing-an-inaccessible-map-thumbnail.jpg",
     imageAlt:
       "Title card reading Bypassing an Inaccessible Map with the subtitle Keyboard & Screen Reader Support",
+  },
+
+  {
+    slug: "custom-form-validation",
+    category: "Accessibility Quick Check",
+    title: "Custom Form Validation",
+    summary:
+      "Native browser validation fires one alert at a time and breaks focus management. This review shows how custom JavaScript validation fixes the experience for keyboard users.",
+    image: "/assets/video-covers/form-validation-thumbnail.jpg",
+    imageAlt:
+      "Title card reading Custom Form Validation with the subtitle Keyboard Support",
   },
 ]
 
