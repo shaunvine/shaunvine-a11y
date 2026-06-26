@@ -46,9 +46,9 @@ const ClientTestimonials = () => {
 
               <p className="client-testimonials__quote">{testimonial.quote}</p>
 
-              <footer className="client-testimonials__footer">
+              <p className="client-testimonials__footer">
                 <cite>{testimonial.name}</cite>
-              </footer>
+              </p>
             </blockquote>
           ))}
         </div>

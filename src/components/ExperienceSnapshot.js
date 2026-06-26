@@ -21,8 +21,8 @@ const ExperienceSnapshot = () => {
         </h2>
 
         <p className="section-intro">
-          CPACC-certified Accessibility Auditor and Manual QA Specialist with 8+
-          years of experience supporting website QA, content workflows, and digital launches.
+          Creative Technologist with 8+ years of experience in accessibility,
+          QA testing, CMS implementation, design, and digital launches.
         </p>
       </div>
 

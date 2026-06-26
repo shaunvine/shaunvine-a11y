@@ -4,9 +4,9 @@ require("dotenv").config({
 ;(require("events").EventEmitter.defaultMaxListeners = 15),
   (module.exports = {
     siteMetadata: {
-      title: "Accessibility Auditor + Manual QA Specialist | Shaun Vine",
+      title: "Creative Technologist | Shaun Vine",
       siteDescription:
-        "CPACC Certified Accessibility Auditor and Manual QA Specialist helping organizations identify accessibility, usability, and quality issues.",
+        "Creative Technologist specializing in accessibility, manual QA, CMS implementation, and web design. Helping teams ship better digital experiences.",
       author: "Shaun Vine",
       siteUrl: "https://shaunvine.com",
       // NEW: used by SEOmeta.js when a page doesn't pass an image prop
@@ -40,6 +40,13 @@ require("dotenv").config({
         },
       },
 
+      {
+        resolve: `gatsby-source-contentful`,
+        options: {
+          spaceId: `er6tmlqx991h`,
+          accessToken: process.env.CONTENTFUL_API_KEY,
+        },
+      },
       `gatsby-plugin-sitemap`,
     ],
   })

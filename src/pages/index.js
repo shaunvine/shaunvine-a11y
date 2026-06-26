@@ -15,22 +15,8 @@ const IndexPage = () => {
         {/* Hero Section */}
         <header className="hero" id="hero" aria-labelledby="hero-heading">
           <div>
-            <h1
-              id="hero-heading"
-              className="hero-heading"
-              aria-label="Accessibility Auditor plus Manual QA Specialist"
-            >
-              <span aria-hidden="true" className="hero-heading__line">
-                Accessibility Auditor
-              </span>
-
-              <span aria-hidden="true" className="hero-heading__plus">
-                +
-              </span>
-
-              <span aria-hidden="true" className="hero-heading__line">
-                Manual QA Specialist
-              </span>
+            <h1 id="hero-heading" className="hero-heading">
+              Creative Technologist
             </h1>
           </div>
           <div className="hero-copy">
@@ -39,8 +25,8 @@ const IndexPage = () => {
             </h2>
 
             <p className="hire">
-              I help organizations identify accessibility, usability, and
-              quality issues through practical testing and review.
+              I help teams ship better digital experiences through design,
+              accessibility, QA testing, and CMS expertise.
             </p>
           </div>
           <CTA
@@ -78,8 +64,8 @@ export default IndexPage
 // Homepage Head: keep your LocalBusiness/Person/Service JSON-LD here
 export const Head = ({ location }) => (
   <SEOmeta
-    title="Website QA, Accessibility Audits & CMS Help"
-    description="Seattle-based QA tester specializing in WCAG 2.2 accessibility audits, manual QA, and CMS support. Practical, detail-oriented guidance."
+    title="Creative Technologist | Accessibility, QA & CMS"
+    description="Creative Technologist specializing in WCAG accessibility audits, manual QA, and CMS support. Practical, detail-oriented, remote-friendly."
     image="/assets/images/shaun-vine-portfolio.jpg"
     pathname={location?.pathname}
     includeJsonLd={true}

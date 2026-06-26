@@ -4,6 +4,7 @@ import Layout from "../components/Layout"
 import { StaticImage } from "gatsby-plugin-image"
 import ClientTestimonils from "../components/ClientTestimonials"
 import OutdoorImages from "../components/OutdoorImages"
+import Skills from "../components/Skills"
 
 const About = () => {
   return (
@@ -14,12 +15,12 @@ const About = () => {
             <p className="about-intro__eyebrow">About My Work</p>
 
             <h1 className="about-intro__title">
-              Accessibility Auditor + Manual QA Specialist
+              Creative Technologist
             </h1>
 
             <p>
               I'm a CPACC-certified Accessibility Auditor and Manual QA
-              Specialist based in Seattle.
+              Specialist working remotely with teams across the US and beyond.
             </p>
 
             <p>
@@ -66,24 +67,10 @@ const About = () => {
                 <li>Front-End Website Development</li>
               </ul>
             </article>
-
-            <article className="about-experience__card">
-              <h3>Tools & Testing</h3>
-
-              <ul>
-                <li>NVDA</li>
-                <li>VoiceOver</li>
-                <li>Axe</li>
-                <li>Lighthouse</li>
-                <li>BrowserStack</li>
-                <li>GitHub</li>
-                <li>Netlify</li>
-                <li>Contentful</li>
-                <li>Optimizely</li>
-              </ul>
-            </article>
           </div>
         </section>
+
+        <Skills />
 
         <ClientTestimonils />
 
@@ -99,9 +86,9 @@ export default About
 
 export const Head = ({ location }) => (
   <SEOmeta
-    title="About Shaun Vine | Accessibility Auditor & Manual QA Specialist"
-    description="Shaun Vine is a Seattle-based CPACC-certified Accessibility Auditor and Manual QA Specialist with experience in website QA, content workflows, accessibility reviews, and CMS implementation."
-    image="/images/shaun-vine-portfolio.jpg"
+    title="About Shaun Vine | Creative Technologist"
+    description="Creative Technologist with 8+ years of experience in accessibility, manual QA, CMS implementation, and web design. Working remotely with teams across the US and beyond."
+    image="/assets/images/services/shaun-vine-portfolio.jpg"
     pathname={location?.pathname || "/about"}
     includeJsonLd={false}
   />
