@@ -24,11 +24,10 @@ const SEOmeta = ({
 }) => {
   const { site } = useStaticQuery(query)
 
-  const fallbackTitle =
-    "Accessibility Auditor + Manual QA Specialist | Shaun Vine"
+  const fallbackTitle = "Creative Technologist | Shaun Vine"
 
   const fallbackDescription =
-    "CPACC Certified Accessibility Auditor and Manual QA Specialist helping organizations identify accessibility, usability, and quality issues."
+    "Creative Technologist specializing in accessibility, manual QA, CMS implementation, and web design. Helping teams ship better digital experiences."
 
   const siteTitle = site.siteMetadata.title || fallbackTitle
   const siteDescription =
@@ -54,22 +53,22 @@ const SEOmeta = ({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           "@id": `${siteUrl}#business`,
-          name: "Shaun Vine Accessibility and Manual QA",
+          name: "Shaun Vine",
           url: siteUrl,
           image: imageUrl || undefined,
           description: fallbackDescription,
           founder: { "@id": `${siteUrl}#person` },
-          sameAs: ["https://www.linkedin.com/in/shaunvine"],
+          sameAs: ["https://www.linkedin.com/in/shaun-vine-71683832/"],
         },
         {
           "@context": "https://schema.org",
           "@type": "Person",
           "@id": `${siteUrl}#person`,
           name: "Shaun D. Vine",
-          jobTitle: "Accessibility Auditor and Manual QA Specialist",
+          jobTitle: "Creative Technologist",
           url: siteUrl,
           worksFor: { "@id": `${siteUrl}#business` },
-          sameAs: ["https://www.linkedin.com/in/shaunvine"],
+          sameAs: ["https://www.linkedin.com/in/shaun-vine-71683832/"],
         },
       ]
     : null
