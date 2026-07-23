@@ -48,7 +48,7 @@ const IndexPage = () => {
         </header>
         <TestingMethods />
 
-        <AccessibilityFindings showHeader={true} headerAlignment="center" />
+        <AccessibilityFindings showHeader={true} headerAlignment="center" limit={4} />
         <MyProcess />
 
         <ExpereienceSnapshot />
