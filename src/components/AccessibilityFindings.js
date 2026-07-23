@@ -44,9 +44,21 @@ const findings = [
     imageAlt:
       "Title card reading Custom Form Validation with the subtitle Keyboard Support",
   },
+
+  {
+    slug: "search-popup-keyboard-support",
+    category: "Accessibility Quick Check",
+    title: "Fixing an Unreachable Search Field",
+    summary:
+      "A search popup opens with the keyboard, but focus never reaches the search field — leaving the search feature unusable without a mouse. A look at why this fails WCAG 2.1.1 rather than the keyboard-trap criterion it resembles.",
+    image: "/assets/video-covers/search-popup-thumbnail.jpg",
+    imageAlt:
+      "Title card reading Fixing an Unreachable Search Field with the subtitle Keyboard Support",
+  },
 ]
 
-const AccessibilityFindings = ({ showHeader = true }) => {
+const AccessibilityFindings = ({ showHeader = true, limit }) => {
+  const visibleFindings = limit ? findings.slice(0, limit) : findings
   return (
     <section
       className="findings"
@@ -65,7 +77,7 @@ const AccessibilityFindings = ({ showHeader = true }) => {
       )}
 
       <div className="findings__grid">
-        {findings.map(finding => (
+        {visibleFindings.map(finding => (
           <article className="finding-card" key={finding.slug}>
             <a
               href={`/findings/${finding.slug}`}
