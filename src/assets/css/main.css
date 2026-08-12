@@ -1567,7 +1567,7 @@ a.react {
 .cards-container {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
   grid-gap: 2rem;
 }
 
@@ -2240,6 +2240,10 @@ p.iterations-count {
   padding: 2rem 1.5rem;
   margin: 2rem 0;
   box-shadow: var(--shadow-1);
+}
+
+.project-hero .frame {
+  padding: 0;
 }
 
 .project-info h2 {
