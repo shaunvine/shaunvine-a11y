@@ -44,7 +44,14 @@ require("dotenv").config({
         resolve: `gatsby-source-contentful`,
         options: {
           spaceId: `er6tmlqx991h`,
-          accessToken: process.env.CONTENTFUL_API_KEY,
+          accessToken:
+            process.env.NODE_ENV === "development"
+              ? process.env.CONTENTFUL_PREVIEW_API_KEY
+              : process.env.CONTENTFUL_API_KEY,
+          host:
+            process.env.NODE_ENV === "development"
+              ? "preview.contentful.com"
+              : "cdn.contentful.com",
         },
       },
       `gatsby-plugin-sitemap`,
