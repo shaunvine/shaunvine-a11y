@@ -28,6 +28,7 @@ export const Head = ({ location }) => (
   <SEOmeta
     title="Accessibility Findings"
     description="Accessibility and QA findings from practical website testing, including keyboard navigation, focus management, screen reader testing, and usability review."
+    image="/assets/images/findings-og.jpg"
     pathname={location?.pathname}
   />
 )
