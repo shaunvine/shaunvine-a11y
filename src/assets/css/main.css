@@ -16,6 +16,21 @@ html {
    ============================ */
 :root {
   /* ----------------------------
+     Approved palette (F6, signed off 16 Nov 2026)
+     cream #f2ebdd · white #ffffff · ink #1f2328 · muted #4a463f
+     terracotta #a8482a · mustard #d9a441 · dark blue #1e3a4c
+     sage #9db59a · pink #e6b9a6
+     ---------------------------- */
+  --color-cream: #f2ebdd;
+  --color-ink: #1f2328;
+  --color-muted: #4a463f;
+  --color-terracotta: #a8482a;
+  --color-mustard: #d9a441;
+  --color-blue: #1e3a4c;
+  --color-sage: #9db59a;
+  --color-pink: #e6b9a6;
+
+  /* ----------------------------
      Typography & sizing
      ---------------------------- */
   --defaultFontSize: 100%;
@@ -53,45 +68,45 @@ html {
      Semantic color roles (LIGHT defaults)
      ---------------------------- */
   /* Page-level */
-  --site-bg: #fef3c7;
-  --site-bg-strong: #b45309;
-  --site-bg-light: #fffbeb;
+  --site-bg: #f2ebdd; /* cream */
+  --site-bg-strong: #a8482a; /* terracotta */
+  --site-bg-light: #ffffff;
 
   /* Surfaces */
-  --site-surface: #fff7db;
+  --site-surface: #ffffff;
 
   /* Text */
-  --site-text: #b45309;
-  --site-text-dark: #451a03;
-  --site-text-light: #fef3c7;
-  --site-text-muted: #78350f;
+  --site-text: #1f2328; /* ink */
+  --site-text-dark: #1f2328;
+  --site-text-light: #f2ebdd;
+  --site-text-muted: #4a463f;
 
   /* Hero Text Colors */
-  --hero-h1-color: #78350f;
+  --hero-h1-color: #1f2328;
 
   /* Borders */
-  --site-border-subtle: #f5e0b7;
-  --site-border-strong: #b45309;
+  --site-border-subtle: #d8cfbf;
+  --site-border-strong: #1f2328;
 
   /* Logo */
-  --logo-stroke: #451a03; /* dark in light theme */
+  --logo-stroke: #1f2328;
   --logo-fill: var(--logo-stroke);
 
   /* Navigation */
   --nav-bg: var(--site-bg);
   --nav-link: var(--site-text);
-  --nav-link-hover: #451a03;
-  --nav-link-active: #451a03;
-  --footer-bg: #fde68a;
+  --nav-link-hover: #1e3a4c;
+  --nav-link-active: #1f2328;
+  --footer-bg: #ffffff; /* becomes ink when the footer is restyled */
 
   /* CTAs */
-  --cta-bg: #451a03;
-  --cta-bg-hover: #7c2d12;
-  --cta-text: #fef3c7;
+  --cta-bg: #1f2328;
+  --cta-bg-hover: #1e3a4c;
+  --cta-text: #f2ebdd;
 
   /* Links */
-  --link-text: #7c2d12;
-  --link-hover-text: #451a03;
+  --link-text: #1e3a4c; /* dark blue */
+  --link-hover-text: #a8482a;
 
   /* ----------------------------
      Elevation
@@ -121,7 +136,7 @@ html {
   --form-alert: #ff0000;
 
   /* Focus ring system */
-  --focus-color: #fa5e24;
+  --focus-color: #1e3a4c; /* 10:1 on cream; the old orange was under 3:1 */
   --focus-gap: 3px;
   --focus-width: 5px;
   --focus-gap-color: var(--site-bg);
@@ -134,7 +149,10 @@ html {
      ---------------------------- */
   --blade-light-bg: var(--site-surface);
   --blade-light-border: 2px solid var(--site-border-strong);
-  --blade-dark-bg: #7c2d12;
+  --blade-dark-bg: #1e3a4c;
+  /* Were used but never defined, so these rules were being ignored */
+  --blade-padding-block: 4rem;
+  --blade-padding-inline: 2rem;
 }
 
 html {
@@ -1099,7 +1117,7 @@ footer {
 }
 
 .footer-text a {
-  color: var(--primary-500);
+  color: var(--link-text);
   margin: 0 0.25rem;
   text-decoration: none;
 }
@@ -2149,7 +2167,7 @@ p.iterations-count {
 .project-tools span {
   display: inline-block;
   padding: 0.2rem 0.625rem;
-  background: #fde68a;
+  background: var(--color-mustard);
   color: var(--site-text);
   border-radius: 4px;
   font-size: var(--smallText);
