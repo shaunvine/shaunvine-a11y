@@ -33,7 +33,8 @@ const Navbar = () => {
 
   // NEW: focus management (improved)
   // When menu opens, move focus into it.
-  // When menu closes, do NOT force focus anywhere.
+  // When menu closes, do NOT force focus anywhere, except when closed with
+  // Escape (see handleKeyDown), which returns focus to the menu button.
   useEffect(() => {
     if (!show) return
 
@@ -42,8 +43,20 @@ const Navbar = () => {
     })
   }, [show])
 
+  // Escape closes the open menu. Focus goes back to the menu button first,
+  // because the links are about to be hidden and focus must not be lost.
+  const handleKeyDown = event => {
+    if (event.key !== "Escape" || !show) return
+    setShow(false)
+    menuButtonRef.current?.focus()
+  }
+
   return (
-    <nav className="navbar" aria-label="Primary navigation">
+    <nav
+      className="navbar"
+      aria-label="Primary navigation"
+      onKeyDown={handleKeyDown}
+    >
       <div className="nav-center">
         <div className="nav-header">
           <Link
