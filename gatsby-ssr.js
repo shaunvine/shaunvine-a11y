@@ -19,7 +19,7 @@ export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
     <link
       key="google-fonts-css"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;400;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=Noto+Sans:wght@100;200;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@800;900&family=Atkinson+Hyperlegible:wght@400;700&display=swap"
     />,
 
     // -------------------------------
