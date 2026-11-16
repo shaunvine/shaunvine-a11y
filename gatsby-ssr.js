@@ -3,6 +3,18 @@ import React from "react"
 export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
   setHeadComponents([
     // -------------------------------
+    // "js" class on <html>, added before first paint. CSS uses it to turn on
+    // the collapsible mobile menu; without JavaScript the links stay visible.
+    // NEXTJS-MIGRATION: becomes a beforeInteractive script in the root layout.
+    // -------------------------------
+    <script
+      key="js-class"
+      dangerouslySetInnerHTML={{
+        __html: `document.documentElement.classList.add("js");`,
+      }}
+    />,
+
+    // -------------------------------
     // Google Fonts (global)
     // -------------------------------
     <link

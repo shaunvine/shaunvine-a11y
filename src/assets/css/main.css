@@ -487,9 +487,11 @@ svg.logo {
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
-/* Menu button: 44px minimum touch target, icon centred */
+/* Menu button: 44px minimum touch target, icon centred.
+   Hidden by default: it only does anything when JavaScript is running, so
+   it is shown only under .js (see "Mobile menu" below). */
 .nav-btn {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   min-width: 44px;
@@ -538,41 +540,58 @@ svg.logo {
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Mobile menu. Closed: invisible AND out of Tab order and the accessibility
-   tree (visibility: hidden). On closing, the 0.2s delay on visibility lets the
-   fade and slide finish before the links disappear. On opening, visibility
-   switches on instantly (0s delay) so the focus-first-link code in Navbar.js
-   can move focus straight away. */
+/* Mobile menu: progressive enhancement.
+   Default (no JavaScript): the links are a plain, always-visible stacked list
+   and the menu button is hidden. */
 .nav-links {
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-0.75rem);
   display: flex;
   flex-direction: column;
-  padding-inline: 0.5rem; /* room for focus outlines inside overflow: hidden */
-  transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
-    transform 0.2s ease-in-out, visibility 0s linear 0.2s;
   align-self: center;
 }
 
-.show-links {
-  height: 28rem;
-  visibility: visible;
-  opacity: 1;
-  transform: none;
-  padding-block: 0.5rem;
-  transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
-    transform 0.2s ease-in-out, visibility 0s linear 0s;
+/* With JavaScript (the inline script in gatsby-ssr.js adds .js to <html>
+   before first paint) the list collapses into the toggle menu. This is
+   wrapped in a mobile-only query, so desktop never sees any of it.
+   "not all and (min-width: 992px)" is the exact opposite of the desktop
+   query, so there is no gap at fractional widths (e.g. browser zoom). */
+@media not all and (min-width: 992px) {
+  .js .nav-btn {
+    display: inline-flex;
+  }
+
+  /* Closed: invisible AND out of Tab order and the accessibility tree
+     (visibility: hidden). On closing, the 0.2s delay on visibility lets the
+     fade and slide finish before the links disappear. On opening, visibility
+     switches on instantly (0s delay) so the focus-first-link code in
+     Navbar.js can move focus straight away. */
+  .js .nav-links {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    padding-inline: 0.5rem; /* room for focus outlines inside overflow: hidden */
+    transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+      transform 0.2s ease-in-out, visibility 0s linear 0.2s;
+  }
+
+  .js .show-links {
+    height: 28rem;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    padding-block: 0.5rem;
+    transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+      transform 0.2s ease-in-out, visibility 0s linear 0s;
+  }
 }
 
 /* Reduced motion: no slide, fade or morph. The menu and the X still appear
    and disappear (the end states are the same), just instantly. Placed after
-   the rules above so it wins. */
+   the rules above so it wins; the .js selectors match their specificity. */
 @media (prefers-reduced-motion: reduce) {
-  .nav-links,
-  .show-links,
+  .js .nav-links,
+  .js .show-links,
   .nav-btn-bar {
     transition: none;
   }
@@ -1735,17 +1754,11 @@ p.iterations-count {
     display: none;
   }
 
-  /* Menu is always visible on desktop; overflow visible so focus rings
-     are not clipped. */
+  /* Menu is always visible on desktop. The collapsed mobile state lives in
+     a mobile-only query, so nothing needs undoing here. */
   .nav-links {
     margin: 0;
     padding: 0;
-    height: auto !important;
-    overflow: visible;
-    visibility: visible;
-    opacity: 1; /* the mobile closed state sets 0; desktop is always shown */
-    transform: none;
-    transition: none;
     flex-direction: row;
     align-items: center;
     gap: 4px;
