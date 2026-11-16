@@ -1521,16 +1521,30 @@ p.iterations-count {
 /* Transitions and Transforms */
 /*#########*/
 
+/* Logo: shown fully drawn by default (this is also the end state of the animation) */
 .logo-mark .logo-animate {
-  animation-name: draw;
   stroke: var(--logo-stroke);
   stroke-width: 12px;
   stroke-dasharray: 4352;
-  animation-duration: 3s;
-  animation-iteration-count: 1;
-  animation-direction: reverse;
   fill: none;
   transition: fill 550ms ease-in-out;
+}
+
+/* Draw-in animation: first visit only. The first-visit class is added to
+   <body> by a small inline script in gatsby-ssr.js before the page paints. */
+.first-visit .logo-mark .logo-animate {
+  animation: draw 3s reverse 1;
+}
+
+/* Respect the "Reduce motion" setting: no draw-in, no fill fade */
+@media (prefers-reduced-motion: reduce) {
+  .first-visit .logo-mark .logo-animate {
+    animation: none;
+  }
+
+  .logo-mark .logo-animate {
+    transition: none;
+  }
 }
 
 /* Hover + keyboard focus */

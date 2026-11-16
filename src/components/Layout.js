@@ -1,5 +1,5 @@
 // src/components/Layout.js
-import React, { useEffect } from "react"
+import React from "react"
 import Navbar from "./Navbar"
 import BackToTop from "./BackToTop"
 import Footer from "./Footer"
@@ -7,25 +7,6 @@ import "normalize.css"
 import "../assets/css/main.css"
 
 const Layout = ({ children }) => {
-  /**
-   * Runs once on mount: marks the <body> as a first visit or a return visit.
-   */
-  useEffect(() => {
-    if (typeof window === "undefined") return
-
-    const hasVisited = localStorage.getItem("hasVisitedBefore")
-    const body = document.body
-
-    body.classList.remove("first-visit", "visited")
-
-    if (!hasVisited) {
-      body.classList.add("first-visit")
-      localStorage.setItem("hasVisitedBefore", "true")
-    } else {
-      body.classList.add("visited")
-    }
-  }, [])
-
   // Find first focusable element inside a container (used by skip link)
   const focusFirstInMain = () => {
     const main = document.getElementById("main-content")

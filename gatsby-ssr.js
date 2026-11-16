@@ -67,6 +67,33 @@ export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
   ])
 
   setPreBodyComponents([
+    // -------------------------------
+    // First-visit flag for the logo animation.
+    // Runs before the page paints, so there is no flicker.
+    // After the 3s animation, switch to "visited" so moving between
+    // pages in the same session doesn't replay it.
+    // -------------------------------
+    <script
+      key="first-visit-flag"
+      dangerouslySetInnerHTML={{
+        __html: `
+          (function () {
+            try {
+              var body = document.body;
+              if (localStorage.getItem("hasVisitedBefore")) {
+                body.classList.add("visited");
+              } else {
+                body.classList.add("first-visit");
+                localStorage.setItem("hasVisitedBefore", "true");
+                setTimeout(function () {
+                  body.classList.replace("first-visit", "visited");
+                }, 3200);
+              }
+            } catch (e) {}
+          })();
+        `,
+      }}
+    />,
     <noscript
       key="gtm-noscript"
       aria-hidden="true"
