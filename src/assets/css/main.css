@@ -111,8 +111,8 @@ html {
   /* ----------------------------
      Elevation
      ---------------------------- */
-  --elevation-soft: 0 1px 2px rgba(15, 23, 42, 0.08);
-  --elevation-medium: 0 4px 12px rgba(15, 23, 42, 0.14);
+  --elevation-soft: 0 1px 2px rgba(31, 35, 40, 0.08);
+  --elevation-medium: 0 4px 12px rgba(31, 35, 40, 0.14);
 
   /* ----------------------------
      Backwards-compat aliases
@@ -123,7 +123,7 @@ html {
   /* ----------------------------
      Lines
      ---------------------------- */
-  --line: 1px solid #e5e7eb;
+  --line: 1px solid var(--site-border-subtle);
 
   /* ----------------------------
      Form tokens
@@ -131,9 +131,9 @@ html {
   --radius: 8px;
 
   --field-bg: #ffffff;
-  --field-border: #c7cedb;
-  --field-text: #111827;
-  --form-alert: #ff0000;
+  --field-border: var(--color-ink);
+  --field-text: var(--site-text);
+  --form-alert: var(--color-terracotta);
 
   /* Focus ring system */
   --focus-color: #1e3a4c; /* 10:1 on cream; the old orange was under 3:1 */
@@ -271,12 +271,12 @@ label {
 }
 
 select {
-  color: black;
+  color: var(--site-text);
 }
 
-/* Make the placeholder option gray or black */
+/* Make the placeholder option look like a placeholder */
 select option[value=""] {
-  color: #000; /* or gray if you want it to look like a placeholder */
+  color: var(--site-text-muted);
 }
 
 input[type="date"] {
@@ -296,7 +296,7 @@ textarea {
 }
 
 ::placeholder {
-  color: #ccc;
+  color: var(--site-text-muted);
 }
 
 .form-alert {
@@ -400,7 +400,6 @@ button.block {
   width: 90vw;
   max-width: var(--max-width);
   margin: 4rem auto 0 auto;
-  /* background-color: #222222; */
   min-height: calc(
     100vh - (6rem + 4rem)
   ); /* NEW: merged two .page blocks into one */
@@ -1755,7 +1754,7 @@ p.iterations-count {
 
   .qa-included-page:not(:last-child) {
     margin: 2rem 0 3rem 0;
-    border-bottom: solid 1px #ccc;
+    border-bottom: solid 1px var(--site-border-subtle);
   }
 
   .qa-included {
@@ -1860,8 +1859,7 @@ p.iterations-count {
 }
 
 .a11y-form .form-row:focus-within {
-  box-shadow: /* NEW: no hard-coded #fff */ 0 0 0 var(--focus-gap)
-      var(--focus-gap-color),
+  box-shadow: 0 0 0 var(--focus-gap) var(--focus-gap-color),
     0 0 0 calc(var(--focus-gap) + var(--focus-width)) var(--focus-color);
 }
 
@@ -1904,7 +1902,7 @@ p.iterations-count {
   top: 0;
   left: 0;
   background: var(--cta-bg);
-  color: #fff;
+  color: var(--cta-text);
   padding: 0.75rem 1rem;
   z-index: 1000;
   transform: translateY(-100%);
