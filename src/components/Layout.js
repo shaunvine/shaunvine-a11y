@@ -1,37 +1,18 @@
 // src/components/Layout.js
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import Navbar from "./Navbar"
 import BackToTop from "./BackToTop"
 import Footer from "./Footer"
 import "normalize.css"
 import "../assets/css/main.css"
 
-/**
- * =========================================================
- * FEATURE FLAG
- * ---------------------------------------------------------
- * Set to false for launch (light theme only).
- * Flip to true later when dark mode is ready.
- * =========================================================
- */
-const ENABLE_DARK_MODE = false
-
 const Layout = ({ children }) => {
-  const [theme, setTheme] = useState("light")
-
   /**
-   * =========================================================
-   * First effect: runs once on mount
-   * - Handles first-visit / visited classes
-   * - Sets initial theme
-   * =========================================================
+   * Runs once on mount: marks the <body> as a first visit or a return visit.
    */
   useEffect(() => {
     if (typeof window === "undefined") return
 
-    // -------------------------------
-    // First visit vs returning visit
-    // -------------------------------
     const hasVisited = localStorage.getItem("hasVisitedBefore")
     const body = document.body
 
@@ -43,69 +24,7 @@ const Layout = ({ children }) => {
     } else {
       body.classList.add("visited")
     }
-
-    // -------------------------------------------------
-    // LAUNCH MODE: Dark mode disabled → force light
-    // -------------------------------------------------
-    if (!ENABLE_DARK_MODE) {
-      setTheme("light")
-      document.documentElement.setAttribute("data-theme", "light")
-
-      // Clean up any old stored theme so mobile doesn't stay dark
-      localStorage.removeItem("theme")
-
-      return // ⬅️ Exit early; skip dark-mode logic
-    }
-
-    // -------------------------------------------------
-    // FUTURE MODE (when ENABLE_DARK_MODE = true)
-    // -------------------------------------------------
-    // Priority order:
-    // 1. localStorage ("light" or "dark")
-    // 2. System preference (prefers-color-scheme)
-    // 3. Fallback to light
-    // -------------------------------------------------
-
-    const storedTheme = window.localStorage.getItem("theme")
-
-    const prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-
-    const initialTheme =
-      storedTheme === "light" || storedTheme === "dark"
-        ? storedTheme
-        : prefersDark
-        ? "dark"
-        : "light"
-
-    setTheme(initialTheme)
-    document.documentElement.setAttribute("data-theme", initialTheme)
   }, [])
-
-  /**
-   * =========================================================
-   * Second effect: keeps theme synced to <html> + localStorage
-   * Only runs when dark mode is enabled
-   * =========================================================
-   */
-  useEffect(() => {
-    if (typeof window === "undefined") return
-
-    if (!ENABLE_DARK_MODE) return // ⬅️ Do nothing during light-only launch
-
-    document.documentElement.setAttribute("data-theme", theme)
-    window.localStorage.setItem("theme", theme)
-  }, [theme])
-
-  /**
-   * =========================================================
-   * Theme toggle handler (preserved for later use)
-   * =========================================================
-   */
-  const handleToggleTheme = () => {
-    setTheme(prev => (prev === "light" ? "dark" : "light"))
-  }
 
   // Find first focusable element inside a container (used by skip link)
   const focusFirstInMain = () => {
@@ -137,8 +56,7 @@ const Layout = ({ children }) => {
         Skip to main content
       </a>
 
-      {/* Navbar still receives theme props for future use */}
-      <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
+      <Navbar />
 
       <main id="main-content" tabIndex={-1}>
         {children}
