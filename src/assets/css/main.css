@@ -487,34 +487,95 @@ svg.logo {
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
+/* Menu button: 44px minimum touch target, icon centred */
 .nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0.15rem 0.75rem;
 }
 
-.nav-btn svg {
-  font-size: 1.5rem;
+.nav-btn-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-/* Mobile menu. When closed it is hidden from sight AND from Tab and screen
-   readers (visibility: hidden). The delay on visibility lets the height
-   animation finish before hiding; on open it switches on instantly so the
-   focus-first-link code in Navbar.js can move focus straight away. */
+/* Three bars that morph into an X. Each bar rotates around its own centre
+   (the explicit transform-origin, in the icon's 24 x 24 coordinate space). */
+.nav-btn-bar {
+  stroke: currentColor; /* follows the button's text colour, incl. forced-colors */
+  stroke-width: 2.5;
+  stroke-linecap: square;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.nav-btn-bar--top {
+  transform-origin: 12px 6px;
+}
+
+.nav-btn-bar--middle {
+  transform-origin: 12px 12px;
+}
+
+.nav-btn-bar--bottom {
+  transform-origin: 12px 18px;
+}
+
+/* Driven by aria-expanded, so the icon always matches the announced state */
+.nav-btn[aria-expanded="true"] .nav-btn-bar--top {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-btn[aria-expanded="true"] .nav-btn-bar--middle {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-btn[aria-expanded="true"] .nav-btn-bar--bottom {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile menu. Closed: invisible AND out of Tab order and the accessibility
+   tree (visibility: hidden). On closing, the 0.2s delay on visibility lets the
+   fade and slide finish before the links disappear. On opening, visibility
+   switches on instantly (0s delay) so the focus-first-link code in Navbar.js
+   can move focus straight away. */
 .nav-links {
   height: 0;
   overflow: hidden;
   visibility: hidden;
+  opacity: 0;
+  transform: translateY(-0.75rem);
   display: flex;
   flex-direction: column;
   padding-inline: 0.5rem; /* room for focus outlines inside overflow: hidden */
-  transition: height 0.2s ease-in-out, visibility 0s linear 0.2s;
+  transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+    transform 0.2s ease-in-out, visibility 0s linear 0.2s;
   align-self: center;
 }
 
 .show-links {
   height: 28rem;
   visibility: visible;
+  opacity: 1;
+  transform: none;
   padding-block: 0.5rem;
-  transition: height 0.2s ease-in-out, visibility 0s linear 0s;
+  transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+    transform 0.2s ease-in-out, visibility 0s linear 0s;
+}
+
+/* Reduced motion: no slide, fade or morph. The menu and the X still appear
+   and disappear (the end states are the same), just instantly. Placed after
+   the rules above so it wins. */
+@media (prefers-reduced-motion: reduce) {
+  .nav-links,
+  .show-links,
+  .nav-btn-bar {
+    transition: none;
+  }
 }
 
 .nav-link {
@@ -1682,6 +1743,9 @@ p.iterations-count {
     height: auto !important;
     overflow: visible;
     visibility: visible;
+    opacity: 1; /* the mobile closed state sets 0; desktop is always shown */
+    transform: none;
+    transition: none;
     flex-direction: row;
     align-items: center;
     gap: 4px;

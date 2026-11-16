@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useRef, useState } from "react" // NEW
 import { Link } from "gatsby"
 // NEXTJS-MIGRATION: replace with usePathname from next/navigation.
 import { useLocation } from "@reach/router" // NEW
-import { FiAlignJustify } from "react-icons/fi"
 import CTA from "../components/CTA"
 import LogoMark from "../components/LogoMark" // NEW
 // import logo from "../assets/images/general/IAAP-Cert.png"
@@ -75,7 +74,37 @@ const Navbar = () => {
               aria-expanded={show} // NEW
               aria-controls="primary-navigation" // NEW
             >
-              <FiAlignJustify aria-hidden="true" /> {/* icon consistency */}
+              {/* One icon, three bars. CSS morphs it into an X when the
+                  button has aria-expanded="true". Decorative: the button's
+                  aria-label provides the name. */}
+              <svg
+                className="nav-btn-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <line
+                  className="nav-btn-bar nav-btn-bar--top"
+                  x1="3"
+                  y1="6"
+                  x2="21"
+                  y2="6"
+                />
+                <line
+                  className="nav-btn-bar nav-btn-bar--middle"
+                  x1="3"
+                  y1="12"
+                  x2="21"
+                  y2="12"
+                />
+                <line
+                  className="nav-btn-bar nav-btn-bar--bottom"
+                  x1="3"
+                  y1="18"
+                  x2="21"
+                  y2="18"
+                />
+              </svg>
             </button>
 
           </div>
