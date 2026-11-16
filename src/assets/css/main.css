@@ -443,6 +443,7 @@ svg.logo {
 .nav-center {
   width: 90vw;
   max-width: var(--max-width);
+  border-bottom: 4px solid var(--color-ink); /* F6 header rule */
 }
 
 .nav-header {
@@ -450,6 +451,40 @@ svg.logo {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Logo link: the animated SV mark plus three decorative shapes */
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-shapes {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.logo-shape {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.logo-shape--circle {
+  border-radius: 50%;
+  background: var(--color-terracotta);
+}
+
+.logo-shape--square {
+  background: var(--color-blue);
+}
+
+.logo-shape--triangle {
+  width: 20px;
+  background: var(--color-mustard);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
 .nav-btn {
@@ -460,46 +495,103 @@ svg.logo {
   font-size: 1.5rem;
 }
 
+/* Mobile menu. When closed it is hidden from sight AND from Tab and screen
+   readers (visibility: hidden). The delay on visibility lets the height
+   animation finish before hiding; on open it switches on instantly so the
+   focus-first-link code in Navbar.js can move focus straight away. */
 .nav-links {
   height: 0;
   overflow: hidden;
+  visibility: hidden;
   display: flex;
   flex-direction: column;
-  transition: var(--transition);
+  padding-inline: 0.5rem; /* room for focus outlines inside overflow: hidden */
+  transition: height 0.2s ease-in-out, visibility 0s linear 0.2s;
   align-self: center;
 }
 
 .show-links {
   height: 28rem;
+  visibility: visible;
+  padding-block: 0.5rem;
+  transition: height 0.2s ease-in-out, visibility 0s linear 0s;
 }
 
 .nav-link {
   display: block;
   text-align: center;
-  font-size: 1.75rem;
-  text-transform: capitalize;
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-transform: uppercase;
   color: var(--nav-link);
-  letter-spacing: var(--letterSpacing);
-  /* margin: 0.25rem 1rem 0.25rem 1rem; */
-  padding: 1rem 0;
+  letter-spacing: 0.06em;
+  padding: 0.75rem 0.75rem;
   border-top: 1px solid var(--site-border-strong);
-  border-bottom: 1px solid transparent;
   transition: var(--transition);
 }
 
-.active-link {
-  color: var(--nav-link-active);
-  border-bottom: 1px solid var(--nav-link-active);
-  text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
-}
-
+/* Hover: dark blue with a thin 2px underline. Thinner than the 4px
+   current-page marker below, so the two can't be confused. */
 .nav-link:hover {
   color: var(--nav-link-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* Current page: styled from the aria-current attribute that Gatsby's Link
+   sets, so what sighted users see always matches what screen readers hear.
+   Terracotta on cream is 4.88:1 (needs 3:1 for UI parts). */
+.nav-link[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-decoration-color: var(--color-terracotta);
+  text-underline-offset: 6px;
 }
 
 .contact-link {
   display: flex;
   justify-content: center;
+}
+
+/* Contact button (a link styled as a button). Scoped to .navbar so the
+   global .btn used on the form pages is not affected. */
+.navbar .cta {
+  display: inline-block;
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-cream); /* cream on terracotta: 4.88:1 */
+  background: var(--color-terracotta);
+  padding: 0.875rem 1.5rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Hover: cream on dark blue is 10.03:1. No lift or shadow. */
+.navbar .cta:hover {
+  background: var(--color-blue);
+  color: var(--color-cream);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Focus ring is ink, not currentColor: the button text is cream and the
+   page is cream, so a currentColor ring would be invisible. Ink on cream
+   is 13.32:1. */
+.navbar .cta:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+/* Current page: a 4px ink bar under the button (13.32:1 against cream).
+   Kept after :hover and :focus-visible so it survives both. */
+.navbar .cta[aria-current="page"] {
+  box-shadow: 0 4px 0 var(--color-ink);
 }
 
 /* Mobile menu button wrapper */
@@ -514,14 +606,14 @@ svg.logo {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem 0 1.25rem; /* mobile: space for the button and its 4px bar */
 }
 
 /* Desktop layout for the nav actions */
 @media (min-width: 992px) {
-  /* Keep actions aligned on the nav row */
   .nav-actions {
-    margin-left: auto; /* pushes actions to the right if needed */
-    gap: 0.5rem;
+    margin-left: 0.5rem;
+    padding: 0;
   }
 }
 
@@ -1562,26 +1654,19 @@ p.iterations-count {
 /* Responsive: stack columns on smaller screens */
 
 @media (min-width: 992px) {
-  .nav-header {
-    margin-top: 2.5rem;
-    height: 6rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .navbar {
-    height: 6rem;
-  }
-
+  /* Logo on the left, links and Contact on the right. flex-wrap means that
+     if the row ever gets too tight it wraps instead of overflowing (1.4.10). */
   .nav-center {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding: 1.5rem 0;
   }
 
   .nav-header {
     padding: 0;
-    margin-right: 2rem;
     height: auto;
   }
 
@@ -1589,24 +1674,26 @@ p.iterations-count {
     display: none;
   }
 
+  /* Menu is always visible on desktop; overflow visible so focus rings
+     are not clipped. */
   .nav-links {
-    margin: 0 2rem;
-    padding: 1rem;
+    margin: 0;
+    padding: 0;
     height: auto !important;
+    overflow: visible;
+    visibility: visible;
     flex-direction: row;
     align-items: center;
-    width: 100%;
+    gap: 4px;
   }
 
   .nav-link {
-    margin-right: 1rem;
-    padding: 0 1.25rem;
+    padding: 0.625rem 0.75rem;
     border-top: none;
     font-size: 1.25rem;
   }
 
   .contact-link {
-    width: 100%;
     justify-content: flex-end;
     align-items: center;
   }
@@ -1666,21 +1753,6 @@ p.iterations-count {
 }
 
 @media (max-width: 991px) {
-  .nav-header {
-    margin-top: 2rem;
-  }
-
-  .nav-link {
-    margin-top: 1.5rem;
-    padding: 0.25rem 0;
-  }
-
-  a.active-link {
-    color: var(--nav-link-active);
-    border-bottom: none;
-    font-weight: 700;
-  }
-
   .qa-info {
     padding-right: 0;
   }

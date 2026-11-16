@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react" // NEW
+// NEXTJS-MIGRATION: becomes next/link; aria-current="page" will then need setting by hand from the pathname.
 import { Link } from "gatsby"
+// NEXTJS-MIGRATION: replace with usePathname from next/navigation.
 import { useLocation } from "@reach/router" // NEW
 import { FiAlignJustify } from "react-icons/fi"
 import CTA from "../components/CTA"
@@ -42,7 +44,7 @@ const Navbar = () => {
   }, [show])
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Primary navigation">
       <div className="nav-center">
         <div className="nav-header">
           <Link
@@ -52,6 +54,12 @@ const Navbar = () => {
             onClick={closeMenu} // NEW: close menu even if already on "/"
           >
             <LogoMark />
+            {/* Decorative Bauhaus shapes: hidden from screen readers */}
+            <span className="logo-shapes" aria-hidden="true">
+              <span className="logo-shape logo-shape--circle" />
+              <span className="logo-shape logo-shape--square" />
+              <span className="logo-shape logo-shape--triangle" />
+            </span>
           </Link>
 
           {/* Mobile controls */}
@@ -77,12 +85,10 @@ const Navbar = () => {
         <div
           id="primary-navigation" // NEW
           className={navLinksClass}
-          aria-label="Primary navigation" // NEW
         >
           <Link
             to="/work"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
             ref={firstLinkRef} // focus target when mobile menu opens
           >
@@ -92,7 +98,6 @@ const Navbar = () => {
           <Link
             to="/findings"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
           >
             Findings
@@ -101,7 +106,6 @@ const Navbar = () => {
           <Link
             to="/services"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
           >
             Services
@@ -110,7 +114,6 @@ const Navbar = () => {
           <Link
             to="/about"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
           >
             About
