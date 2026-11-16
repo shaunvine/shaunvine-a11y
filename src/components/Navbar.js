@@ -1,35 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react" // NEW
 import { Link } from "gatsby"
 import { useLocation } from "@reach/router" // NEW
-import { FiAlignJustify, FiSun, FiMoon } from "react-icons/fi" // NEW
+import { FiAlignJustify } from "react-icons/fi"
 import CTA from "../components/CTA"
 import LogoMark from "../components/LogoMark" // NEW
 // import logo from "../assets/images/general/IAAP-Cert.png"
 
-const ENABLE_THEME_TOGGLE = false
-
-// NEW: reusable theme toggle component
-function ThemeToggle({ theme, onToggleTheme, className }) {
-  const nextThemeLabel =
-    theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-
-  return (
-    <button
-      type="button"
-      className={className}
-      onClick={onToggleTheme}
-      aria-label={nextThemeLabel}
-    >
-      {theme === "dark" ? (
-        <FiSun aria-hidden="true" /> // NEW
-      ) : (
-        <FiMoon aria-hidden="true" /> // NEW
-      )}
-    </button>
-  )
-}
-
-const Navbar = ({ theme, onToggleTheme }) => {
+const Navbar = () => {
   const [show, setShow] = useState(false)
 
   // NEW: close menu automatically on route change
@@ -93,14 +70,6 @@ const Navbar = ({ theme, onToggleTheme }) => {
               <FiAlignJustify aria-hidden="true" /> {/* icon consistency */}
             </button>
 
-            {/* Mobile theme toggle */}
-            {ENABLE_THEME_TOGGLE && (
-              <ThemeToggle
-                theme={theme}
-                onToggleTheme={onToggleTheme}
-                className="theme-toggle theme-toggle--mobile"
-              />
-            )}
           </div>
         </div>
 
@@ -171,14 +140,6 @@ const Navbar = ({ theme, onToggleTheme }) => {
               />
             </Link> */}
 
-            {/* Desktop theme toggle */}
-            {ENABLE_THEME_TOGGLE && (
-              <ThemeToggle
-                theme={theme}
-                onToggleTheme={onToggleTheme}
-                className="theme-toggle theme-toggle--desktop"
-              />
-            )}
           </div>
         </div>
       </div>

@@ -509,52 +509,22 @@ svg.logo {
   justify-content: center;
 }
 
-/* Cluster hamburger + mobile toggle */
+/* Mobile menu button wrapper */
 .nav-controls {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Base theme toggle styling */
-.theme-toggle {
-  border: solid 3px var(--site-surface);
-  /* background-color: #fff; */
-  cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 999px;
-  font-size: 2.25rem;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* By default, hide the DESKTOP toggle */
-.theme-toggle--desktop {
-  display: none;
-}
-
-/* Container for Contact + desktop toggle */
+/* Container for the Contact button */
 .nav-actions {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* At desktop breakpoint, swap visibility */
+/* Desktop layout for the nav actions */
 @media (min-width: 992px) {
-  /* On desktop, hide the mobile toggle next to hamburger */
-  .theme-toggle--mobile {
-    display: none;
-  }
-
-  /* Show the desktop toggle next to Contact */
-  .theme-toggle--desktop {
-    display: inline-flex;
-    margin-left: 0.75rem;
-  }
-
   /* Keep actions aligned on the nav row */
   .nav-actions {
     margin-left: auto; /* pushes actions to the right if needed */
