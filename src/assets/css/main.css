@@ -149,26 +149,16 @@ html {
   --focus-gap: 3px;
   --focus-width: 5px;
   --focus-gap-color: var(--site-bg);
-}
 
-/* ============================
-   LIGHT THEME OVERRIDES
-   Keep ONLY things that differ from :root.
-   Right now: blade roles live here.
-   ============================ */
-:root[data-theme="light"] {
   /* ----------------------------
-     Blade semantic roles (LIGHT)
+     Blade roles
+     Moved here from :root[data-theme="light"], which was only set by
+     JavaScript after page load, so these were missing on first paint
+     and with JavaScript turned off.
      ---------------------------- */
   --blade-light-bg: var(--site-surface);
-  --blade-light-text: var(--site-text);
   --blade-light-border: 2px solid var(--site-border-strong);
-
-  --blade-strong-bg: #fbbf24;
-  --blade-strong-text: #451a03;
-
   --blade-dark-bg: #7c2d12;
-  --blade-dark-text: #fef3c7;
 }
 
 /* ============================
