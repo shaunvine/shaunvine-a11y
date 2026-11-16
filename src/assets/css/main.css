@@ -45,7 +45,6 @@ html {
   --transition: 0.2s ease-in-out;
 
   --max-width: 80rem;
-  --fixed-width: 600px;
 
   --page-max-width: 70rem;
   --content-max-width: 46rem;
@@ -60,7 +59,6 @@ html {
 
   /* Surfaces */
   --site-surface: #fff7db;
-  --site-surface-alt: #fffbeb;
 
   /* Text */
   --site-text: #b45309;
@@ -70,7 +68,6 @@ html {
 
   /* Hero Text Colors */
   --hero-h1-color: #78350f;
-  --hero-h2-color: #b45309;
 
   /* Borders */
   --site-border-subtle: #f5e0b7;
@@ -103,35 +100,14 @@ html {
   --elevation-medium: 0 4px 12px rgba(15, 23, 42, 0.14);
 
   /* ----------------------------
-     3-COL backgrounds
-     ---------------------------- */
-  --col-one-bg: var(--site-surface-alt);
-  --col-two-bg: var(--site-surface-alt);
-  --col-three-bg: var(--site-surface-alt);
-
-  /* ----------------------------
      Backwards-compat aliases
      ---------------------------- */
-  --backgroundColor: var(--site-bg);
-  --textColor: var(--site-text);
   --shadow-1: var(--elevation-soft);
   --shadow-2: var(--elevation-medium);
 
   /* ----------------------------
-     Minimal neutrals (legacy usage)
+     Lines
      ---------------------------- */
-  --grey-0: #ffffff;
-  --grey-500: #6b7280;
-  --grey-700: #374151;
-  --grey-800: #1f2937;
-  --grey-1000: #f2f2f2;
-  --white: #ffffff;
-
-  --red-dark: #b91c1c;
-  --green-dark: #166534;
-  --green-light: #dcfce7;
-  --red-light: #fee2e2;
-
   --line: 1px solid #e5e7eb;
 
   /* ----------------------------
