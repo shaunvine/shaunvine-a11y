@@ -68,9 +68,7 @@ const Navbar = () => {
               type="button"
               className="nav-btn"
               onClick={toggleMenu}
-              aria-label={
-                show ? "Close main navigation" : "Open main navigation"
-              } // NEW
+              aria-label="Menu" // fixed name; aria-expanded says open or closed
               aria-expanded={show} // NEW
               aria-controls="primary-navigation" // NEW
             >
