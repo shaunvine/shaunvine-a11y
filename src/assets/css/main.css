@@ -700,43 +700,262 @@ svg.logo {
 /*#########*/
 /* Hero */
 /*#########*/
+/* Full-width band. overflow: hidden clips the pattern grid at the viewport
+   edge, so the grid can bleed off the right side without causing horizontal
+   scrolling (WCAG 1.4.10). */
 .hero {
+  /* Distance from the content container's right edge to the screen's right
+     edge (0 when the screen is narrower than the container). */
+  --hero-edge: calc((100vw - min(90vw, var(--max-width))) / 2);
+  /* How far the pattern runs past the right edge of the screen */
+  --hero-bleed: 2rem;
   position: relative;
-  max-width: 100%;
-  margin: 4rem auto;
-  background-color: var(--blade-light-bg);
-  border: 2px solid var(--site-border-strong);
-  border-radius: var(--borderRadius);
-  padding: 2rem 2rem;
+  overflow: hidden;
+}
+
+/* Same container as the header and .page, so the left edges line up */
+.hero__inner {
+  width: 90vw;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  max-width: 44rem;
+}
+
+/* Terracotta on cream is 4.88:1 */
+.hero__eyebrow {
+  margin: 0;
+  font-family: var(--headingFont);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2; /* tight, so the pattern's top edge lines up with the text */
+  letter-spacing: 0.04em;
+  color: var(--color-terracotta); /* terracotta on cream is 4.88:1 */
+}
+
+/* Each phrase stays in one piece, so on very narrow screens the line can only
+   break between them (after the dot), never inside a phrase. */
+.hero__eyebrow-part {
+  white-space: nowrap;
 }
 
 .hero-heading {
-  color: var(--hero-h1-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  line-height: 1.15;
-}
-
-.hero-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.hero-subhead {
   margin: 0;
+  /* 2.5rem on phones, growing with the screen, capped at 4.25rem */
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--hero-h1-color); /* ink on cream is 13.32:1 */
+  overflow-wrap: break-word; /* never wider than the screen (1.4.10) */
+}
+
+.hero-line {
+  display: block;
+}
+
+/* Dark blue on cream is 10.03:1 */
+.hero-line--accent {
+  color: var(--color-blue);
 }
 
 .hire {
   margin: 0;
-  text-align: center;
-  font-size: 1.25rem;
-  max-width: 50ch;
+  max-width: 32rem;
+  font-size: 1.2rem;
+  color: var(--site-text-muted); /* muted on cream is 7.91:1 */
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Hero buttons. Scoped to .hero so the shared .request-quote-btn used in
+   other sections is untouched. Hover colors are set explicitly: the shared
+   hover rule changes the background but not the text color. */
+.hero .hero-btn {
+  margin-top: 0;
+  padding: 1.125rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 4px;
+  box-shadow: none;
+  text-transform: none;
+}
+
+.hero .hero-btn--dark {
+  background: var(--color-ink);
+  color: var(--color-cream); /* cream on ink is 13.32:1 */
+}
+
+.hero .hero-btn--mustard {
+  background: var(--color-mustard);
+  color: var(--color-ink); /* ink on mustard is 7.02:1 */
+}
+
+.hero .hero-btn--dark:hover {
+  background: var(--color-blue);
+  color: var(--color-cream); /* cream on dark blue is 10.03:1 */
+  transform: none;
+  box-shadow: none;
+}
+
+.hero .hero-btn--mustard:hover {
+  background: var(--color-ink);
+  color: var(--color-cream); /* cream on ink is 13.32:1 */
+  transform: none;
+  box-shadow: none;
+}
+
+/* Pattern grid: 5 columns x 4 rows of square tiles. Decorative
+   (aria-hidden in HeroPattern.js).
+   Default (screens narrower than 1200px): it drops below the text, at most
+   28rem wide, with a full 4px ink border. content-box so the aspect ratio
+   applies to the tiles themselves, which keeps them exactly square. */
+.hero-pattern {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  box-sizing: content-box;
+  width: min(calc(100% - 8px), 28rem);
+  aspect-ratio: 5 / 4;
+  margin-top: 2.5rem;
+  border: 4px solid var(--color-ink);
+}
+
+/* Small screens (narrower than 768px): the pattern is purely decorative, so
+   it is removed completely. display: none also takes it out of the layout
+   and out of the accessibility tree. "not all and (min-width: 768px)" is the
+   exact opposite of 768px and up, so no width falls in a gap. */
+@media not all and (min-width: 768px) {
+  .hero-pattern {
+    display: none;
+  }
+}
+
+.hero-tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--tile-bg);
+}
+
+.hero-tile__shape {
+  position: absolute;
+  inset: 0;
+  background: var(--tile-fg);
+}
+
+.hero-tile--bg-cream {
+  --tile-bg: var(--color-cream);
+}
+.hero-tile--bg-mustard {
+  --tile-bg: var(--color-mustard);
+}
+.hero-tile--bg-sage {
+  --tile-bg: var(--color-sage);
+}
+.hero-tile--bg-blue {
+  --tile-bg: var(--color-blue);
+}
+.hero-tile--bg-pink {
+  --tile-bg: var(--color-pink);
+}
+.hero-tile--bg-terracotta {
+  --tile-bg: var(--color-terracotta);
+}
+
+.hero-tile--fg-cream {
+  --tile-fg: var(--color-cream);
+}
+.hero-tile--fg-mustard {
+  --tile-fg: var(--color-mustard);
+}
+.hero-tile--fg-sage {
+  --tile-fg: var(--color-sage);
+}
+.hero-tile--fg-blue {
+  --tile-fg: var(--color-blue);
+}
+.hero-tile--fg-pink {
+  --tile-fg: var(--color-pink);
+}
+.hero-tile--fg-terracotta {
+  --tile-fg: var(--color-terracotta);
+}
+
+.hero-tile--circle .hero-tile__shape {
+  inset: 14%;
+  border-radius: 50%;
+}
+
+.hero-tile--half .hero-tile__shape {
+  inset: 50% 0 0 0;
+  border-radius: 999px 999px 0 0;
+}
+
+.hero-tile--tri .hero-tile__shape {
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.hero-tile--quarter-tl .hero-tile__shape {
+  border-radius: 100% 0 0 0;
+}
+.hero-tile--quarter-tr .hero-tile__shape {
+  border-radius: 0 100% 0 0;
+}
+.hero-tile--quarter-br .hero-tile__shape {
+  border-radius: 0 0 100% 0;
+}
+.hero-tile--quarter-bl .hero-tile__shape {
+  border-radius: 0 0 0 100%;
+}
+
+@media (min-width: 992px) {
+  .hero__inner {
+    padding: 3rem 0 4rem;
+  }
+}
+
+/* Wide screens (1200px and up): text on the left, pattern on the right.
+   The row is exactly as tall as the text column. The pattern is positioned
+   from the row's top and bottom edges, so it lines up with the eyebrow at the
+   top and the bottom of the buttons. Its width then follows from the 5:4 aspect
+   ratio, which keeps the tiles square. Its right edge sits just past the
+   screen's right edge (clipped by .hero), so the gap to the text is as small
+   as the screen allows. */
+@media (min-width: 1200px) {
+  .hero__row {
+    position: relative;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: calc(-1 * (var(--hero-edge) + var(--hero-bleed)));
+    width: auto;
+    margin-top: 0;
+    border-right: none; /* the right edge is off-screen */
+    /* Safety cap: never taller than the screen minus the header, the hero's
+       padding and about 3rem of space below. (svh = the visible screen
+       height; the first line is a fallback for older browsers.) */
+    max-height: calc(100vh - 14rem);
+    max-height: calc(100svh - 14rem);
+  }
+}
+
+/* The hero provides its own bottom spacing */
+.hero + .page {
+  margin-top: 0;
 }
 
 /* Start How I Test Section */
@@ -1806,13 +2025,6 @@ p.iterations-count {
   }
 }
 
-@media (min-width: 768px) {
-  h2.hero-subhead {
-    margin: 1rem 0;
-    text-align: center;
-  }
-}
-
 @media (min-width: 576px) {
   .outdoor-list {
     grid-template-columns: 1fr 1fr;
@@ -1945,18 +2157,11 @@ p.iterations-count {
   .nav-links {
     margin-bottom: 2rem;
   }
-  .hire {
-    margin-bottom: 4rem;
-    max-width: 90vw;
-  }
 }
 
 @media (max-width: 498px) {
   .request-quote-btn {
     text-align: center;
-  }
-  .hero-heading {
-    margin-bottom: 1rem;
   }
 }
 /* ============================
