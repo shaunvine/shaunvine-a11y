@@ -710,7 +710,21 @@ svg.logo {
   /* How far the pattern runs past the right edge of the screen */
   --hero-bleed: 2rem;
   position: relative;
-  overflow: hidden;
+  /* Clip only sideways: this hides the part of the pattern that bleeds off the
+     right edge, so there is no horizontal scrolling (WCAG 1.4.10). Unlike
+     overflow: hidden, clip leaves the vertical direction alone, so focus rings
+     on the buttons are never cut off at the bottom (WCAG 2.4.7 / 2.4.11). */
+  overflow-x: clip;
+}
+
+/* Very old browsers (Safari before 16) do not know overflow-x: clip. Without
+   it the bleed would cause horizontal scrolling, so they fall back to the
+   older, blunter overflow: hidden. The extra bottom padding on small screens
+   (see below) keeps the focus rings visible even then. */
+@supports not (overflow-x: clip) {
+  .hero {
+    overflow: hidden;
+  }
 }
 
 /* Same container as the header and .page, so the left edges line up */
@@ -797,11 +811,12 @@ svg.logo {
    - the buttons stack, each full width, with a small gap, in the same order;
      the labels are centered (the heading and paragraph stay left-aligned);
    - the hero's bottom padding and the next section's top margin are replaced
-     by one 3rem space, so "How I test websites" follows closely instead of
-     after a large empty gap. */
+     by one 3rem space (0.75rem + 2.25rem), so "How I test websites" follows
+     closely instead of after a large empty gap. The 0.75rem under the buttons
+     is more than the 6px a focus ring needs (3px outline + 3px offset). */
 @media not all and (min-width: 768px) {
   .hero__inner {
-    padding-bottom: 0;
+    padding-bottom: 0.75rem;
   }
 
   .hero-actions {
@@ -816,7 +831,7 @@ svg.logo {
 
   .hero + .page > .testing-methods:first-child {
     margin-top: 0;
-    padding-top: 3rem;
+    padding-top: 2.25rem;
   }
 }
 
