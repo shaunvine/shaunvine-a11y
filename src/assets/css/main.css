@@ -783,6 +783,7 @@ svg.logo {
    hover rule changes the background but not the text color. */
 .hero .hero-btn {
   margin-top: 0;
+  min-height: 44px; /* minimum touch target, even if the padding is changed */
   padding: 1.125rem 1.75rem;
   font-size: 1rem;
   font-weight: 700;
@@ -790,6 +791,33 @@ svg.logo {
   border-radius: 4px;
   box-shadow: none;
   text-transform: none;
+}
+
+/* Small screens (narrower than 768px):
+   - the buttons stack, each full width, with a small gap, in the same order;
+     the labels are centered (the heading and paragraph stay left-aligned);
+   - the hero's bottom padding and the next section's top margin are replaced
+     by one 3rem space, so "How I test websites" follows closely instead of
+     after a large empty gap. */
+@media not all and (min-width: 768px) {
+  .hero__inner {
+    padding-bottom: 0;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%; /* .hero__text centers items to the left, so ask for full width */
+    gap: 0.75rem;
+  }
+
+  .hero .hero-btn {
+    text-align: center;
+  }
+
+  .hero + .page > .testing-methods:first-child {
+    margin-top: 0;
+    padding-top: 3rem;
+  }
 }
 
 .hero .hero-btn--dark {
