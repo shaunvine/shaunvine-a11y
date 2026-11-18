@@ -1177,66 +1177,135 @@ svg.logo {
 
 /* END How I Test Section */
 
-/* Start Accessibility Findings Section */
+/*#########*/
+/* Accessibility findings */
+/*#########*/
+/* Four (on /findings, five) solid-colored cards with 24px gaps. The card
+   thumbnails were dropped on purpose, to follow the F6 mockup: each card is
+   a shape icon, category, title, summary and one link.
+
+   Columns: 1 on small screens, 2 from 48em, 4 from 75em. Never 3, so four
+   cards can never end up as a 3+1 row with one orphan. The breakpoints are in
+   em, so they move with the user's text size: with larger text the layout
+   drops to fewer columns before the titles can get cramped (WCAG 1.4.4,
+   1.4.10). minmax(0, 1fr) lets a column shrink instead of pushing the grid
+   wider than the screen. */
 .findings__grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 48em) {
+  .findings__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75em) {
+  .findings__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .finding-card {
+  position: relative; /* anchors the visually hidden link text */
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  overflow: hidden;
+  gap: 14px;
+  padding: 28px 24px;
+  background: var(--card-bg);
+  color: var(--card-fg);
+  overflow-wrap: break-word; /* a long word can never run out of its card */
 }
 
-.finding-card__media {
-  display: block;
+/* Approved pairings only. The "text" colour is also used for the icon, the
+   link and the focus ring (currentColor), so they always match. */
+.finding-card--terracotta {
+  --card-bg: var(--color-terracotta);
+  --card-fg: var(--color-cream); /* cream on terracotta is 4.88:1 */
+}
+.finding-card--mustard {
+  --card-bg: var(--color-mustard);
+  --card-fg: var(--color-ink); /* ink on mustard is 7.02:1 */
+}
+.finding-card--blue {
+  --card-bg: var(--color-blue);
+  --card-fg: var(--color-cream); /* cream on dark blue is 10.03:1 */
+}
+.finding-card--sage {
+  --card-bg: var(--color-sage);
+  --card-fg: var(--color-ink); /* ink on sage is 7.15:1 */
+}
+.finding-card--pink {
+  --card-bg: var(--color-pink);
+  --card-fg: var(--color-ink); /* ink on pink is 8.92:1 */
 }
 
-.finding-card__image {
-  width: 100%;
-  display: block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+/* Decorative shape (aria-hidden in the markup), 56px, in the text colour */
+.finding-card__icon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  background: var(--card-fg);
 }
-
-.finding-card__content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 2rem;
+.finding-card__icon--circle {
+  border-radius: 50%;
+}
+.finding-card__icon--triangle {
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.finding-card__icon--half {
+  border-radius: 50% 50% 0 0;
+}
+.finding-card__icon--quarter {
+  border-radius: 100% 0 0 0;
 }
 
 .finding-card__category {
-  margin-bottom: 0.75rem;
-  font-size: var(--smallText);
-  color: var(--site-text-muted);
-  font-weight: 600;
-  letter-spacing: var(--letterSpacing);
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .finding-card__title {
-  margin-bottom: 1rem;
+  margin: 0;
+  color: inherit; /* the global heading colour is ink, which fails on dark cards */
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1.15;
 }
 
 .finding-card__summary {
-  margin-bottom: 2rem;
+  margin: 0;
 }
 
-.finding-card__cta {
+/* Always underlined (2px, offset 3px), in the card's text colour. margin-top:
+   auto pins the link to the bottom, so links line up across a row. align-self
+   keeps the clickable area to the words, not the whole card width. */
+.finding-card__link {
+  align-self: flex-start;
   margin-top: auto;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
-@media (min-width: 768px) {
-  .findings__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
-  }
+/* Hover thickens the underline; the colour stays, so the approved contrast
+   pairing is never changed. */
+.finding-card__link:hover {
+  text-decoration-thickness: 4px;
+}
+
+/* currentColor is the card's text colour, so the ring has the same contrast
+   as the text on every card (at least 4.88:1; 3:1 is required). It sits
+   inside the card's padding and no ancestor clips it. */
+.finding-card__link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
 }
 
 /* End Accessibility Findings */
