@@ -3,6 +3,7 @@ import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
 import CTA from "../components/CTA"
 import HeroPattern from "../components/HeroPattern"
+import SkillsBand from "../components/SkillsBand"
 import AccessibilityFindings from "../components/AccessibilityFindings"
 import TestingMethods from "../components/TestingMethods"
 import MyProcess from "../components/MyProcess"
@@ -61,6 +62,8 @@ const IndexPage = () => {
           </div>
         </div>
       </header>
+
+      <SkillsBand />
 
       <div className="page">
         <TestingMethods />
