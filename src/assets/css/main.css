@@ -1079,29 +1079,12 @@ svg.logo {
 }
 
 /* The band, not the hero, now sits above the page content. Its bottom rule
-   is the divider, so the page content starts straight after it: the first
-   section ("How I test websites") keeps only its own top padding. That makes
-   the gap 4rem on wide screens and 3rem on small ones. */
+   is the divider, so the page content starts straight after it. */
 .skills-band + .page {
   margin-top: 0;
 }
 
-.skills-band + .page > .testing-methods:first-child {
-  margin-top: 0;
-}
-
-@media not all and (min-width: 48em) {
-  .skills-band + .page > .testing-methods:first-child {
-    padding-top: 3rem;
-  }
-}
-
-/* Start How I Test Section */
-
-.testing-methods {
-  margin: 4rem auto;
-  padding: var(--blade-padding-block) var(--blade-padding-inline);
-}
+/* Section headers (shared by Findings, Selected work, How I work and others) */
 
 .section-header {
   max-width: var(--content-max-width);
@@ -1125,57 +1108,7 @@ svg.logo {
   text-align: center;
 }
 
-.testing-methods__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  max-width: var(--page-max-width);
-  margin-inline: auto;
-}
-
-.testing-methods__card {
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-1);
-}
-
-.testing-methods__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: var(--cta-bg);
-  margin-bottom: 1rem;
-}
-
-.testing-methods__title {
-  margin-bottom: 0.75rem;
-}
-
-.testing-methods__list {
-  margin: 0;
-  padding-left: 1.25rem;
-}
-
-.testing-methods__item {
-  line-height: 1.5;
-}
-
-@media (min-width: 768px) {
-  .testing-methods__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .testing-methods__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-/* END How I Test Section */
+/* End section headers */
 
 /*#########*/
 /* Accessibility findings */
@@ -1323,68 +1256,6 @@ svg.logo {
 }
 
 /* End Accessibility Findings PAGE */
-
-/* Start My Process Section */
-
-.my-process {
-  margin: 4rem auto;
-  padding: var(--blade-padding-block) var(--blade-padding-inline);
-}
-
-.my-process__steps {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.my-process__step {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-1);
-}
-
-.my-process__number {
-  flex: 0 0 auto;
-  font-family: var(--headingFont);
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--site-text-muted);
-  font-weight: 600;
-}
-
-.my-process__label {
-  font-family: var(--headingFont);
-  font-size: 1.125rem;
-  line-height: 1.3;
-  color: var(--site-text-dark);
-}
-
-@media (min-width: 768px) {
-  .my-process__steps {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .my-process__step {
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 9rem;
-  }
-
-  .my-process__number {
-    font-size: 2rem;
-  }
-}
-
-/* End My Process Section */
 
 /* Start Experience Snapshot Section */
 

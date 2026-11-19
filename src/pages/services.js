@@ -2,6 +2,7 @@ import React from "react"
 import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
 import Services from "../components/Services"
+import HowIWork from "../components/HowIWork"
 
 const ServicesPage = () => {
   return (
@@ -15,6 +16,7 @@ const ServicesPage = () => {
           </p>
         </header>
         <Services />
+        <HowIWork />
       </div>
     </Layout>
   )
