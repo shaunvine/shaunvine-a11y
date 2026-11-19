@@ -73,7 +73,7 @@ const AccessibilityFindings = ({ showHeader = true, limit }) => {
     <section
       className="findings"
       id="accessibility-findings"
-      aria-labelledby="findings-heading"
+      aria-labelledby={showHeader ? "findings-heading" : undefined}
     >
       {showHeader && (
         <div className="section-header section-header--center">
