@@ -1475,29 +1475,40 @@ svg.logo {
 
 /* END Findings Detail Page */
 
-/* Start Servces Page */
+/* Start Services Page */
 
+/* No side padding of its own: .page (90vw) is the shared page gutter, and the
+   How I work section sits directly in it too, so both line up. Extra side
+   padding here used to make the cards much narrower than the rest of the page
+   on small screens. Only top and bottom spacing is added. */
 .services-overview {
   margin: 4rem auto;
-  padding: var(--blade-padding-block) var(--blade-padding-inline);
+  padding-block: var(--blade-padding-block);
 }
 
+/* minmax(0, 1fr), not plain 1fr: a plain 1fr column will not shrink below its
+   longest word, so with enlarged text it pushed the cards past the screen
+   edge and they were cut off (WCAG 1.4.4, 1.4.10). */
 .services-overview__grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
   max-width: var(--page-max-width);
   margin-inline: auto;
 }
 
+/* Tight padding on small screens so enlarged text has room; roomier from 48em.
+   overflow-wrap lets a long word wrap rather than run out of the card. */
 .services-overview__card {
   display: flex;
   flex-direction: column;
   background: var(--blade-light-bg);
   border: var(--blade-light-border);
   border-radius: var(--borderRadius);
-  padding: 1.5rem;
+  padding: 0.75rem;
   box-shadow: var(--shadow-1);
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 .services-overview__icon {
@@ -1512,18 +1523,24 @@ svg.logo {
 
 .services-overview__list {
   margin: 0 0 2rem 0;
-  padding-left: 1.25rem;
+  padding-left: 1.125rem;
 }
 
 .services-overview__list li {
   line-height: 1.6;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .services-overview__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .services-overview__card {
+    padding: 1.5rem;
   }
 }
+
 .services-overview__card--cta {
   background: var(--cta-bg);
   border-color: var(--cta-bg);
