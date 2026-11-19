@@ -3,9 +3,9 @@ import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import slugify from "slugify"
 
-const ProjectsList = ({ projects = [], selectedTag }) => {
+const ProjectsList = ({ projects = [], selectedTag, className = "" }) => {
   return (
-    <div className="projects-list">
+    <div className={`projects-list ${className}`.trim()}>
       {projects.map(project => {
         const { id, title, image, imageAltText } = project
         const pathToImage = getImage(image)

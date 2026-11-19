@@ -4,6 +4,7 @@ import Layout from "../components/Layout"
 import CTA from "../components/CTA"
 import HeroPattern from "../components/HeroPattern"
 import SkillsBand from "../components/SkillsBand"
+import SelectedWork from "../components/SelectedWork"
 import AccessibilityFindings from "../components/AccessibilityFindings"
 
 const IndexPage = () => {
@@ -62,6 +63,8 @@ const IndexPage = () => {
       <SkillsBand />
 
       <div className="page">
+        <SelectedWork />
+
         <AccessibilityFindings showHeader={true} headerAlignment="center" limit={4} />
       </div>
     </Layout>
