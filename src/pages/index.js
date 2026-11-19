@@ -5,10 +5,6 @@ import CTA from "../components/CTA"
 import HeroPattern from "../components/HeroPattern"
 import SkillsBand from "../components/SkillsBand"
 import AccessibilityFindings from "../components/AccessibilityFindings"
-import TestingMethods from "../components/TestingMethods"
-import MyProcess from "../components/MyProcess"
-import ExpereienceSnapshot from "../components/ExperienceSnapshot"
-import ClientTestimonials from "../components/ClientTestimonials"
 
 const IndexPage = () => {
   return (
@@ -66,14 +62,7 @@ const IndexPage = () => {
       <SkillsBand />
 
       <div className="page">
-        <TestingMethods />
-
         <AccessibilityFindings showHeader={true} headerAlignment="center" limit={4} />
-        <MyProcess />
-
-        <ExpereienceSnapshot />
-
-        <ClientTestimonials />
       </div>
     </Layout>
   )

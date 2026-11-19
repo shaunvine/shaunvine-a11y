@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import { FaReact, FaLinkedin } from "react-icons/fa"
 import logo from "../assets/images/general/IAAP-Cert.png" // <-- Update this path
 
@@ -22,6 +23,9 @@ const Footer = () => {
               <FaLinkedin aria-hidden="true" />
               <span>LinkedIn</span>
             </a>
+            <Link to="/contact" className="footer-social__link">
+              <span>Contact</span>
+            </Link>
           </div>
         </div>
         <p className="footer-text">
