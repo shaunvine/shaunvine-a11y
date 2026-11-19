@@ -6,7 +6,7 @@ import Services from "../components/Services"
 const ServicesPage = () => {
   return (
     <Layout>
-      <main className="page">
+      <div className="page">
         <header className="findings-page__header">
           <h1 className="section-title">Services</h1>
           <p className="findings-page__intro">
@@ -15,7 +15,7 @@ const ServicesPage = () => {
           </p>
         </header>
         <Services />
-      </main>
+      </div>
     </Layout>
   )
 }
