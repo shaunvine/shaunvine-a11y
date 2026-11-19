@@ -1477,13 +1477,15 @@ svg.logo {
 
 /* Start Services Page */
 
-/* No side padding of its own: .page (90vw) is the shared page gutter, and the
+/* No padding of its own: .page (90vw) is the shared page gutter, and the
    How I work section sits directly in it too, so both line up. Extra side
    padding here used to make the cards much narrower than the rest of the page
-   on small screens. Only top and bottom spacing is added. */
+   on small screens. Vertical spacing is margin only, one 4rem value, the same
+   gap the homepage sections use. Margins between siblings collapse, so the
+   header, cards and How I work are each 4rem apart, not 4rem plus padding. */
 .services-overview {
-  margin: 4rem auto;
-  padding-block: var(--blade-padding-block);
+  margin: 4rem 0; /* the one 4rem section gap used across the site */
+  padding: 0;
 }
 
 /* minmax(0, 1fr), not plain 1fr: a plain 1fr column will not shrink below its
@@ -1493,8 +1495,8 @@ svg.logo {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
-  max-width: var(--page-max-width);
-  margin-inline: auto;
+  /* No max-width: .page already limits the width, and a narrower grid left
+     the cards inset from the headings and How I work on wide screens. */
 }
 
 /* Tight padding on small screens so enlarged text has room; roomier from 48em.
@@ -1577,10 +1579,6 @@ svg.logo {
    follows the user's text size (WCAG 1.4.4). Everything is sized in rem/em and
    uses minmax(0, 1fr) columns plus overflow-wrap, so at 320px, 200% zoom or
    "Very large" text nothing is clipped or runs off the edge (1.4.10). */
-.how-i-work {
-  margin-top: 4rem;
-}
-
 /* The shared header is centered; on the left-aligned Services page it reads
    better flush left, like the page's own header. */
 .how-i-work .section-header {
