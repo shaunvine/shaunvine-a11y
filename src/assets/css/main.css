@@ -2602,14 +2602,28 @@ p.iterations-count {
   border: var(--blade-light-border);
   border-radius: var(--borderRadius);
   overflow: hidden;
-  transition: var(--transition);
   box-shadow: var(--shadow-1);
   padding: 0.5rem;
 }
 
-.project:hover {
+/* The shadow change is not movement, so it applies for everyone. The hover
+   cue is also given to keyboard users through :focus-within. */
+.project:hover,
+.project:focus-within {
   box-shadow: var(--shadow-2);
-  transform: translateY(-2px);
+}
+
+/* The lift and its transition only exist when the user has not asked for
+   reduced motion (WCAG 2.3.3). With "Reduce motion" on, the card never moves. */
+@media (prefers-reduced-motion: no-preference) {
+  .project {
+    transition: var(--transition);
+  }
+
+  .project:hover,
+  .project:focus-within {
+    transform: translateY(-2px);
+  }
 }
 
 .project-img {
