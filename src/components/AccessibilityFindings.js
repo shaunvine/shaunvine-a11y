@@ -77,7 +77,7 @@ const AccessibilityFindings = ({ showHeader = true, limit }) => {
     >
       {showHeader && (
         <div className="section-header section-header--center">
-          <h2 className="section-title">Accessibility Findings</h2>
+          <h2 id="findings-heading" className="section-title">Accessibility Findings</h2>
 
           <p className="section-intro">
             Short accessibility and QA reviews demonstrating common issues and
