@@ -12,7 +12,7 @@ const services = [
       "Screen Reader Testing",
       "Keyboard Navigation & Focus Management",
       "WCAG 2.1 / 2.2 Compliance Reviews",
-      "Colour Contrast Analysis",
+      "Color Contrast Analysis",
       "Findings Reports with Remediation Guidance",
     ],
   },
@@ -46,10 +46,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section
-      className="services-overview"
-      aria-labelledby="services-overview-heading"
-    >
+    <section className="services-overview">
       <div className="services-overview__grid">
         {services.map(service => (
           <article key={service.title} className="services-overview__card">
