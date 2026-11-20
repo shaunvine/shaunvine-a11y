@@ -2688,73 +2688,75 @@ p.iterations-count {
   animation: projectsFadeIn 0.25s ease-out;
 }
 
-/* Filter sidebar */
-.tools-filter {
-  /* stacks on mobile, becomes sidebar on wider screens */
-}
-
+/* Filter sidebar / tag buttons. Real <button>s with aria-pressed (they filter
+   the list, they don't navigate). Mobile first: a full-width column of buttons,
+   then a sidebar from 62em (992px at default size; em so it follows the user's
+   text size, WCAG 1.4.4). The sidebar width is in rem for the same reason. */
 .tools-filter__list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-/* Mobile: full-width chips with lighter feel */
-@media (max-width: 899px) {
-  .tools-filter__list {
-    flex-direction: column;
-  }
-
-  .tools-filter__btn {
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem 0.875rem;
-    font-size: 0.8rem;
-    min-height: 44px;
-  }
-}
-
+/* Unpressed: white with a 2px ink border and ink text, 13.32:1 or better.
+   Square corners and a pointer cursor mark it as a button, unlike the
+   non-interactive tag chips on project pages. min-height is 44px or more
+   (WCAG 2.5.8) and grows with text, so wrapped labels are never clipped. */
 .tools-filter__btn {
-  background: var(--blade-light-bg);
-  border: 1px solid var(--site-border-strong);
-  border-radius: var(--borderRadius);
-  color: var(--site-text);
-  padding: 0.375rem 0.875rem;
-  font-size: var(--smallText);
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  background: var(--site-surface);
+  border: 2px solid var(--color-ink);
+  border-radius: 0;
+  color: var(--color-ink);
+  font-family: var(--bodyFont);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+  overflow-wrap: break-word;
   cursor: pointer;
-  transition: var(--transition);
 }
 
+/* Hover: mustard with ink text, 7.02:1. */
 .tools-filter__btn:hover {
-  background: var(--cta-bg);
-  color: var(--cta-text);
-  border-color: var(--cta-bg);
+  background: var(--color-mustard);
 }
 
-.tools-filter__btn--active {
-  background: var(--cta-bg);
-  color: var(--cta-text);
-  border-color: var(--cta-bg);
+/* Pressed (aria-pressed="true"): filled ink with cream text, 13.32:1, AND a
+   check mark before the label, so the state is not shown by colour alone
+   (WCAG 1.4.1). The check is decorative: the empty alt text after the slash
+   keeps it out of the accessible name, and aria-pressed already tells screen
+   readers the state. */
+.tools-filter__btn--active,
+.tools-filter__btn--active:hover {
+  background: var(--color-ink);
+  color: var(--color-cream);
 }
 
-@media (min-width: 900px) {
+.tools-filter__btn--active::before {
+  content: "\2713" / "";
+  flex: none;
+}
+
+/* The ring is ink, not currentColor: a pressed button's text is cream, which
+   would vanish against the cream page. Ink on cream is 13.32:1 (3:1 needed). */
+.tools-filter__btn:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+@media (min-width: 62em) {
   .portfolio-layout {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 13rem 1fr;
     align-items: start;
-  }
-
-  .tools-filter__list {
-    flex-direction: column;
-    flex-wrap: nowrap;
-  }
-
-  .tools-filter__btn {
-    width: 100%;
-    text-align: left;
   }
 }
 
