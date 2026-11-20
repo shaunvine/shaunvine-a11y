@@ -100,6 +100,11 @@ html {
   --nav-link-active: #1f2328;
   --footer-bg: #1f2328; /* ink; footer text and links are cream/mustard, see Footer section */
 
+  /* Back-to-top button size and position. Shared so the footer can leave
+     enough room beneath its last line (WCAG 2.4.11 Focus Not Obscured). */
+  --back-to-top-size: 44px;
+  --back-to-top-offset: 1.5rem;
+
   /* CTAs */
   --cta-bg: #1f2328;
   --cta-bg-hover: #1e3a4c;
@@ -1765,7 +1770,7 @@ svg.logo {
    The site's dark blue focus ring (#1E3A4C) would be about 1.3:1 on ink, so the
    footer overrides it below.
    Links keep a 2px underline so they never rely on colour alone (WCAG 1.4.1).
-   Layout is mobile first: stacked and centred, becoming a row at 48em.
+   Layout is stacked and centred at every size (no breakpoint needed).
    Sizes are in rem and nothing has a fixed height, so text enlargement
    wraps instead of clipping (WCAG 1.4.4). */
 .page-footer {
@@ -1774,7 +1779,11 @@ svg.logo {
   --footer-focus: #f2ebdd;
   background: var(--footer-bg);
   color: var(--footer-text);
-  padding: 2rem 1rem;
+  /* Extra bottom space = back-to-top button height + its bottom offset + a 1rem gap,
+     so the last footer line (Manage cookies) clears the fixed button when scrolled
+     to the bottom, at every screen size. */
+  padding: 2rem 1rem
+    calc(var(--back-to-top-size) + var(--back-to-top-offset) + 1rem);
 }
 
 .footer-content {
@@ -1875,37 +1884,19 @@ a.react {
   justify-content: flex-end;
   align-items: center;
 }
-
-@media (min-width: 48em) {
-  .footer-content {
-    flex-direction: row;
-    flex-wrap: wrap; /* wraps rather than clips when text is enlarged */
-    justify-content: space-between;
-    text-align: left;
-  }
-
-  .footer-logo {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-
-  .footer-social {
-    justify-content: flex-start;
-  }
-}
 /* End Footer */
 
 /* Start Back To Top */
 .back-to-top {
   position: fixed;
   right: 1rem;
-  bottom: 1.5rem;
+  bottom: var(--back-to-top-offset);
   z-index: 1000;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: var(--back-to-top-size);
+  height: var(--back-to-top-size);
   background: none;
   border: none;
   color: var(--cta-bg);
