@@ -3047,8 +3047,8 @@ a.react {
 }
 
 /* Portfolio cards. Mobile first, em breakpoints so the layout follows the
-   user's text size (WCAG 1.4.4, 1.4.10): 1 column by default, 2 from 48em,
-   3 from 75em. minmax(0, 1fr) lets a column shrink instead of pushing the
+   user's text size (WCAG 1.4.4, 1.4.10): 1 column by default, 3 from 75em
+   (no 2-column step, which would leave a single orphan card for 3 cards). minmax(0, 1fr) lets a column shrink instead of pushing the
    page wider. The gap is 2rem, the same as the project grid. Square white
    cards with a 4px ink border to match the project cards. Text is ink on
    white, 13.32:1 or better. */
@@ -3060,12 +3060,6 @@ a.react {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
-}
-
-@media (min-width: 48em) {
-  .cards-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (min-width: 75em) {
@@ -3123,28 +3117,18 @@ a.react {
 }
 
 /* The arrow is decorative (aria-hidden in the markup) and points to the next
-   card, so it only shows when cards sit side by side (from 48em). Below that
-   the cards are stacked and it is hidden. The last card in each row has
-   nothing beside it, so its arrow is hidden too: every second card from 48em,
-   every third from 75em. */
+   card, so it only shows when cards sit side by side (from 75em, where the
+   grid has 3 columns). Below that the cards are stacked and it is hidden. The
+   last card in each row has nothing beside it, so every third card's arrow
+   is hidden too. */
 .iteration-arrow {
   display: none;
   flex-shrink: 0;
   color: var(--color-ink);
 }
 
-@media (min-width: 48em) {
-  .iteration-arrow {
-    display: block;
-  }
-
-  .card:nth-child(2n) .iteration-arrow {
-    display: none;
-  }
-}
-
 @media (min-width: 75em) {
-  .card:nth-child(2n) .iteration-arrow {
+  .iteration-arrow {
     display: block;
   }
 
