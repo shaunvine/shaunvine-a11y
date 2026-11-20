@@ -1843,8 +1843,8 @@ svg.logo {
   font-weight: 700;
 }
 
-.footer-social__link svg {
-  font-size: 1.25rem;
+.footer-social__link svg:not(.external-link__icon) {
+  font-size: 1.25rem; /* brand icon only; the new-tab icon sizes itself */
 }
 
 /* Hover: cream is still 13.32:1 on ink; the underline stays */
@@ -3304,4 +3304,24 @@ ul.pricing-service-includes-list {
   margin-right: 0.5rem;
   flex-shrink: 0;
   margin-top: 3px;
+}
+
+/* ============================================================
+   EXTERNAL LINK (new-tab icon, see ExternalLink.js)
+   ============================================================ */
+
+/* Last word + icon never separate, so the icon can't wrap onto its own line */
+.external-link__nowrap {
+  white-space: nowrap;
+}
+
+/* currentColor follows the link, so it keeps the same contrast as the text on
+   every background (mustard on ink 7.02:1, dark blue on white 11.9:1). 0.8em
+   scales with text size (WCAG 1.4.4). */
+.external-link__icon {
+  width: 0.8em;
+  height: 0.8em;
+  margin-inline-start: 0.25em;
+  vertical-align: -0.05em;
+  flex-shrink: 0;
 }
