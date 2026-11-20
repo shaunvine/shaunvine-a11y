@@ -2993,23 +2993,64 @@ p.iterations-count {
   line-height: 1.6;
 }
 
+/* "Built with" tags: a plain inline list, deliberately unlike the /work filter
+   buttons (those are boxed, bordered, have a pointer cursor and a hover
+   state). Nothing here is clickable, so there is no background, no border, no
+   hover and no pointer cursor. Items wrap onto new lines on narrow screens.
+   Text is ink on white, 16.0:1 or better. */
 .project-tools {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.375rem;
   margin-top: 1.5rem;
 }
 
-.project-tools span {
-  display: inline-block;
-  padding: 0.2rem 0.625rem;
+.project-tools__label {
+  margin: 0 0 0.5rem;
+  font-family: var(--headingFont);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--site-text-muted); /* muted on white is above 7.91:1 */
+}
+
+.project-tools__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-tools__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  cursor: default;
+  overflow-wrap: break-word; /* a long tag wraps instead of overflowing */
+}
+
+/* Decorative square (0.5em), drawn with a pseudo-element so there is no extra
+   element, and no text content so screen readers ignore it. It cycles
+   terracotta, mustard, dark blue. Against the white hero: terracotta 5.79:1
+   and dark blue 11.9:1 pass the 3:1 needed for graphics, but mustard is only
+   2.25:1 (1.9:1 on cream). That is acceptable ONLY because the square is
+   decorative: the tag's meaning is in its ink text, never in the square. */
+.project-tools__item::before {
+  content: "";
+  flex: none;
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--color-terracotta);
+}
+
+.project-tools__item:nth-child(3n + 2)::before {
   background: var(--color-mustard);
-  color: var(--site-text);
-  border-radius: 4px;
-  font-size: var(--smallText);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+}
+
+.project-tools__item:nth-child(3n)::before {
+  background: var(--color-blue);
 }
 
 .portfolio-cards {

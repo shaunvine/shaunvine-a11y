@@ -58,11 +58,24 @@ const ProjectTemplate = ({ data, location }) => {
               {description &&
                 documentToReactComponents(JSON.parse(description.raw), options)}
               {tags && tags.length > 0 && (
-                <p className="project-tools">
-                  {tags.map((tag, index) => (
-                    <span key={index}>{tag}</span>
-                  ))}
-                </p>
+                <div className="project-tools">
+                  <p id="project-tools-label" className="project-tools__label">
+                    Built with
+                  </p>
+                  {/* role="list" keeps list semantics in Safari/VoiceOver,
+                      which drops them when list-style is none. */}
+                  <ul
+                    className="project-tools__list"
+                    role="list"
+                    aria-labelledby="project-tools-label"
+                  >
+                    {tags.map(tag => (
+                      <li key={tag} className="project-tools__item">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </article>
           </section>
