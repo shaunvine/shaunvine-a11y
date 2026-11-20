@@ -98,7 +98,7 @@ html {
   --nav-link: var(--site-text);
   --nav-link-hover: #1e3a4c;
   --nav-link-active: #1f2328;
-  --footer-bg: #ffffff; /* becomes ink when the footer is restyled */
+  --footer-bg: #1f2328; /* ink; footer text and links are cream/mustard, see Footer section */
 
   /* CTAs */
   --cta-bg: #1f2328;
@@ -1757,27 +1757,116 @@ svg.logo {
 
 /* Start Footer */
 
-footer {
+/* Footer: ink background with cream text and mustard links (approved F6 design).
+   Contrast on ink #1F2328:
+   - cream #F2EBDD text      13.32:1 (AA body text, needs 4.5)
+   - mustard #D9A441 links    7.02:1 (AA body text, needs 4.5)
+   - cream focus ring        13.32:1 (needs 3:1 for UI parts)
+   The site's dark blue focus ring (#1E3A4C) would be about 1.3:1 on ink, so the
+   footer overrides it below.
+   Links keep a 2px underline so they never rely on colour alone (WCAG 1.4.1).
+   Layout is mobile first: stacked and centred, becoming a row at 48em.
+   Sizes are in rem and nothing has a fixed height, so text enlargement
+   wraps instead of clipping (WCAG 1.4.4). */
+.page-footer {
+  --footer-text: #f2ebdd;
+  --footer-link: #d9a441;
+  --footer-focus: #f2ebdd;
   background: var(--footer-bg);
-  padding-top: .5rem;
+  color: var(--footer-text);
+  padding: 2rem 1rem;
 }
 
 .footer-content {
   display: flex;
-  margin: 1rem;
-  flex-direction: column; /* Stack logo above text */
-  align-items: center; /* Center horizontally */
+  flex-direction: column; /* Stacked on small screens */
+  align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 1rem; /* Space between rows */
+  gap: 1.5rem;
+  margin: 0 auto;
+  max-width: 75rem;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .footer-logo img {
-  width: 80px; /* Responsive size */
+  width: 80px;
   height: auto;
-  max-width: 40vw; /* Shrinks on mobile */
+  max-width: 40vw;
 }
 
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Every footer link and the cookies button share one look */
+.footer-social__link,
+.footer-text a,
+.manage-cookies-link {
+  color: var(--footer-link);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.footer-social__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 0.5rem; /* comfortable tap target */
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.footer-social__link svg {
+  font-size: 1.25rem;
+}
+
+/* Hover: cream is still 13.32:1 on ink; the underline stays */
+.footer-social__link:hover,
+.footer-text a:hover,
+.manage-cookies-link:hover {
+  color: var(--footer-text);
+}
+
+/* The cookies button is a <button> for behavior but reads as a link */
+.manage-cookies-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+a.react {
+  font-size: 1rem;
+  line-height: 1.55;
+  vertical-align: middle;
+}
+
+/* Light focus ring that shows on ink */
+.page-footer :focus-visible {
+  outline: 3px solid var(--footer-focus);
+  outline-offset: 3px;
+}
+
+/* Used by the Navbar, so it stays even though it sits here for now */
 .cpacc-logo img {
   width: 80px; /* Responsive size */
   height: auto;
@@ -1787,32 +1876,22 @@ footer {
   align-items: center;
 }
 
-.footer-text a {
-  color: var(--link-text);
-  margin: 0 0.25rem;
-  text-decoration: none;
-}
+@media (min-width: 48em) {
+  .footer-content {
+    flex-direction: row;
+    flex-wrap: wrap; /* wraps rather than clips when text is enlarged */
+    justify-content: space-between;
+    text-align: left;
+  }
 
-.footer-text a:hover {
-  text-decoration: underline;
-}
+  .footer-logo {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
 
-a.react {
-  font-size: 1rem;
-  line-height: 1.55;
-  vertical-align: center;
-  padding: 0 0 0 0.25em;
-}
-
-.manage-cookies-link {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font-size: inherit;
-  color: inherit;
-  cursor: pointer;
-  text-decoration: underline;
+  .footer-social {
+    justify-content: flex-start;
+  }
 }
 /* End Footer */
 
@@ -3067,36 +3146,6 @@ ul.pricing-service-includes-list {
   list-style: none;
   padding-left: 2.5rem;
   margin-top: 0.5rem;
-}
-
-/* ============================================================
-   FOOTER SOCIAL
-   ============================================================ */
-
-.footer-social {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.footer-social__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--site-text);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-.footer-social__link:hover {
-  color: var(--cta-bg);
-}
-
-.footer-social__link svg {
-  font-size: 1.25rem;
 }
 
 /* ============================================================
