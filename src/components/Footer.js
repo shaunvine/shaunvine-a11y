@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-logo">
           <img
             src={logo}
-            alt="IAAP Certified Professional in Accessibility Core Competencies (CPACC) "
+            alt="IAAP Certified Professional in Accessibility Core Competencies (CPACC)"
           />
           <div className="footer-social">
             <a
@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="footer-text">
-          &copy; {new Date().getFullYear()} shaunvine.com — Built with
+          &copy; {new Date().getFullYear()} shaunvine.com — Built with{" "}
           <a
             aria-label="Contentful Website | Opens in new tab"
             className="gatsby"
@@ -38,8 +38,8 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <span>Contentful</span>
-          </a>
-          and
+          </a>{" "}
+          and{" "}
           <a
             aria-label="React Website | Opens in new tab"
             className="react"
@@ -47,7 +47,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaReact />
+            <FaReact aria-hidden="true" />
           </a>
           {" · "}
           <button
