@@ -3046,10 +3046,12 @@ a.react {
   outline-offset: 3px;
 }
 
-/* Portfolio cards. Columns come from the shared project grid (the
-   --md-N / --lg-N classes from getGridClasses, see "Project grid" above), so
-   the last row is never a single orphan. Square white cards with a 4px ink
-   border to match the project cards. Text is ink on white, 13.32:1 or better. */
+/* Portfolio cards. Mobile first, em breakpoints so the layout follows the
+   user's text size (WCAG 1.4.4, 1.4.10): 1 column by default, 2 from 48em,
+   3 from 75em. minmax(0, 1fr) lets a column shrink instead of pushing the
+   page wider. The gap is 2rem, the same as the project grid. Square white
+   cards with a 4px ink border to match the project cards. Text is ink on
+   white, 13.32:1 or better. */
 .portfolio-cards {
   margin: 3rem 0;
 }
@@ -3060,6 +3062,18 @@ a.react {
   gap: 2rem;
 }
 
+@media (min-width: 48em) {
+  .cards-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75em) {
+  .cards-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -3068,9 +3082,20 @@ a.react {
   color: var(--color-ink);
 }
 
-/* A 4px ink rule between the image and the text, as on the project cards. */
+/* Every card image fills the card's width in the same 4:3 box, with no inner
+   border. The image is object-fit: contain (set in the template), so a sketch
+   or logo is shown whole, never cropped; spare space is the card's white.
+   The first child of the image wrapper is gatsby-plugin-image's "sizer", which
+   forces each image's own shape; hiding it lets the aspect-ratio rule win. */
 .card-image {
-  border-bottom: 4px solid var(--color-ink);
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.card-image > div:first-child {
+  /* !important because the library sets style="display:block" inline, and an
+     inline style beats any stylesheet rule. */
+  display: none !important;
 }
 
 .card-description {
@@ -3097,10 +3122,35 @@ a.react {
   font-weight: 700;
 }
 
-/* The arrow is decorative (aria-hidden in the markup). */
+/* The arrow is decorative (aria-hidden in the markup) and points to the next
+   card, so it only shows when cards sit side by side (from 48em). Below that
+   the cards are stacked and it is hidden. The last card in each row has
+   nothing beside it, so its arrow is hidden too: every second card from 48em,
+   every third from 75em. */
 .iteration-arrow {
+  display: none;
   flex-shrink: 0;
   color: var(--color-ink);
+}
+
+@media (min-width: 48em) {
+  .iteration-arrow {
+    display: block;
+  }
+
+  .card:nth-child(2n) .iteration-arrow {
+    display: none;
+  }
+}
+
+@media (min-width: 75em) {
+  .card:nth-child(2n) .iteration-arrow {
+    display: block;
+  }
+
+  .card:nth-child(3n) .iteration-arrow {
+    display: none;
+  }
 }
 
 .project-content {

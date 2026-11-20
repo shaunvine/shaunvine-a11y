@@ -6,7 +6,6 @@ import Layout from "../components/Layout"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { FaArrowRight } from "react-icons/fa"
 import { extractTextFromRaw } from "../utils/extractTextFromRaw"
-import { getGridClasses } from "../utils/gridColumns"
 
 // Plain text of a rich-text node, so a link with bold or italic text inside it
 // still gets a full accessible name.
@@ -97,11 +96,7 @@ const ProjectTemplate = ({ data, location }) => {
 
           {/* Portfolio Cards */}
           <section className="portfolio-cards">
-            <div
-              className={`cards-container ${getGridClasses(
-                portfolioCards?.length || 0
-              )}`}
-            >
+            <div className="cards-container">
               {portfolioCards &&
                 portfolioCards.map((card, index) => (
                   <div key={index} className="card">
@@ -114,6 +109,7 @@ const ProjectTemplate = ({ data, location }) => {
                           `Card image ${index + 1}`
                         }
                         className="card-image"
+                        imgStyle={{ objectFit: "contain" }}
                       />
                     )}
                     <div className="card-description">
