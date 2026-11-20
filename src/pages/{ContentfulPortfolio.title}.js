@@ -113,7 +113,8 @@ const ProjectTemplate = ({ data, location }) => {
                     )}
                     <div className="card-description">
                       {documentToReactComponents(
-                        JSON.parse(card.cardDescription.raw)
+                        JSON.parse(card.cardDescription.raw),
+                        options
                       )}
                     </div>
                     {card.iterations !== null &&
