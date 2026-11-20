@@ -3021,17 +3021,18 @@ p.iterations-count {
 
 .project-tools__item {
   display: flex;
-  align-items: baseline;
-  gap: 0.5em;
+  align-items: flex-start; /* square stays on the first line if the tag wraps */
+  gap: 0.75em;
+  max-width: 100%; /* a long tag can never be wider than the list */
   margin: 0;
   color: var(--color-ink);
   font-size: 0.95rem;
   line-height: 1.4;
   cursor: default;
-  overflow-wrap: break-word; /* a long tag wraps instead of overflowing */
+  overflow-wrap: anywhere; /* a long tag wraps instead of overflowing */
 }
 
-/* Decorative square (0.5em), drawn with a pseudo-element so there is no extra
+/* Decorative square (1em), drawn with a pseudo-element so there is no extra
    element, and no text content so screen readers ignore it. It cycles
    terracotta, mustard, dark blue. Against the white hero: terracotta 5.79:1
    and dark blue 11.9:1 pass the 3:1 needed for graphics, but mustard is only
@@ -3040,8 +3041,11 @@ p.iterations-count {
 .project-tools__item::before {
   content: "";
   flex: none;
-  width: 0.5em;
-  height: 0.5em;
+  width: 1em;
+  height: 1em;
+  /* The text's line-height is 1.4em, so (1.4em - 1em) / 2 centers the
+     square on the first line of text. */
+  margin-top: 0.2em;
   background: var(--color-terracotta);
 }
 
