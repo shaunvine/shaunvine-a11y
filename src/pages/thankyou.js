@@ -14,9 +14,9 @@ const ThankYouPage = () => {
       <div className="page">
         <section className="thankyou-page">
           <div>
-            <h2 className="section-title thankyou-page">
+            <h1 className="section-title thankyou-page">
               Thank you for contacting me.
-            </h2>
+            </h1>
             <p>Your form has been successfully sent.</p>
             <p>I generally answer within one business day.</p>
           </div>
