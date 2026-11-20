@@ -38,7 +38,7 @@ const ProjectTemplate = ({ data, location }) => {
 
   return (
     <Layout>
-      <main className="page">
+      <div className="page">
         <div className="project-page">
           <Link to={backLink} className="project-back-link">
             {backLabel}
@@ -105,7 +105,7 @@ const ProjectTemplate = ({ data, location }) => {
           </section>
 
         </div>
-      </main>
+      </div>
     </Layout>
   )
 }

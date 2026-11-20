@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 const ServiceThankYou = () => {
   return (
     <Layout>
-      <main className="page">
+      <div className="page">
         <section className="service-thankyou">
           <div>
             <h1>Thanks for submitting your project.</h1>
@@ -24,7 +24,7 @@ const ServiceThankYou = () => {
             </p>
           </div>
         </section>
-      </main>
+      </div>
     </Layout>
   )
 }
