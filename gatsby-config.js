@@ -21,7 +21,6 @@ require("dotenv").config({
           openAnalyzer: false,
         },
       },
-      `gatsby-plugin-styled-components`,
       `gatsby-plugin-image`,
       `gatsby-plugin-sharp`,
       `gatsby-transformer-sharp`,

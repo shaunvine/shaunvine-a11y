@@ -1,5 +1,5 @@
 import React from "react"
-import CTA from "./CTA"
+import { Link } from "gatsby"
 
 const findings = [
   {
@@ -57,17 +57,27 @@ const findings = [
   },
 ]
 
+// Card colors and shapes repeat in this order. Each pairing is an approved
+// text/background pair (see the Findings cards section in main.css).
+const CARD_STYLES = [
+  { color: "terracotta", shape: "circle" },
+  { color: "mustard", shape: "square" },
+  { color: "blue", shape: "triangle" },
+  { color: "sage", shape: "half" },
+  { color: "pink", shape: "quarter" },
+]
+
 const AccessibilityFindings = ({ showHeader = true, limit }) => {
   const visibleFindings = limit ? findings.slice(0, limit) : findings
   return (
     <section
       className="findings"
       id="accessibility-findings"
-      aria-labelledby="findings-heading"
+      aria-labelledby={showHeader ? "findings-heading" : undefined}
     >
       {showHeader && (
         <div className="section-header section-header--center">
-          <h2 className="section-title">Accessibility Findings</h2>
+          <h2 id="findings-heading" className="section-title">Accessibility Findings</h2>
 
           <p className="section-intro">
             Short accessibility and QA reviews demonstrating common issues and
@@ -77,37 +87,37 @@ const AccessibilityFindings = ({ showHeader = true, limit }) => {
       )}
 
       <div className="findings__grid">
-        {visibleFindings.map(finding => (
-          <article className="finding-card" key={finding.slug}>
-            <a
-              href={`/findings/${finding.slug}`}
-              className="finding-card__media"
+        {visibleFindings.map((finding, index) => {
+          const style = CARD_STYLES[index % CARD_STYLES.length]
+          return (
+            <article
+              className={`finding-card finding-card--${style.color}`}
+              key={finding.slug}
             >
-              <img
-                src={finding.image}
-                alt={finding.imageAlt}
-                className="finding-card__image"
+              {/* Decorative shape, drawn in the card's text color */}
+              <div
+                className={`finding-card__icon finding-card__icon--${style.shape}`}
+                aria-hidden="true"
               />
-            </a>
 
-            <div className="finding-card__content">
               <p className="finding-card__category">{finding.category}</p>
 
               <h3 className="finding-card__title">{finding.title}</h3>
 
               <p className="finding-card__summary">{finding.summary}</p>
 
-              <CTA
-                href={`/findings/${finding.slug}`}
-                wrapperClassName="finding-card__cta"
-                className="request-quote-btn"
-                ariaLabel={`View ${finding.title} finding`}
+              {/* Visible text plus a visually hidden title, so the link name
+                  starts with the visible words and is unique in a links list */}
+              <Link
+                to={`/findings/${finding.slug}`}
+                className="finding-card__link"
               >
-                View Finding
-              </CTA>
-            </div>
-          </article>
-        ))}
+                Read the finding
+                <span className="sr-only">: {finding.title}</span>
+              </Link>
+            </article>
+          )
+        })}
       </div>
     </section>
   )

@@ -5,6 +5,9 @@ export default function HTML(props) {
   return (
     <html lang="en" {...props.htmlAttributes}>
       <head>
+        {/* Must come first: browsers only look for the charset in the first
+            1024 bytes of the page, so nothing may be placed before it. */}
+        <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {props.headComponents}
       </head>

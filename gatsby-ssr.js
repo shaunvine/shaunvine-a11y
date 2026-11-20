@@ -3,6 +3,18 @@ import React from "react"
 export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
   setHeadComponents([
     // -------------------------------
+    // "js" class on <html>, added before first paint. CSS uses it to turn on
+    // the collapsible mobile menu; without JavaScript the links stay visible.
+    // NEXTJS-MIGRATION: becomes a beforeInteractive script in the root layout.
+    // -------------------------------
+    <script
+      key="js-class"
+      dangerouslySetInnerHTML={{
+        __html: `document.documentElement.classList.add("js");`,
+      }}
+    />,
+
+    // -------------------------------
     // Google Fonts (global)
     // -------------------------------
     <link
@@ -19,7 +31,7 @@ export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
     <link
       key="google-fonts-css"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;400;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=Noto+Sans:wght@100;200;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap"
     />,
 
     // -------------------------------
@@ -67,6 +79,33 @@ export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
   ])
 
   setPreBodyComponents([
+    // -------------------------------
+    // First-visit flag for the logo animation.
+    // Runs before the page paints, so there is no flicker.
+    // After the 3s animation, switch to "visited" so moving between
+    // pages in the same session doesn't replay it.
+    // -------------------------------
+    <script
+      key="first-visit-flag"
+      dangerouslySetInnerHTML={{
+        __html: `
+          (function () {
+            try {
+              var body = document.body;
+              if (localStorage.getItem("hasVisitedBefore")) {
+                body.classList.add("visited");
+              } else {
+                body.classList.add("first-visit");
+                localStorage.setItem("hasVisitedBefore", "true");
+                setTimeout(function () {
+                  body.classList.replace("first-visit", "visited");
+                }, 3200);
+              }
+            } catch (e) {}
+          })();
+        `,
+      }}
+    />,
     <noscript
       key="gtm-noscript"
       aria-hidden="true"

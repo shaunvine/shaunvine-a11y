@@ -118,7 +118,7 @@ const ContactForm = () => {
 
   return (
     <Layout>
-      <main className="page">
+      <div className="page">
         <section className="contact-page">
           <article className="contact-info">
             <h1>Want to get in touch?</h1>
@@ -233,7 +233,7 @@ const ContactForm = () => {
         <section>
           <OutdoorImages />
         </section>
-      </main>
+      </div>
     </Layout>
   )
 }

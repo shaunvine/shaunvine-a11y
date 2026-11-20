@@ -45,7 +45,7 @@ const ServiceRequestForm = () => {
 
   return (
     <Layout>
-      <main className="page">
+      <div className="page">
         <section className="service-request-page">
           <article className="service-request-info">
             <h1>Ready to get started?</h1>
@@ -241,7 +241,7 @@ const ServiceRequestForm = () => {
             </form>
           </article>
         </section>
-      </main>
+      </div>
     </Layout>
   )
 }

@@ -1,3 +1,4 @@
+/* NEXTJS-MIGRATION: this single file will be split into per-component CSS Modules. */
 /* Normalize.css is added as a package to package.json and then it is imported in the Layout.js file */
 
 *,
@@ -16,10 +17,25 @@ html {
    ============================ */
 :root {
   /* ----------------------------
+     Approved palette (F6, signed off 16 Nov 2026)
+     cream #f2ebdd · white #ffffff · ink #1f2328 · muted #4a463f
+     terracotta #a8482a · mustard #d9a441 · dark blue #1e3a4c
+     sage #9db59a · pink #e6b9a6
+     ---------------------------- */
+  --color-cream: #f2ebdd;
+  --color-ink: #1f2328;
+  --color-muted: #4a463f;
+  --color-terracotta: #a8482a;
+  --color-mustard: #d9a441;
+  --color-blue: #1e3a4c;
+  --color-sage: #9db59a;
+  --color-pink: #e6b9a6;
+
+  /* ----------------------------
      Typography & sizing
      ---------------------------- */
   --defaultFontSize: 100%;
-  --headingFont: "Lexend", sans-serif;
+  --headingFont: "League Spartan", sans-serif;
   --bodyFont: "Atkinson Hyperlegible", sans-serif;
   --smallText: 0.9em;
   --extraSmallText: 0.8em;
@@ -35,7 +51,7 @@ html {
 
   --heading-line-height: 1.3;
   --heading-margin-bottom: 1.25rem;
-  --heading-weight: 400;
+  --heading-weight: 800;
 
   /* ----------------------------
      Layout & geometry
@@ -45,7 +61,6 @@ html {
   --transition: 0.2s ease-in-out;
 
   --max-width: 80rem;
-  --fixed-width: 600px;
 
   --page-max-width: 70rem;
   --content-max-width: 46rem;
@@ -54,85 +69,67 @@ html {
      Semantic color roles (LIGHT defaults)
      ---------------------------- */
   /* Page-level */
-  --site-bg: #fef3c7;
-  --site-bg-strong: #b45309;
-  --site-bg-light: #fffbeb;
+  --site-bg: #f2ebdd; /* cream */
+  --site-bg-strong: #a8482a; /* terracotta */
+  --site-bg-light: #ffffff;
 
   /* Surfaces */
-  --site-surface: #fff7db;
-  --site-surface-alt: #fffbeb;
+  --site-surface: #ffffff;
 
   /* Text */
-  --site-text: #b45309;
-  --site-text-dark: #451a03;
-  --site-text-light: #fef3c7;
-  --site-text-muted: #78350f;
+  --site-text: #1f2328; /* ink */
+  --site-text-dark: #1f2328;
+  --site-text-light: #f2ebdd;
+  --site-text-muted: #4a463f;
 
   /* Hero Text Colors */
-  --hero-h1-color: #78350f;
-  --hero-h2-color: #b45309;
+  --hero-h1-color: #1f2328;
 
   /* Borders */
-  --site-border-subtle: #f5e0b7;
-  --site-border-strong: #b45309;
+  --site-border-subtle: #d8cfbf;
+  --site-border-strong: #1f2328;
 
   /* Logo */
-  --logo-stroke: #451a03; /* dark in light theme */
+  --logo-stroke: #1f2328;
   --logo-fill: var(--logo-stroke);
 
   /* Navigation */
   --nav-bg: var(--site-bg);
   --nav-link: var(--site-text);
-  --nav-link-hover: #451a03;
-  --nav-link-active: #451a03;
-  --footer-bg: #fde68a;
+  --nav-link-hover: #1e3a4c;
+  --nav-link-active: #1f2328;
+  --footer-bg: #1f2328; /* ink; footer text and links are cream/mustard, see Footer section */
+
+  /* Back-to-top button size and position. Shared so the footer can leave
+     enough room beneath its last line (WCAG 2.4.11 Focus Not Obscured). */
+  --back-to-top-size: 44px;
+  --back-to-top-offset: 1.5rem;
 
   /* CTAs */
-  --cta-bg: #451a03;
-  --cta-bg-hover: #7c2d12;
-  --cta-text: #fef3c7;
+  --cta-bg: #1f2328;
+  --cta-bg-hover: #1e3a4c;
+  --cta-text: #f2ebdd;
 
   /* Links */
-  --link-text: #7c2d12;
-  --link-hover-text: #451a03;
+  --link-text: #1e3a4c; /* dark blue */
+  --link-hover-text: #a8482a;
 
   /* ----------------------------
      Elevation
      ---------------------------- */
-  --elevation-soft: 0 1px 2px rgba(15, 23, 42, 0.08);
-  --elevation-medium: 0 4px 12px rgba(15, 23, 42, 0.14);
-
-  /* ----------------------------
-     3-COL backgrounds
-     ---------------------------- */
-  --col-one-bg: var(--site-surface-alt);
-  --col-two-bg: var(--site-surface-alt);
-  --col-three-bg: var(--site-surface-alt);
+  --elevation-soft: 0 1px 2px rgba(31, 35, 40, 0.08);
+  --elevation-medium: 0 4px 12px rgba(31, 35, 40, 0.14);
 
   /* ----------------------------
      Backwards-compat aliases
      ---------------------------- */
-  --backgroundColor: var(--site-bg);
-  --textColor: var(--site-text);
   --shadow-1: var(--elevation-soft);
   --shadow-2: var(--elevation-medium);
 
   /* ----------------------------
-     Minimal neutrals (legacy usage)
+     Lines
      ---------------------------- */
-  --grey-0: #ffffff;
-  --grey-500: #6b7280;
-  --grey-700: #374151;
-  --grey-800: #1f2937;
-  --grey-1000: #f2f2f2;
-  --white: #ffffff;
-
-  --red-dark: #b91c1c;
-  --green-dark: #166534;
-  --green-light: #dcfce7;
-  --red-light: #fee2e2;
-
-  --line: 1px solid #e5e7eb;
+  --line: 1px solid var(--site-border-subtle);
 
   /* ----------------------------
      Form tokens
@@ -140,103 +137,28 @@ html {
   --radius: 8px;
 
   --field-bg: #ffffff;
-  --field-border: #c7cedb;
-  --field-text: #111827;
-  --form-alert: #ff0000;
+  --field-border: var(--color-ink);
+  --field-text: var(--site-text);
+  --form-alert: var(--color-terracotta);
 
   /* Focus ring system */
-  --focus-color: #fa5e24;
+  --focus-color: #1e3a4c; /* 10:1 on cream; the old orange was under 3:1 */
   --focus-gap: 3px;
   --focus-width: 5px;
   --focus-gap-color: var(--site-bg);
-}
 
-/* ============================
-   LIGHT THEME OVERRIDES
-   Keep ONLY things that differ from :root.
-   Right now: blade roles live here.
-   ============================ */
-:root[data-theme="light"] {
   /* ----------------------------
-     Blade semantic roles (LIGHT)
+     Blade roles
+     Moved here from :root[data-theme="light"], which was only set by
+     JavaScript after page load, so these were missing on first paint
+     and with JavaScript turned off.
      ---------------------------- */
   --blade-light-bg: var(--site-surface);
-  --blade-light-text: var(--site-text);
   --blade-light-border: 2px solid var(--site-border-strong);
-
-  --blade-strong-bg: #fbbf24;
-  --blade-strong-text: #451a03;
-
-  --blade-dark-bg: #7c2d12;
-  --blade-dark-text: #fef3c7;
-}
-
-/* ============================
-   DARK THEME OVERRIDES
-   Only overrides what changes.
-   ============================ */
-:root[data-theme="dark"] {
-  /* ----------------------------
-     Semantic color roles (DARK)
-     ---------------------------- */
-  --site-bg: #b45309;
-  --site-bg-dark: #3b2303; /* kept as-is for your usage */
-  --site-surface: #7c2d12;
-  --site-surface-alt: #451a03;
-
-  --site-text: #3b2303;
-  --site-text-muted: #fffbeb;
-
-  --site-border-subtle: rgba(254, 243, 199, 0.3);
-  --site-border-strong: #fed7aa;
-
-  /* Logo */
-  --logo-stroke: #fef3c7; /* light in dark theme */
-  --logo-fill: var(--logo-stroke); /* stays matched automatically */
-
-  /* Navigation */
-  --nav-bg: var(--site-bg);
-  --nav-link: var(--site-text-light);
-  --nav-link-hover: #3b2303;
-
-  /* CTAs */
-  /* --cta-bg: #fcd34d;
-  --cta-bg-hover: #fbbf24;
-  --cta-text: #451a03; */
-
-  /* Links */
-  --link-text: #fcd34d;
-  --link-hover-text: #fbbf24;
-
-  /* Focus */
-  --field-bg: #151922;
-  --field-border: #333844;
-  --field-text: #f2f2f2;
-
-  /* Keep focus ring visible on dark backgrounds */
-  --focus-gap-color: var(--site-bg);
-  /* Optional: tweak focus-color if needed for contrast */
-  /* --focus-color: #ff8a5c; */
-
-  /* Elevation */
-  --elevation-soft: 0 1px 2px rgba(0, 0, 0, 0.55);
-  --elevation-medium: 0 6px 18px rgba(0, 0, 0, 0.75);
-
-  /* Backwards-compat aliases (only if you want them to point at dark tokens) */
-  --backgroundColor: var(--site-bg);
-  --textColor: var(--site-text);
-
-  /* ----------------------------
-     Blade semantic roles (DARK)
-     ---------------------------- */
-  --blade-light-bg: #fef3c7;
-  --blade-light-text: #3b2303;
-
-  --blade-strong-bg: #fbbf24;
-  --blade-strong-text: #451a03;
-
-  --blade-dark-bg: var(--site-surface);
-  --blade-dark-text: var(--site-text);
+  --blade-dark-bg: #1e3a4c;
+  /* Were used but never defined, so these rules were being ignored */
+  --blade-padding-block: 4rem;
+  --blade-padding-inline: 2rem;
 }
 
 html {
@@ -355,12 +277,12 @@ label {
 }
 
 select {
-  color: black;
+  color: var(--site-text);
 }
 
-/* Make the placeholder option gray or black */
+/* Make the placeholder option look like a placeholder */
 select option[value=""] {
-  color: #000; /* or gray if you want it to look like a placeholder */
+  color: var(--site-text-muted);
 }
 
 input[type="date"] {
@@ -380,7 +302,7 @@ textarea {
 }
 
 ::placeholder {
-  color: #ccc;
+  color: var(--site-text-muted);
 }
 
 .form-alert {
@@ -484,7 +406,6 @@ button.block {
   width: 90vw;
   max-width: var(--max-width);
   margin: 4rem auto 0 auto;
-  /* background-color: #222222; */
   min-height: calc(
     100vh - (6rem + 4rem)
   ); /* NEW: merged two .page blocks into one */
@@ -528,6 +449,7 @@ svg.logo {
 .nav-center {
   width: 90vw;
   max-width: var(--max-width);
+  border-bottom: 4px solid var(--color-ink); /* F6 header rule */
 }
 
 .nav-header {
@@ -537,49 +459,181 @@ svg.logo {
   align-items: center;
 }
 
+/* Logo link: the animated SV mark plus three decorative shapes */
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-shapes {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.logo-shape {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.logo-shape--circle {
+  border-radius: 50%;
+  background: var(--color-terracotta);
+}
+
+.logo-shape--square {
+  background: var(--color-blue);
+}
+
+.logo-shape--triangle {
+  width: 20px;
+  background: var(--color-mustard);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+/* Menu button: 44px minimum touch target, icon centred.
+   Hidden by default: it only does anything when JavaScript is running, so
+   it is shown only under .js (see "Mobile menu" below). */
 .nav-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0.15rem 0.75rem;
 }
 
-.nav-btn svg {
-  font-size: 1.5rem;
+.nav-btn-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
+/* Three bars that morph into an X. Each bar rotates around its own centre
+   (the explicit transform-origin, in the icon's 24 x 24 coordinate space). */
+.nav-btn-bar {
+  stroke: currentColor; /* follows the button's text colour, incl. forced-colors */
+  stroke-width: 2.5;
+  stroke-linecap: square;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.nav-btn-bar--top {
+  transform-origin: 12px 6px;
+}
+
+.nav-btn-bar--middle {
+  transform-origin: 12px 12px;
+}
+
+.nav-btn-bar--bottom {
+  transform-origin: 12px 18px;
+}
+
+/* Driven by aria-expanded, so the icon always matches the announced state */
+.nav-btn[aria-expanded="true"] .nav-btn-bar--top {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-btn[aria-expanded="true"] .nav-btn-bar--middle {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-btn[aria-expanded="true"] .nav-btn-bar--bottom {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile menu: progressive enhancement.
+   Default (no JavaScript): the links are a plain, always-visible stacked list
+   and the menu button is hidden. */
 .nav-links {
-  height: 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: var(--transition);
   align-self: center;
 }
 
-.show-links {
-  height: 28rem;
+/* With JavaScript (the inline script in gatsby-ssr.js adds .js to <html>
+   before first paint) the list collapses into the toggle menu. This is
+   wrapped in a mobile-only query, so desktop never sees any of it.
+   "not all and (min-width: 62em)" is the exact opposite of the desktop
+   query, so there is no gap at fractional widths (e.g. browser zoom). */
+@media not all and (min-width: 62em) {
+  .js .nav-btn {
+    display: inline-flex;
+  }
+
+  /* Closed: invisible AND out of Tab order and the accessibility tree
+     (visibility: hidden). On closing, the 0.2s delay on visibility lets the
+     fade and slide finish before the links disappear. On opening, visibility
+     switches on instantly (0s delay) so the focus-first-link code in
+     Navbar.js can move focus straight away. */
+  .js .nav-links {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    padding-inline: 0.5rem; /* room for focus outlines inside overflow: hidden */
+    transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+      transform 0.2s ease-in-out, visibility 0s linear 0.2s;
+  }
+
+  .js .show-links {
+    height: 28rem;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    padding-block: 0.5rem;
+    transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+      transform 0.2s ease-in-out, visibility 0s linear 0s;
+  }
+}
+
+/* Reduced motion: no slide, fade or morph. The menu and the X still appear
+   and disappear (the end states are the same), just instantly. Placed after
+   the rules above so it wins; the .js selectors match their specificity. */
+@media (prefers-reduced-motion: reduce) {
+  .js .nav-links,
+  .js .show-links,
+  .nav-btn-bar {
+    transition: none;
+  }
 }
 
 .nav-link {
   display: block;
   text-align: center;
-  font-size: 1.75rem;
-  text-transform: capitalize;
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-transform: uppercase;
   color: var(--nav-link);
-  letter-spacing: var(--letterSpacing);
-  /* margin: 0.25rem 1rem 0.25rem 1rem; */
-  padding: 1rem 0;
+  letter-spacing: 0.06em;
+  padding: 0.75rem 0.75rem;
   border-top: 1px solid var(--site-border-strong);
-  border-bottom: 1px solid transparent;
   transition: var(--transition);
 }
 
-.active-link {
-  color: var(--nav-link-active);
-  border-bottom: 1px solid var(--nav-link-active);
-  text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
-}
-
+/* Hover: dark blue with a thin 2px underline. Thinner than the 4px
+   current-page marker below, so the two can't be confused. */
 .nav-link:hover {
   color: var(--nav-link-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* Current page: styled from the aria-current attribute that Gatsby's Link
+   sets, so what sighted users see always matches what screen readers hear.
+   Terracotta on cream is 4.88:1 (needs 3:1 for UI parts). */
+.nav-link[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-decoration-color: var(--color-terracotta);
+  text-underline-offset: 6px;
 }
 
 .contact-link {
@@ -587,107 +641,455 @@ svg.logo {
   justify-content: center;
 }
 
-/* Cluster hamburger + mobile toggle */
+/* Contact button (a link styled as a button). Scoped to .navbar so the
+   global .btn used on the form pages is not affected. */
+.navbar .cta {
+  display: inline-block;
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-cream); /* cream on terracotta: 4.88:1 */
+  background: var(--color-terracotta);
+  padding: 0.875rem 1.5rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Hover: cream on dark blue is 10.03:1. No lift or shadow. */
+.navbar .cta:hover {
+  background: var(--color-blue);
+  color: var(--color-cream);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Focus ring is ink, not currentColor: the button text is cream and the
+   page is cream, so a currentColor ring would be invisible. Ink on cream
+   is 13.32:1. */
+.navbar .cta:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+/* Current page: a 4px ink bar under the button (13.32:1 against cream).
+   Kept after :hover and :focus-visible so it survives both. */
+.navbar .cta[aria-current="page"] {
+  box-shadow: 0 4px 0 var(--color-ink);
+}
+
+/* Mobile menu button wrapper */
 .nav-controls {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Base theme toggle styling */
-.theme-toggle {
-  border: solid 3px var(--site-surface);
-  /* background-color: #fff; */
-  cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 999px;
-  font-size: 2.25rem;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* By default, hide the DESKTOP toggle */
-.theme-toggle--desktop {
-  display: none;
-}
-
-/* Container for Contact + desktop toggle */
+/* Container for the Contact button */
 .nav-actions {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem 0 1.25rem; /* mobile: space for the button and its 4px bar */
 }
 
-/* At desktop breakpoint, swap visibility */
-@media (min-width: 992px) {
-  /* On desktop, hide the mobile toggle next to hamburger */
-  .theme-toggle--mobile {
-    display: none;
-  }
-
-  /* Show the desktop toggle next to Contact */
-  .theme-toggle--desktop {
-    display: inline-flex;
-    margin-left: 0.75rem;
-  }
-
-  /* Keep actions aligned on the nav row */
+/* Desktop layout for the nav actions */
+@media (min-width: 62em) {
   .nav-actions {
-    margin-left: auto; /* pushes actions to the right if needed */
-    gap: 0.5rem;
+    margin-left: 0.5rem;
+    padding: 0;
   }
 }
 
 /*#########*/
 /* Hero */
 /*#########*/
+/* Full-width band. overflow: hidden clips the pattern grid at the viewport
+   edge, so the grid can bleed off the right side without causing horizontal
+   scrolling (WCAG 1.4.10). */
 .hero {
+  /* Distance from the content container's right edge to the screen's right
+     edge (0 when the screen is narrower than the container). */
+  --hero-edge: calc((100vw - min(90vw, var(--max-width))) / 2);
+  /* How far the pattern runs past the right edge of the screen */
+  --hero-bleed: 2rem;
   position: relative;
+  /* Clip only sideways: this hides the part of the pattern that bleeds off the
+     right edge, so there is no horizontal scrolling (WCAG 1.4.10). Unlike
+     overflow: hidden, clip leaves the vertical direction alone, so focus rings
+     on the buttons are never cut off at the bottom (WCAG 2.4.7 / 2.4.11). */
+  overflow-x: clip;
+}
+
+/* Very old browsers (Safari before 16) do not know overflow-x: clip. Without
+   it the bleed would cause horizontal scrolling, so they fall back to the
+   older, blunter overflow: hidden. The extra bottom padding on small screens
+   (see below) keeps the focus rings visible even then. */
+@supports not (overflow-x: clip) {
+  .hero {
+    overflow: hidden;
+  }
+}
+
+/* Same container as the header and .page, so the left edges line up */
+.hero__inner {
+  width: 90vw;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  max-width: 44rem;
+}
+
+/* Terracotta on cream is 4.88:1 */
+.hero__eyebrow {
+  margin: 0;
+  max-width: 100%; /* a flex item sizes to its content; this keeps it in the column */
+  font-family: var(--headingFont);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2; /* tight, so the pattern's top edge lines up with the text */
+  letter-spacing: 0.04em;
+  color: var(--color-terracotta); /* terracotta on cream is 4.88:1 */
+}
+
+/* Each phrase is an inline-block: the line breaks between the two phrases
+   (after the dot) first, and the phrase stays in one piece. Only if one
+   phrase is wider than the whole column (very large text on a narrow
+   screen) does it wrap inside itself, instead of running off the edge and
+   being clipped (WCAG 1.4.4 / 1.4.10). max-width keeps it inside the column. */
+.hero__eyebrow-part {
+  display: inline-block;
   max-width: 100%;
-  margin: 4rem auto;
-  background-color: var(--blade-light-bg);
-  border: 2px solid var(--site-border-strong);
-  border-radius: var(--borderRadius);
-  padding: 2rem 2rem;
 }
 
 .hero-heading {
-  color: var(--hero-h1-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  line-height: 1.15;
-}
-
-.hero-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.hero-subhead {
   margin: 0;
+  /* Grows with the screen, capped at 4.25rem. The floor is 2.5rem (follows
+     the user's text size) but never more than 12vw, so with very large text
+     on a narrow screen the longest word ("Developer.") still fits the
+     column instead of being clipped. At normal text size the floor is the
+     same as before on screens 334px wide and up. */
+  font-size: clamp(min(2.5rem, 12vw), 6vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--hero-h1-color); /* ink on cream is 13.32:1 */
+  overflow-wrap: break-word; /* never wider than the screen (1.4.10) */
+}
+
+.hero-line {
+  display: block;
+}
+
+/* Dark blue on cream is 10.03:1 */
+.hero-line--accent {
+  color: var(--color-blue);
 }
 
 .hire {
   margin: 0;
-  text-align: center;
-  font-size: 1.25rem;
-  max-width: 50ch;
+  max-width: 32rem;
+  font-size: 1.2rem;
+  color: var(--site-text-muted); /* muted on cream is 7.91:1 */
 }
 
-/* Start How I Test Section */
-
-.testing-methods {
-  margin: 4rem auto;
-  padding: var(--blade-padding-block) var(--blade-padding-inline);
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
+
+/* Hero buttons. Scoped to .hero so the shared .request-quote-btn used in
+   other sections is untouched. Hover colors are set explicitly: the shared
+   hover rule changes the background but not the text color. */
+.hero .hero-btn {
+  margin-top: 0;
+  min-height: 44px; /* minimum touch target, even if the padding is changed */
+  padding: 1.125rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 4px;
+  box-shadow: none;
+  text-transform: none;
+}
+
+/* Small screens (narrower than 48em): the buttons stack, each full width,
+   with a small gap, in the same order; the labels are centered (the heading
+   and paragraph stay left-aligned). The hero keeps its normal 3rem bottom
+   padding, which is far more than the 6px a focus ring needs (3px outline +
+   3px offset) and gives the skills band's top rule some room. */
+@media not all and (min-width: 48em) {
+  .hero-actions {
+    flex-direction: column;
+    width: 100%; /* .hero__text centers items to the left, so ask for full width */
+    gap: 0.75rem;
+  }
+
+  /* Less side padding (1rem instead of 1.75rem), so with very large text
+     the longest word ("Accessibility") plus padding still fits a 320px
+     screen instead of pushing the button past the edge. The label can also
+     wrap onto a second line. */
+  .hero .hero-btn {
+    padding-inline: 1rem;
+    text-align: center;
+  }
+}
+
+.hero .hero-btn--dark {
+  background: var(--color-ink);
+  color: var(--color-cream); /* cream on ink is 13.32:1 */
+}
+
+.hero .hero-btn--mustard {
+  background: var(--color-mustard);
+  color: var(--color-ink); /* ink on mustard is 7.02:1 */
+}
+
+.hero .hero-btn--dark:hover {
+  background: var(--color-blue);
+  color: var(--color-cream); /* cream on dark blue is 10.03:1 */
+  transform: none;
+  box-shadow: none;
+}
+
+.hero .hero-btn--mustard:hover {
+  background: var(--color-ink);
+  color: var(--color-cream); /* cream on ink is 13.32:1 */
+  transform: none;
+  box-shadow: none;
+}
+
+/* Pattern grid: 5 columns x 4 rows of square tiles. Decorative
+   (aria-hidden in HeroPattern.js).
+   Default (screens narrower than 75em): it drops below the text, at most
+   28rem wide, with a full 4px ink border. content-box so the aspect ratio
+   applies to the tiles themselves, which keeps them exactly square. */
+.hero-pattern {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  box-sizing: content-box;
+  width: min(calc(100% - 8px), 28rem);
+  aspect-ratio: 5 / 4;
+  margin-top: 2.5rem;
+  border: 4px solid var(--color-ink);
+}
+
+/* Small screens (narrower than 48em): the pattern is purely decorative, so
+   it is removed completely. display: none also takes it out of the layout
+   and out of the accessibility tree. "not all and (min-width: 48em)" is the
+   exact opposite of 48em and up, so no width falls in a gap. */
+@media not all and (min-width: 48em) {
+  .hero-pattern {
+    display: none;
+  }
+}
+
+.hero-tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--tile-bg);
+}
+
+.hero-tile__shape {
+  position: absolute;
+  inset: 0;
+  background: var(--tile-fg);
+}
+
+.hero-tile--bg-cream {
+  --tile-bg: var(--color-cream);
+}
+.hero-tile--bg-mustard {
+  --tile-bg: var(--color-mustard);
+}
+.hero-tile--bg-sage {
+  --tile-bg: var(--color-sage);
+}
+.hero-tile--bg-blue {
+  --tile-bg: var(--color-blue);
+}
+.hero-tile--bg-pink {
+  --tile-bg: var(--color-pink);
+}
+.hero-tile--bg-terracotta {
+  --tile-bg: var(--color-terracotta);
+}
+
+.hero-tile--fg-cream {
+  --tile-fg: var(--color-cream);
+}
+.hero-tile--fg-mustard {
+  --tile-fg: var(--color-mustard);
+}
+.hero-tile--fg-sage {
+  --tile-fg: var(--color-sage);
+}
+.hero-tile--fg-blue {
+  --tile-fg: var(--color-blue);
+}
+.hero-tile--fg-pink {
+  --tile-fg: var(--color-pink);
+}
+.hero-tile--fg-terracotta {
+  --tile-fg: var(--color-terracotta);
+}
+
+.hero-tile--circle .hero-tile__shape {
+  inset: 14%;
+  border-radius: 50%;
+}
+
+.hero-tile--half .hero-tile__shape {
+  inset: 50% 0 0 0;
+  border-radius: 999px 999px 0 0;
+}
+
+.hero-tile--tri .hero-tile__shape {
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.hero-tile--quarter-tl .hero-tile__shape {
+  border-radius: 100% 0 0 0;
+}
+.hero-tile--quarter-tr .hero-tile__shape {
+  border-radius: 0 100% 0 0;
+}
+.hero-tile--quarter-br .hero-tile__shape {
+  border-radius: 0 0 100% 0;
+}
+.hero-tile--quarter-bl .hero-tile__shape {
+  border-radius: 0 0 0 100%;
+}
+
+@media (min-width: 62em) {
+  .hero__inner {
+    padding: 3rem 0 4rem;
+  }
+}
+
+/* Wide screens (75em and up): text on the left, pattern on the right.
+   The row is exactly as tall as the text column. The pattern is positioned
+   from the row's top and bottom edges, so it lines up with the eyebrow at the
+   top and the bottom of the buttons. Its width then follows from the 5:4 aspect
+   ratio, which keeps the tiles square. Its right edge sits just past the
+   screen's right edge (clipped by .hero), so the gap to the text is as small
+   as the screen allows. */
+@media (min-width: 75em) {
+  .hero__row {
+    position: relative;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: calc(-1 * (var(--hero-edge) + var(--hero-bleed)));
+    width: auto;
+    margin-top: 0;
+    border-right: none; /* the right edge is off-screen */
+    /* Safety cap: never taller than the screen minus the header, the hero's
+       padding and about 3rem of space below. (svh = the visible screen
+       height; the first line is a fallback for older browsers.) */
+    max-height: calc(100vh - 14rem);
+    max-height: calc(100svh - 14rem);
+  }
+}
+
+/*#########*/
+/* Skills band */
+/*#########*/
+/* Five colored blocks in a row, with a 4px ink rule above and below. The
+   rules run edge to edge; the blocks use the same container as the header and
+   hero (so they fill the screen on small screens and line up with the page on
+   wide ones). */
+.skills-band {
+  border-top: 4px solid var(--color-ink);
+  border-bottom: 4px solid var(--color-ink);
+  margin-bottom: 0; /* the global "section" rule adds 4rem; the band opts out */
+}
+
+/* The number of blocks per row is not set by the screen width. Each block asks
+   for at least 13.5rem (see flex below) and the row wraps when they don't all
+   fit. rem follows the visitor's text size, so with larger default text, or
+   "zoom text only", the blocks wrap onto more rows BEFORE a label can run out
+   of room (WCAG 1.4.4). At normal text size that gives five in a row from
+   about 1080px, four plus one from 864px, three plus two from 648px, two
+   columns from 432px, and a single stack below that. The widest label,
+   "Accessibility", is 9.4rem wide at weight 700 and the padding is 3rem, so a
+   block always keeps about 12% spare room. */
+.skills-band__list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+/* flex: 1 1 13.5rem. The blocks in a row share the width equally, so a short
+   last row stretches to fill it (no empty cell) and the blocks in a row are
+   the same height. A flex item can't shrink below its own text
+   (min-width: auto), which is a second safeguard against overlap. Flex with
+   align-items: center keeps the label vertically centred in its block. */
+.skills-band__item {
+  flex: 1 1 13.5rem;
+  display: flex;
+  align-items: center;
+  /* Side padding is 1.5rem, but only as long as the screen can hold the widest
+     label (9.6rem) plus that padding. With very large text on a very narrow
+     screen (say 200% text on a 375px phone) it shrinks, down to 0.25rem, so
+     the band is never wider than the screen. At normal text size this is
+     always 1.5rem. */
+  padding-block: 0.8rem;
+  padding-inline: max(0.25rem, min(1.5rem, calc((100vw - 9.6rem) / 2)));
+  font-family: var(--headingFont);
+  font-weight: 700;
+  font-size: 1.75rem;
+  /* A label never wraps, so it can never break mid-word or at the hyphen in
+     "Front-end". The wrapping above makes sure every label has room. */
+  white-space: nowrap;
+  hyphens: none;
+}
+
+/* Approved text pairings only */
+.skills-band__item--terracotta {
+  background: var(--color-terracotta);
+  color: var(--color-cream); /* 4.88:1 */
+}
+.skills-band__item--sage {
+  background: var(--color-sage);
+  color: var(--color-ink); /* 7.15:1 */
+}
+.skills-band__item--mustard {
+  background: var(--color-mustard);
+  color: var(--color-ink); /* 7.02:1 */
+}
+.skills-band__item--blue {
+  background: var(--color-blue);
+  color: var(--color-cream); /* 10.03:1 */
+}
+.skills-band__item--pink {
+  background: var(--color-pink);
+  color: var(--color-ink); /* 8.92:1 */
+}
+
+/* The band, not the hero, now sits above the page content. Its bottom rule
+   is the divider, so the page content starts straight after it. */
+.skills-band + .page {
+  margin-top: 0;
+}
+
+/* Section headers (shared by Findings, Selected work, How I work and others) */
 
 .section-header {
   max-width: var(--content-max-width);
@@ -711,118 +1113,137 @@ svg.logo {
   text-align: center;
 }
 
-.testing-methods__grid {
+/* End section headers */
+
+/*#########*/
+/* Accessibility findings */
+/*#########*/
+/* Four (on /findings, five) solid-colored cards with 24px gaps. The card
+   thumbnails were dropped on purpose, to follow the F6 mockup: each card is
+   a shape icon, category, title, summary and one link.
+
+   Columns: 1 on small screens, 2 from 48em, 4 from 75em. Never 3, so four
+   cards can never end up as a 3+1 row with one orphan. The breakpoints are in
+   em, so they move with the user's text size: with larger text the layout
+   drops to fewer columns before the titles can get cramped (WCAG 1.4.4,
+   1.4.10). minmax(0, 1fr) lets a column shrink instead of pushing the grid
+   wider than the screen. */
+.findings__grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  max-width: var(--page-max-width);
-  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
 }
 
-.testing-methods__card {
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-1);
-}
-
-.testing-methods__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: var(--cta-bg);
-  margin-bottom: 1rem;
-}
-
-.testing-methods__title {
-  margin-bottom: 0.75rem;
-}
-
-.testing-methods__list {
-  margin: 0;
-  padding-left: 1.25rem;
-}
-
-.testing-methods__item {
-  line-height: 1.5;
-}
-
-@media (min-width: 768px) {
-  .testing-methods__grid {
+@media (min-width: 48em) {
+  .findings__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 1024px) {
-  .testing-methods__grid {
+@media (min-width: 75em) {
+  .findings__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-/* END How I Test Section */
-
-/* Start Accessibility Findings Section */
-.findings__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
 .finding-card {
+  position: relative; /* anchors the visually hidden link text */
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  overflow: hidden;
+  gap: 14px;
+  padding: 28px 24px;
+  background: var(--card-bg);
+  color: var(--card-fg);
+  overflow-wrap: break-word; /* a long word can never run out of its card */
 }
 
-.finding-card__media {
-  display: block;
+/* Approved pairings only. The "text" colour is also used for the icon, the
+   link and the focus ring (currentColor), so they always match. */
+.finding-card--terracotta {
+  --card-bg: var(--color-terracotta);
+  --card-fg: var(--color-cream); /* cream on terracotta is 4.88:1 */
+}
+.finding-card--mustard {
+  --card-bg: var(--color-mustard);
+  --card-fg: var(--color-ink); /* ink on mustard is 7.02:1 */
+}
+.finding-card--blue {
+  --card-bg: var(--color-blue);
+  --card-fg: var(--color-cream); /* cream on dark blue is 10.03:1 */
+}
+.finding-card--sage {
+  --card-bg: var(--color-sage);
+  --card-fg: var(--color-ink); /* ink on sage is 7.15:1 */
+}
+.finding-card--pink {
+  --card-bg: var(--color-pink);
+  --card-fg: var(--color-ink); /* ink on pink is 8.92:1 */
 }
 
-.finding-card__image {
-  width: 100%;
-  display: block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+/* Decorative shape (aria-hidden in the markup), 56px, in the text colour */
+.finding-card__icon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  background: var(--card-fg);
 }
-
-.finding-card__content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 2rem;
+.finding-card__icon--circle {
+  border-radius: 50%;
+}
+.finding-card__icon--triangle {
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.finding-card__icon--half {
+  border-radius: 50% 50% 0 0;
+}
+.finding-card__icon--quarter {
+  border-radius: 100% 0 0 0;
 }
 
 .finding-card__category {
-  margin-bottom: 0.75rem;
-  font-size: var(--smallText);
-  color: var(--site-text-muted);
-  font-weight: 600;
-  letter-spacing: var(--letterSpacing);
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .finding-card__title {
-  margin-bottom: 1rem;
+  margin: 0;
+  color: inherit; /* the global heading colour is ink, which fails on dark cards */
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1.15;
 }
 
 .finding-card__summary {
-  margin-bottom: 2rem;
+  margin: 0;
 }
 
-.finding-card__cta {
+/* Always underlined (2px, offset 3px), in the card's text colour. margin-top:
+   auto pins the link to the bottom, so links line up across a row. align-self
+   keeps the clickable area to the words, not the whole card width. */
+.finding-card__link {
+  align-self: flex-start;
   margin-top: auto;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
-@media (min-width: 768px) {
-  .findings__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
-  }
+/* Hover thickens the underline; the colour stays, so the approved contrast
+   pairing is never changed. */
+.finding-card__link:hover {
+  text-decoration-thickness: 4px;
+}
+
+/* currentColor is the card's text colour, so the ring has the same contrast
+   as the text on every card (at least 4.88:1; 3:1 is required). It sits
+   inside the card's padding and no ancestor clips it. */
+.finding-card__link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
 }
 
 /* End Accessibility Findings */
@@ -840,68 +1261,6 @@ svg.logo {
 }
 
 /* End Accessibility Findings PAGE */
-
-/* Start My Process Section */
-
-.my-process {
-  margin: 4rem auto;
-  padding: var(--blade-padding-block) var(--blade-padding-inline);
-}
-
-.my-process__steps {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.my-process__step {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-1);
-}
-
-.my-process__number {
-  flex: 0 0 auto;
-  font-family: var(--headingFont);
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--site-text-muted);
-  font-weight: 600;
-}
-
-.my-process__label {
-  font-family: var(--headingFont);
-  font-size: 1.125rem;
-  line-height: 1.3;
-  color: var(--site-text-dark);
-}
-
-@media (min-width: 768px) {
-  .my-process__steps {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .my-process__step {
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 9rem;
-  }
-
-  .my-process__number {
-    font-size: 2rem;
-  }
-}
-
-/* End My Process Section */
 
 /* Start Experience Snapshot Section */
 
@@ -1121,29 +1480,42 @@ svg.logo {
 
 /* END Findings Detail Page */
 
-/* Start Servces Page */
+/* Start Services Page */
 
+/* No padding of its own: .page (90vw) is the shared page gutter, and the
+   How I work section sits directly in it too, so both line up. Extra side
+   padding here used to make the cards much narrower than the rest of the page
+   on small screens. Vertical spacing is margin only, one 4rem value, the same
+   gap the homepage sections use. Margins between siblings collapse, so the
+   header, cards and How I work are each 4rem apart, not 4rem plus padding. */
 .services-overview {
-  margin: 4rem auto;
-  padding: var(--blade-padding-block) var(--blade-padding-inline);
+  margin: 4rem 0; /* the one 4rem section gap used across the site */
+  padding: 0;
 }
 
+/* minmax(0, 1fr), not plain 1fr: a plain 1fr column will not shrink below its
+   longest word, so with enlarged text it pushed the cards past the screen
+   edge and they were cut off (WCAG 1.4.4, 1.4.10). */
 .services-overview__grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: var(--page-max-width);
-  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  /* No max-width: .page already limits the width, and a narrower grid left
+     the cards inset from the headings and How I work on wide screens. */
 }
 
+/* Tight padding on small screens so enlarged text has room; roomier from 48em.
+   overflow-wrap lets a long word wrap rather than run out of the card. */
 .services-overview__card {
   display: flex;
   flex-direction: column;
   background: var(--blade-light-bg);
   border: var(--blade-light-border);
   border-radius: var(--borderRadius);
-  padding: 1.5rem;
+  padding: 0.75rem;
   box-shadow: var(--shadow-1);
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 .services-overview__icon {
@@ -1158,18 +1530,24 @@ svg.logo {
 
 .services-overview__list {
   margin: 0 0 2rem 0;
-  padding-left: 1.25rem;
+  padding-left: 1.125rem;
 }
 
 .services-overview__list li {
   line-height: 1.6;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .services-overview__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .services-overview__card {
+    padding: 1.5rem;
   }
 }
+
 .services-overview__card--cta {
   background: var(--cta-bg);
   border-color: var(--cta-bg);
@@ -1198,29 +1576,307 @@ svg.logo {
 
 /* End Services Page */
 
+/*#########*/
+/* How I work (Services page) */
+/*#########*/
+/* Two parts under one heading: "My process" (five numbered steps) and
+   "What I test" (four cards). Mobile first, em breakpoints only, so the layout
+   follows the user's text size (WCAG 1.4.4). Everything is sized in rem/em and
+   uses minmax(0, 1fr) columns plus overflow-wrap, so at 320px, 200% zoom or
+   "Very large" text nothing is clipped or runs off the edge (1.4.10). */
+/* The shared header is centered; on the left-aligned Services page it reads
+   better flush left, like the page's own header. */
+.how-i-work .section-header {
+  margin-inline: 0;
+}
+
+.how-i-work .section-intro {
+  margin: 0;
+  text-align: left;
+}
+
+.how-i-work__subheading {
+  margin: 3rem 0 1.5rem;
+  padding-bottom: 0.5rem;
+  font-size: var(--font-size-h3);
+  font-weight: 800;
+  border-bottom: 4px solid var(--color-ink); /* thick Bauhaus rule */
+}
+
+/* --- Process steps --- */
+
+/* Stacked by default. A row of five only from 75em: below that, labels such as
+   "Prioritized findings report" would wrap awkwardly in narrow columns. */
+.how-i-work__steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* flex-wrap: when text is enlarged the number and label no longer fit side by
+   side, so the label drops below the number instead of being squeezed until
+   words break mid-letter (WCAG 1.4.4). */
+.how-i-work__step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--step-bg);
+  color: var(--step-fg);
+  overflow-wrap: break-word;
+}
+
+/* Same order and approved pairings as the skills band. */
+.how-i-work__step:nth-child(1) {
+  --step-bg: var(--color-terracotta);
+  --step-fg: var(--color-cream); /* 4.88:1 */
+}
+.how-i-work__step:nth-child(2) {
+  --step-bg: var(--color-sage);
+  --step-fg: var(--color-ink); /* 7.15:1 */
+}
+.how-i-work__step:nth-child(3) {
+  --step-bg: var(--color-mustard);
+  --step-fg: var(--color-ink); /* 7.02:1 */
+}
+.how-i-work__step:nth-child(4) {
+  --step-bg: var(--color-blue);
+  --step-fg: var(--color-cream); /* 10.03:1 */
+}
+.how-i-work__step:nth-child(5) {
+  --step-bg: var(--color-pink);
+  --step-fg: var(--color-ink); /* 8.92:1 */
+}
+
+/* League Spartan 800 for the numbers (a loaded weight). */
+.how-i-work__number {
+  flex: 0 0 auto;
+  font-family: var(--headingFont);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Labels are body text, so Atkinson Hyperlegible 700, not League Spartan. */
+.how-i-work__label {
+  flex: 1 1 8rem; /* rem, so the wrap point moves with the text size */
+  font-family: var(--bodyFont);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+@media (min-width: 75em) {
+  .how-i-work__steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .how-i-work__step {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .how-i-work__label {
+    flex: 0 1 auto;
+  }
+
+  .how-i-work__number {
+    font-size: 2.25rem;
+  }
+}
+
+/* --- What I test cards --- */
+
+/* 1 column, 2 from 48em, 4 from 75em: four cards never make a 3+1 row. */
+.how-i-work__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 48em) {
+  .how-i-work__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75em) {
+  .how-i-work__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Tight padding on small screens: with enlarged text (rem grows too) generous
+   padding leaves too little width and words such as "Accessibility" would
+   break mid-word. Roomier padding returns from 48em. */
+.how-i-work__card {
+  padding: 0.75rem;
+  background: var(--site-surface); /* white */
+  color: var(--color-ink); /* ink on white: 15.8:1 */
+  border: 4px solid var(--color-ink); /* 4px rule, like the header */
+  overflow-wrap: break-word;
+}
+
+/* Terracotta on white is 5.79:1, above the 3:1 needed for graphics. */
+.how-i-work__icon {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-terracotta);
+}
+
+.how-i-work__card-title {
+  margin-bottom: 0.75rem;
+  font-size: var(--font-size-h4);
+  font-weight: 800;
+}
+
+.how-i-work__list {
+  margin: 0;
+  padding-left: 1.125rem;
+}
+
+@media (min-width: 48em) {
+  .how-i-work__card {
+    padding: 1.5rem;
+  }
+
+  .how-i-work__list {
+    padding-left: 1.25rem;
+  }
+}
+
+.how-i-work__list li {
+  padding: 0;
+  line-height: 1.5;
+  color: inherit;
+}
+
+/* End How I work */
+
 /* Start Footer */
 
-footer {
+/* Footer: ink background with cream text and mustard links (approved F6 design).
+   Contrast on ink #1F2328:
+   - cream #F2EBDD text      13.32:1 (AA body text, needs 4.5)
+   - mustard #D9A441 links    7.02:1 (AA body text, needs 4.5)
+   - cream focus ring        13.32:1 (needs 3:1 for UI parts)
+   The site's dark blue focus ring (#1E3A4C) would be about 1.3:1 on ink, so the
+   footer overrides it below.
+   Links keep a 2px underline so they never rely on colour alone (WCAG 1.4.1).
+   Layout is stacked and centred below 62em (phones and iPad), and a
+   left-aligned row from 62em up.
+   Sizes are in rem and nothing has a fixed height, so text enlargement
+   wraps instead of clipping (WCAG 1.4.4). */
+.page-footer {
+  --footer-text: #f2ebdd;
+  --footer-link: #d9a441;
+  --footer-focus: #f2ebdd;
   background: var(--footer-bg);
-  padding-top: .5rem;
+  color: var(--footer-text);
+  /* Extra bottom space = back-to-top button height + its bottom offset + a 1rem gap,
+     so the last footer line (Manage cookies) clears the fixed button when scrolled
+     to the bottom, at every screen size. */
+  padding: 2rem 1rem
+    calc(var(--back-to-top-size) + var(--back-to-top-offset) + 1rem);
 }
 
 .footer-content {
   display: flex;
-  margin: 1rem;
-  flex-direction: column; /* Stack logo above text */
-  align-items: center; /* Center horizontally */
+  flex-direction: column; /* Stacked on small screens */
+  align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 1rem; /* Space between rows */
+  gap: 1.5rem;
+  margin: 0 auto;
+  max-width: 75rem;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .footer-logo img {
-  width: 80px; /* Responsive size */
+  width: 80px;
   height: auto;
-  max-width: 40vw; /* Shrinks on mobile */
+  max-width: 40vw;
 }
 
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Every footer link and the cookies button share one look */
+.footer-social__link,
+.footer-text a,
+.manage-cookies-link {
+  color: var(--footer-link);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.footer-social__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 0.5rem; /* comfortable tap target */
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.footer-social__link svg:not(.external-link__icon) {
+  font-size: 1.25rem; /* brand icon only; the new-tab icon sizes itself */
+}
+
+/* Hover: cream is still 13.32:1 on ink; the underline stays */
+.footer-social__link:hover,
+.footer-text a:hover,
+.manage-cookies-link:hover {
+  color: var(--footer-text);
+}
+
+/* The cookies button is a <button> for behavior but reads as a link */
+.manage-cookies-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+a.react {
+  font-size: 1rem;
+  line-height: 1.55;
+  vertical-align: middle;
+}
+
+/* Light focus ring that shows on ink */
+.page-footer :focus-visible {
+  outline: 3px solid var(--footer-focus);
+  outline-offset: 3px;
+}
+
+/* Used by the Navbar, so it stays even though it sits here for now */
 .cpacc-logo img {
   width: 80px; /* Responsive size */
   height: auto;
@@ -1230,32 +1886,28 @@ footer {
   align-items: center;
 }
 
-.footer-text a {
-  color: var(--primary-500);
-  margin: 0 0.25rem;
-  text-decoration: none;
-}
+@media (min-width: 62em) {
+  .footer-content {
+    flex-direction: row;
+    flex-wrap: wrap; /* wraps rather than clips when text is enlarged */
+    justify-content: space-between;
+    text-align: left;
+  }
 
-.footer-text a:hover {
-  text-decoration: underline;
-}
+  .footer-logo {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
 
-a.react {
-  font-size: 1rem;
-  line-height: 1.55;
-  vertical-align: center;
-  padding: 0 0 0 0.25em;
-}
+  .footer-social {
+    justify-content: flex-start;
+  }
 
-.manage-cookies-link {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font-size: inherit;
-  color: inherit;
-  cursor: pointer;
-  text-decoration: underline;
+  /* The bottom padding above is kept here on purpose. At 62em the footer
+     content is as wide as the viewport minus the 1rem gutters, so the
+     right-hand "Manage cookies" text sits directly above the fixed
+     back-to-top button (right: 1rem, 44px wide) and would be covered
+     without it. */
 }
 /* End Footer */
 
@@ -1263,13 +1915,13 @@ a.react {
 .back-to-top {
   position: fixed;
   right: 1rem;
-  bottom: 1.5rem;
+  bottom: var(--back-to-top-offset);
   z-index: 1000;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: var(--back-to-top-size);
+  height: var(--back-to-top-size);
   background: none;
   border: none;
   color: var(--cta-bg);
@@ -1558,63 +2210,6 @@ a.react {
   border-radius: var(--borderRadius);
 }
 
-.frame {
-  padding: 20px;
-  margin: auto;
-  border-radius: var(--borderRadius);
-}
-
-.cards-container {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
-  grid-gap: 2rem;
-}
-
-.card {
-  display: grid;
-  align-items: start;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  overflow: hidden;
-  box-shadow: var(--shadow-1);
-}
-
-.card-image {
-  border-radius: var(--borderRadius) var(--borderRadius) 0 0;
-}
-
-.card-description {
-  display: grid;
-  align-items: start;
-  padding: 1rem;
-}
-
-.iterations-count {
-  align-self: end;
-  justify-self: center;
-}
-
-p.iterations-count {
-  font-size: 0.75rem;
-  font-weight: 400;
-}
-
-.iterations-count {
-  display: flex; /* Enables flexbox */
-  align-items: center; /* Vertically aligns text and icon */
-  gap: 8px; /* Adds spacing between text and icon */
-  width: 100%;
-  justify-content: space-between;
-  padding: 0 1rem 1rem 1rem;
-}
-
-.iteration-arrow {
-  font-size: 1rem;
-  margin-right: 2rem;
-}
-
 /*#########*/
 /* Thank you page */
 /*#########*/
@@ -1629,16 +2224,30 @@ p.iterations-count {
 /* Transitions and Transforms */
 /*#########*/
 
+/* Logo: shown fully drawn by default (this is also the end state of the animation) */
 .logo-mark .logo-animate {
-  animation-name: draw;
   stroke: var(--logo-stroke);
   stroke-width: 12px;
   stroke-dasharray: 4352;
-  animation-duration: 3s;
-  animation-iteration-count: 1;
-  animation-direction: reverse;
   fill: none;
   transition: fill 550ms ease-in-out;
+}
+
+/* Draw-in animation: first visit only. The first-visit class is added to
+   <body> by a small inline script in gatsby-ssr.js before the page paints. */
+.first-visit .logo-mark .logo-animate {
+  animation: draw 3s reverse 1;
+}
+
+/* Respect the "Reduce motion" setting: no draw-in, no fill fade */
+@media (prefers-reduced-motion: reduce) {
+  .first-visit .logo-mark .logo-animate {
+    animation: none;
+  }
+
+  .logo-mark .logo-animate {
+    transition: none;
+  }
 }
 
 /* Hover + keyboard focus */
@@ -1663,26 +2272,19 @@ p.iterations-count {
 /* Responsive: stack columns on smaller screens */
 
 @media (min-width: 992px) {
-  .nav-header {
-    margin-top: 2.5rem;
-    height: 6rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .navbar {
-    height: 6rem;
-  }
-
+  /* Logo on the left, links and Contact on the right. flex-wrap means that
+     if the row ever gets too tight it wraps instead of overflowing (1.4.10). */
   .nav-center {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding: 1.5rem 0;
   }
 
   .nav-header {
     padding: 0;
-    margin-right: 2rem;
     height: auto;
   }
 
@@ -1690,24 +2292,23 @@ p.iterations-count {
     display: none;
   }
 
+  /* Menu is always visible on desktop. The collapsed mobile state lives in
+     a mobile-only query, so nothing needs undoing here. */
   .nav-links {
-    margin: 0 2rem;
-    padding: 1rem;
-    height: auto !important;
+    margin: 0;
+    padding: 0;
     flex-direction: row;
     align-items: center;
-    width: 100%;
+    gap: 4px;
   }
 
   .nav-link {
-    margin-right: 1rem;
-    padding: 0 1.25rem;
+    padding: 0.625rem 0.75rem;
     border-top: none;
     font-size: 1.25rem;
   }
 
   .contact-link {
-    width: 100%;
     justify-content: flex-end;
     align-items: center;
   }
@@ -1743,13 +2344,6 @@ p.iterations-count {
   }
 }
 
-@media (min-width: 768px) {
-  h2.hero-subhead {
-    margin: 1rem 0;
-    text-align: center;
-  }
-}
-
 @media (min-width: 576px) {
   .outdoor-list {
     grid-template-columns: 1fr 1fr;
@@ -1767,21 +2361,6 @@ p.iterations-count {
 }
 
 @media (max-width: 991px) {
-  .nav-header {
-    margin-top: 2rem;
-  }
-
-  .nav-link {
-    margin-top: 1.5rem;
-    padding: 0.25rem 0;
-  }
-
-  a.active-link {
-    color: var(--nav-link-active);
-    border-bottom: none;
-    font-weight: 700;
-  }
-
   .qa-info {
     padding-right: 0;
   }
@@ -1855,7 +2434,7 @@ p.iterations-count {
 
   .qa-included-page:not(:last-child) {
     margin: 2rem 0 3rem 0;
-    border-bottom: solid 1px #ccc;
+    border-bottom: solid 1px var(--site-border-subtle);
   }
 
   .qa-included {
@@ -1897,18 +2476,11 @@ p.iterations-count {
   .nav-links {
     margin-bottom: 2rem;
   }
-  .hire {
-    margin-bottom: 4rem;
-    max-width: 90vw;
-  }
 }
 
 @media (max-width: 498px) {
   .request-quote-btn {
     text-align: center;
-  }
-  .hero-heading {
-    margin-bottom: 1rem;
   }
 }
 /* ============================
@@ -1960,8 +2532,7 @@ p.iterations-count {
 }
 
 .a11y-form .form-row:focus-within {
-  box-shadow: /* NEW: no hard-coded #fff */ 0 0 0 var(--focus-gap)
-      var(--focus-gap-color),
+  box-shadow: 0 0 0 var(--focus-gap) var(--focus-gap-color),
     0 0 0 calc(var(--focus-gap) + var(--focus-width)) var(--focus-color);
 }
 
@@ -2004,7 +2575,7 @@ p.iterations-count {
   top: 0;
   left: 0;
   background: var(--cta-bg);
-  color: #fff;
+  color: var(--cta-text);
   padding: 0.75rem 1rem;
   z-index: 1000;
   transform: translateY(-100%);
@@ -2060,113 +2631,219 @@ p.iterations-count {
   animation: projectsFadeIn 0.25s ease-out;
 }
 
-/* Filter sidebar */
-.tools-filter {
-  /* stacks on mobile, becomes sidebar on wider screens */
-}
-
+/* Filter sidebar / tag buttons. Real <button>s with aria-pressed (they filter
+   the list, they don't navigate). Mobile first: a full-width column of buttons,
+   then a sidebar from 62em (992px at default size; em so it follows the user's
+   text size, WCAG 1.4.4). The sidebar width is in rem for the same reason. */
 .tools-filter__list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-/* Mobile: full-width chips with lighter feel */
-@media (max-width: 899px) {
-  .tools-filter__list {
-    flex-direction: column;
-  }
-
-  .tools-filter__btn {
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem 0.875rem;
-    font-size: 0.8rem;
-    min-height: 44px;
-  }
-}
-
+/* Unpressed: white with a 2px ink border and ink text, 13.32:1 or better.
+   Square corners and a pointer cursor mark it as a button, unlike the
+   non-interactive tag chips on project pages. min-height is 44px or more
+   (WCAG 2.5.8) and grows with text, so wrapped labels are never clipped. */
 .tools-filter__btn {
-  background: var(--blade-light-bg);
-  border: 1px solid var(--site-border-strong);
-  border-radius: var(--borderRadius);
-  color: var(--site-text);
-  padding: 0.375rem 0.875rem;
-  font-size: var(--smallText);
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  background: var(--site-surface);
+  border: 2px solid var(--color-ink);
+  border-radius: 0;
+  color: var(--color-ink);
+  font-family: var(--bodyFont);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+  overflow-wrap: break-word;
   cursor: pointer;
-  transition: var(--transition);
 }
 
+/* Hover: mustard with ink text, 7.02:1. */
 .tools-filter__btn:hover {
-  background: var(--cta-bg);
-  color: var(--cta-text);
-  border-color: var(--cta-bg);
+  background: var(--color-mustard);
 }
 
-.tools-filter__btn--active {
-  background: var(--cta-bg);
-  color: var(--cta-text);
-  border-color: var(--cta-bg);
+/* Pressed (aria-pressed="true"): filled ink with cream text, 13.32:1, AND a
+   check mark before the label, so the state is not shown by colour alone
+   (WCAG 1.4.1). The check is decorative: the empty alt text after the slash
+   keeps it out of the accessible name, and aria-pressed already tells screen
+   readers the state. */
+.tools-filter__btn--active,
+.tools-filter__btn--active:hover {
+  background: var(--color-ink);
+  color: var(--color-cream);
 }
 
-@media (min-width: 900px) {
+.tools-filter__btn--active::before {
+  content: "\2713" / "";
+  flex: none;
+}
+
+/* The ring is ink, not currentColor: a pressed button's text is cream, which
+   would vanish against the cream page. Ink on cream is 13.32:1 (3:1 needed). */
+.tools-filter__btn:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+@media (min-width: 62em) {
   .portfolio-layout {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 13rem 1fr;
     align-items: start;
   }
-
-  .tools-filter__list {
-    flex-direction: column;
-    flex-wrap: nowrap;
-  }
-
-  .tools-filter__btn {
-    width: 100%;
-    text-align: left;
-  }
 }
 
+/* Project grid, shared by the Work page and homepage Selected work.
+   Mobile first, em breakpoints so it follows the user's text size (WCAG 1.4.4,
+   1.4.10): 1 column by default, 2 from 48em, 3 or 4 from 75em. ProjectsList.js
+   adds one --md-N and one --lg-N class, chosen from the number of cards so the
+   last row is never a single orphan (never auto-fill, which gave 3+1).
+   minmax(0, 1fr) lets a column shrink instead of pushing the page wider. */
 .projects-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
 }
 
+/* A single column is capped so one card doesn't stretch across the page. */
+.projects-list--md-1 {
+  max-width: 36rem;
+}
+
+@media (min-width: 48em) {
+  .projects-list--md-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75em) {
+  .projects-list--lg-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .projects-list--lg-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .projects-list--lg-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .projects-list--lg-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Only a lone card stays capped at this width. */
+  .projects-list--md-1:not(.projects-list--lg-1) {
+    max-width: none;
+  }
+}
+
+/* Project card (Work page and homepage Selected work). F6 style: white
+   surface, 4px ink border, square corners, no soft shadow. Ink on white is
+   at least 13.32:1 (ink on cream; white is lighter still). The whole card is
+   one link, so the title is underlined like every other link. */
 .project {
   display: block;
   text-decoration: none;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  overflow: hidden;
-  transition: var(--transition);
-  box-shadow: var(--shadow-1);
-  padding: 0.5rem;
+  color: var(--color-ink);
+  background: var(--site-surface);
+  border: 4px solid var(--color-ink);
 }
 
-.project:hover {
-  box-shadow: var(--shadow-2);
-  transform: translateY(-2px);
+/* The hard ink shadow change is not movement, so it applies for everyone. The
+   same cue is given to keyboard users through :focus-within. */
+.project:hover,
+.project:focus-within {
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
+/* The lift and its transition only exist when the user has not asked for
+   reduced motion (WCAG 2.3.3). With "Reduce motion" on, the card never moves. */
+@media (prefers-reduced-motion: no-preference) {
+  .project {
+    transition: var(--transition);
+  }
+
+  .project:hover,
+  .project:focus-within {
+    transform: translateY(-2px);
+  }
+}
+
+/* Focus ring: currentColor is ink, 16.0:1 on cream, well over the 3:1 needed
+   for UI parts. The offset keeps it clear of the border and the shadow. */
+.project:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* A 4px ink rule separates the image from the title, in the Bauhaus manner. */
 .project-img {
+  display: block;
   height: 14rem;
   width: 100%;
   object-fit: cover;
-  border-radius: calc(var(--borderRadius) - 2px);
+  border-bottom: 4px solid var(--color-ink);
 }
 
 .project-title {
   display: block;
+  padding: 1rem;
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--color-ink);
+  overflow-wrap: break-word; /* a long title can never run out of its card */
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.project:hover .project-title {
+  text-decoration-thickness: 4px;
+}
+
+/*#########*/
+/* Selected work (homepage) */
+/*#########*/
+
+/* Cards and grid come from the shared project grid above (ProjectsList.js,
+   maxColumns={4}). Only the spacing is specific to this section; a capped
+   single column is centered under the heading. */
+.selected-work__grid {
+  gap: 1.5rem;
+  margin-inline: auto;
+}
+
+.selected-work__more {
+  margin: 2rem 0 0;
   text-align: center;
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  color: var(--site-text-dark);
-  font-size: var(--smallText);
+}
+
+/* Always underlined (2px, offset 3px). Color: link blue on cream, an approved
+   link pairing; focus uses currentColor so it shows on any background. */
+.selected-work__link {
+  display: inline-block;
+  padding: 0.5rem 0.25rem; /* 44px+ tall target */
+  font-weight: 700;
+  color: var(--link-text);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.selected-work__link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
 }
 
 /* ============================================================
@@ -2209,44 +2886,72 @@ p.iterations-count {
   padding-bottom: 4rem;
 }
 
-.project-feature-img {
-  width: 100%;
-  max-height: 420px;
-  border-radius: var(--borderRadius);
-}
-
+/* Back link: the site link style (always underlined, 2px, offset 3px). Dark
+   blue on cream is 10.03:1; terracotta on hover is 4.88:1 and the underline
+   thickens too. min-height gives a 44px target (WCAG 2.5.8). Focus ring uses
+   currentColor. */
 .project-back-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  color: var(--site-text);
-  text-decoration: none;
-  font-size: var(--smallText);
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  transition: var(--transition);
+  min-height: 44px;
+  margin-bottom: 1rem;
+  color: var(--link-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
 .project-back-link:hover {
-  color: var(--cta-bg);
+  color: var(--link-hover-text);
+  text-decoration-thickness: 4px;
 }
 
+.project-back-link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Hero: white surface, 4px ink border, square corners, no shadow (the same
+   language as the project cards). Ink text on white is 13.32:1 or better.
+   Mobile first: one column, two from 48em (em, so it follows text size). */
 .project-hero {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  padding: 2rem 1.5rem;
-  margin: 2rem 0;
-  box-shadow: var(--shadow-1);
+  background: var(--site-surface);
+  border: 4px solid var(--color-ink);
+  padding: 1.5rem;
+  margin: 1rem 0 2rem;
 }
 
+@media (min-width: 48em) {
+  .project-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    padding: 2rem;
+  }
+}
+
+/* Image frame: a 4px ink border on a cream mat, so a screenshot with a white
+   or pale edge still reads as an image. The image sits inside, uncropped
+   (object-fit: contain is set in the template). */
 .project-hero .frame {
-  padding: 0;
+  display: block;
+  background: var(--site-bg);
+  border: 4px solid var(--color-ink);
 }
 
-.project-info h2 {
+.project-feature-img {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+}
+
+.project-info h1 {
+  /* The title is the page's h1 for screen readers, but keeps the h2 size
+     so the page looks the same as before. */
+  font-size: var(--font-size-h2);
   color: var(--site-text-dark);
   margin-bottom: 1rem;
 }
@@ -2256,44 +2961,180 @@ p.iterations-count {
   line-height: 1.6;
 }
 
+/* "Built with" tags: a plain inline list, deliberately unlike the /work filter
+   buttons (those are boxed, bordered, have a pointer cursor and a hover
+   state). Nothing here is clickable, so there is no background, no border, no
+   hover and no pointer cursor. Items wrap onto new lines on narrow screens.
+   Text is ink on white, 16.0:1 or better. */
 .project-tools {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.375rem;
   margin-top: 1.5rem;
 }
 
-.project-tools span {
-  display: inline-block;
-  padding: 0.2rem 0.625rem;
-  background: #fde68a;
-  color: var(--site-text);
-  border-radius: 4px;
-  font-size: var(--smallText);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+.project-tools__label {
+  margin: 0 0 0.5rem;
+  font-family: var(--headingFont);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--site-text-muted); /* muted on white is above 7.91:1 */
 }
 
+.project-tools__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-tools__item {
+  display: flex;
+  align-items: flex-start; /* square stays on the first line if the tag wraps */
+  gap: 0.75em;
+  max-width: 100%; /* a long tag can never be wider than the list */
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  cursor: default;
+  overflow-wrap: anywhere; /* a long tag wraps instead of overflowing */
+}
+
+/* Decorative square (1em), drawn with a pseudo-element so there is no extra
+   element, and no text content so screen readers ignore it. It cycles
+   terracotta, mustard, dark blue. Against the white hero: terracotta 5.79:1
+   and dark blue 11.9:1 pass the 3:1 needed for graphics, but mustard is only
+   2.25:1 (1.9:1 on cream). That is acceptable ONLY because the square is
+   decorative: the tag's meaning is in its ink text, never in the square. */
+.project-tools__item::before {
+  content: "";
+  flex: none;
+  width: 1em;
+  height: 1em;
+  /* The text's line-height is 1.4em, so (1.4em - 1em) / 2 centers the
+     square on the first line of text. */
+  margin-top: 0.2em;
+  background: var(--color-terracotta);
+}
+
+.project-tools__item:nth-child(3n + 2)::before {
+  background: var(--color-mustard);
+}
+
+.project-tools__item:nth-child(3n)::before {
+  background: var(--color-blue);
+}
+
+/* Links inside Contentful rich text on the project page. The site link style:
+   dark blue on white is 11.9:1, always underlined (2px, offset 3px), terracotta
+   on hover (5.79:1 on white, and the underline thickens so hover is not shown
+   by colour alone). Focus uses currentColor so the ring matches the text. */
+.richtext-link {
+  color: var(--link-text);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.richtext-link:hover {
+  color: var(--link-hover-text);
+  text-decoration-thickness: 4px;
+}
+
+.richtext-link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Portfolio cards. Mobile first, em breakpoints so the layout follows the
+   user's text size (WCAG 1.4.4, 1.4.10): 1 column by default, 3 from 75em
+   (no 2-column step, which would leave a single orphan card for 3 cards). minmax(0, 1fr) lets a column shrink instead of pushing the
+   page wider. The gap is 2rem, the same as the project grid. Square white
+   cards with a 4px ink border to match the project cards. Text is ink on
+   white, 13.32:1 or better. */
 .portfolio-cards {
   margin: 3rem 0;
 }
 
+.cards-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 75em) {
+  .cards-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--site-surface);
+  border: 4px solid var(--color-ink);
+  color: var(--color-ink);
+}
+
+/* Every card image fills the card's width in the same 4:3 box, with no inner
+   border. The image is object-fit: contain (set in the template), so a sketch
+   or logo is shown whole, never cropped; spare space is the card's white.
+   The first child of the image wrapper is gatsby-plugin-image's "sizer", which
+   forces each image's own shape; hiding it lets the aspect-ratio rule win. */
+.card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.card-image > div:first-child {
+  /* !important because the library sets style="display:block" inline, and an
+     inline style beats any stylesheet rule. */
+  display: none !important;
+}
+
+.card-description {
+  flex: 1; /* pushes the iteration row to the bottom so rows line up */
+  padding: 1rem;
+  overflow-wrap: break-word; /* a long word can never run out of its card */
+}
+
 .card-description p {
   margin-bottom: 0.5rem;
-  color: var(--site-text);
+  color: var(--color-ink);
 }
 
+/* Iteration row: muted text on white is above 7.91:1; a 2px ink rule above. */
 .iterations-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 2px solid var(--color-ink);
   color: var(--site-text-muted);
-  font-size: var(--smallText);
-  font-weight: 600;
-  border-top: 1px solid var(--site-border-subtle);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
+/* The arrow is decorative (aria-hidden in the markup) and points to the next
+   card, so it only shows when cards sit side by side (from 75em, where the
+   grid has 3 columns). Below that the cards are stacked and it is hidden. The
+   last card in each row has nothing beside it, so every third card's arrow
+   is hidden too. */
 .iteration-arrow {
-  color: var(--cta-bg);
+  display: none;
   flex-shrink: 0;
+  color: var(--color-ink);
+}
+
+@media (min-width: 75em) {
+  .iteration-arrow {
+    display: block;
+  }
+
+  .card:nth-child(3n) .iteration-arrow {
+    display: none;
+  }
 }
 
 .project-content {
@@ -2315,13 +3156,6 @@ p.iterations-count {
 
 .project-link:hover {
   background: var(--site-bg-strong);
-}
-
-@media (min-width: 768px) {
-  .project-hero {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
 }
 
 /* ============================================================
@@ -2461,36 +3295,6 @@ ul.pricing-service-includes-list {
 }
 
 /* ============================================================
-   FOOTER SOCIAL
-   ============================================================ */
-
-.footer-social {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.footer-social__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--site-text);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-.footer-social__link:hover {
-  color: var(--cta-bg);
-}
-
-.footer-social__link svg {
-  font-size: 1.25rem;
-}
-
-/* ============================================================
    INCLUDED CHECK ICON (service pages)
    ============================================================ */
 
@@ -2500,4 +3304,24 @@ ul.pricing-service-includes-list {
   margin-right: 0.5rem;
   flex-shrink: 0;
   margin-top: 3px;
+}
+
+/* ============================================================
+   EXTERNAL LINK (new-tab icon, see ExternalLink.js)
+   ============================================================ */
+
+/* Last word + icon never separate, so the icon can't wrap onto its own line */
+.external-link__nowrap {
+  white-space: nowrap;
+}
+
+/* currentColor follows the link, so it keeps the same contrast as the text on
+   every background (mustard on ink 7.02:1, dark blue on white 11.9:1). 0.8em
+   scales with text size (WCAG 1.4.4). */
+.external-link__icon {
+  width: 0.8em;
+  height: 0.8em;
+  margin-inline-start: 0.25em;
+  vertical-align: -0.05em;
+  flex-shrink: 0;
 }

@@ -2,11 +2,12 @@ import React from "react"
 import SEOmeta from "../components/SEOmeta"
 import Layout from "../components/Layout"
 import Services from "../components/Services"
+import HowIWork from "../components/HowIWork"
 
 const ServicesPage = () => {
   return (
     <Layout>
-      <main className="page">
+      <div className="page">
         <header className="findings-page__header">
           <h1 className="section-title">Services</h1>
           <p className="findings-page__intro">
@@ -15,7 +16,8 @@ const ServicesPage = () => {
           </p>
         </header>
         <Services />
-      </main>
+        <HowIWork />
+      </div>
     </Layout>
   )
 }

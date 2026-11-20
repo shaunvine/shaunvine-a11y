@@ -1,35 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react" // NEW
+// NEXTJS-MIGRATION: becomes next/link; aria-current="page" will then need setting by hand from the pathname.
 import { Link } from "gatsby"
+// NEXTJS-MIGRATION: replace with usePathname from next/navigation.
 import { useLocation } from "@reach/router" // NEW
-import { FiAlignJustify, FiSun, FiMoon } from "react-icons/fi" // NEW
 import CTA from "../components/CTA"
 import LogoMark from "../components/LogoMark" // NEW
 // import logo from "../assets/images/general/IAAP-Cert.png"
 
-const ENABLE_THEME_TOGGLE = false
-
-// NEW: reusable theme toggle component
-function ThemeToggle({ theme, onToggleTheme, className }) {
-  const nextThemeLabel =
-    theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-
-  return (
-    <button
-      type="button"
-      className={className}
-      onClick={onToggleTheme}
-      aria-label={nextThemeLabel}
-    >
-      {theme === "dark" ? (
-        <FiSun aria-hidden="true" /> // NEW
-      ) : (
-        <FiMoon aria-hidden="true" /> // NEW
-      )}
-    </button>
-  )
-}
-
-const Navbar = ({ theme, onToggleTheme }) => {
+const Navbar = () => {
   const [show, setShow] = useState(false)
 
   // NEW: close menu automatically on route change
@@ -55,7 +33,8 @@ const Navbar = ({ theme, onToggleTheme }) => {
 
   // NEW: focus management (improved)
   // When menu opens, move focus into it.
-  // When menu closes, do NOT force focus anywhere.
+  // When menu closes, do NOT force focus anywhere, except when closed with
+  // Escape (see handleKeyDown), which returns focus to the menu button.
   useEffect(() => {
     if (!show) return
 
@@ -64,8 +43,20 @@ const Navbar = ({ theme, onToggleTheme }) => {
     })
   }, [show])
 
+  // Escape closes the open menu. Focus goes back to the menu button first,
+  // because the links are about to be hidden and focus must not be lost.
+  const handleKeyDown = event => {
+    if (event.key !== "Escape" || !show) return
+    setShow(false)
+    menuButtonRef.current?.focus()
+  }
+
   return (
-    <nav className="navbar">
+    <nav
+      className="navbar"
+      aria-label="Primary navigation"
+      onKeyDown={handleKeyDown}
+    >
       <div className="nav-center">
         <div className="nav-header">
           <Link
@@ -75,6 +66,12 @@ const Navbar = ({ theme, onToggleTheme }) => {
             onClick={closeMenu} // NEW: close menu even if already on "/"
           >
             <LogoMark />
+            {/* Decorative Bauhaus shapes: hidden from screen readers */}
+            <span className="logo-shapes" aria-hidden="true">
+              <span className="logo-shape logo-shape--circle" />
+              <span className="logo-shape logo-shape--square" />
+              <span className="logo-shape logo-shape--triangle" />
+            </span>
           </Link>
 
           {/* Mobile controls */}
@@ -84,23 +81,43 @@ const Navbar = ({ theme, onToggleTheme }) => {
               type="button"
               className="nav-btn"
               onClick={toggleMenu}
-              aria-label={
-                show ? "Close main navigation" : "Open main navigation"
-              } // NEW
+              aria-label="Menu" // fixed name; aria-expanded says open or closed
               aria-expanded={show} // NEW
               aria-controls="primary-navigation" // NEW
             >
-              <FiAlignJustify aria-hidden="true" /> {/* icon consistency */}
+              {/* One icon, three bars. CSS morphs it into an X when the
+                  button has aria-expanded="true". Decorative: the button's
+                  aria-label provides the name. */}
+              <svg
+                className="nav-btn-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <line
+                  className="nav-btn-bar nav-btn-bar--top"
+                  x1="3"
+                  y1="6"
+                  x2="21"
+                  y2="6"
+                />
+                <line
+                  className="nav-btn-bar nav-btn-bar--middle"
+                  x1="3"
+                  y1="12"
+                  x2="21"
+                  y2="12"
+                />
+                <line
+                  className="nav-btn-bar nav-btn-bar--bottom"
+                  x1="3"
+                  y1="18"
+                  x2="21"
+                  y2="18"
+                />
+              </svg>
             </button>
 
-            {/* Mobile theme toggle */}
-            {ENABLE_THEME_TOGGLE && (
-              <ThemeToggle
-                theme={theme}
-                onToggleTheme={onToggleTheme}
-                className="theme-toggle theme-toggle--mobile"
-              />
-            )}
           </div>
         </div>
 
@@ -108,12 +125,10 @@ const Navbar = ({ theme, onToggleTheme }) => {
         <div
           id="primary-navigation" // NEW
           className={navLinksClass}
-          aria-label="Primary navigation" // NEW
         >
           <Link
             to="/work"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
             ref={firstLinkRef} // focus target when mobile menu opens
           >
@@ -123,7 +138,6 @@ const Navbar = ({ theme, onToggleTheme }) => {
           <Link
             to="/findings"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
           >
             Findings
@@ -132,7 +146,6 @@ const Navbar = ({ theme, onToggleTheme }) => {
           <Link
             to="/services"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
           >
             Services
@@ -141,7 +154,6 @@ const Navbar = ({ theme, onToggleTheme }) => {
           <Link
             to="/about"
             className="nav-link"
-            activeClassName="active-link"
             onClick={closeMenu}
           >
             About
@@ -171,14 +183,6 @@ const Navbar = ({ theme, onToggleTheme }) => {
               />
             </Link> */}
 
-            {/* Desktop theme toggle */}
-            {ENABLE_THEME_TOGGLE && (
-              <ThemeToggle
-                theme={theme}
-                onToggleTheme={onToggleTheme}
-                className="theme-toggle theme-toggle--desktop"
-              />
-            )}
           </div>
         </div>
       </div>

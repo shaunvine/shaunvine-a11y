@@ -9,7 +9,7 @@ import Skills from "../components/Skills"
 const About = () => {
   return (
     <Layout>
-      <main className="page about-page-redesign">
+      <div className="page about-page-redesign">
         <section className="about-intro">
           <div className="about-intro__content">
             <p className="about-intro__eyebrow">About My Work</p>
@@ -77,7 +77,7 @@ const About = () => {
         <section>
           <OutdoorImages />
         </section>
-      </main>
+      </div>
     </Layout>
   )
 }

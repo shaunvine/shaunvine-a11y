@@ -6,7 +6,7 @@ import AccessibilityFindings from "../components/AccessibilityFindings"
 const FindingsPage = () => {
   return (
     <Layout>
-      <main className="page findings-page">
+      <div className="page findings-page">
         <header className="findings-page__header">
           <h1 className="section-title">Accessibility Findings</h1>
 
@@ -17,7 +17,7 @@ const FindingsPage = () => {
         </header>
 
         <AccessibilityFindings showHeader={false} />
-      </main>
+      </div>
     </Layout>
   )
 }

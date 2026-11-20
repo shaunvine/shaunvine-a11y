@@ -3,17 +3,30 @@ import SEOmeta from "../components/SEOmeta"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/Layout"
+import ExternalLink from "../components/ExternalLink"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { FaArrowRight } from "react-icons/fa"
 import { extractTextFromRaw } from "../utils/extractTextFromRaw"
 
+// Plain text of a rich-text node, so a link with bold or italic text inside it
+// still gets a full accessible name.
+const getNodeText = node =>
+  node.value ?? (node.content || []).map(getNodeText).join("")
+
 const options = {
   renderNode: {
-    hyperlink: node => {
+    // Links open in a new tab, so the accessible name says so (same pattern
+    // as Footer.js). aria-label replaces the link text for screen readers,
+    // so it repeats the full text first.
+    hyperlink: (node, children) => {
       return (
-        <a href={node.data.uri} target="_blank" rel="noopener noreferrer">
-          {node.content[0].value}
-        </a>
+        <ExternalLink
+          href={node.data.uri}
+          className="richtext-link"
+          ariaLabel={`${getNodeText(node)} | Opens in new tab`}
+        >
+          {children}
+        </ExternalLink>
       )
     },
   },
@@ -38,7 +51,7 @@ const ProjectTemplate = ({ data, location }) => {
 
   return (
     <Layout>
-      <main className="page">
+      <div className="page">
         <div className="project-page">
           <Link to={backLink} className="project-back-link">
             {backLabel}
@@ -54,15 +67,28 @@ const ProjectTemplate = ({ data, location }) => {
               />
             </span>
             <article className="project-info">
-              <h2>{title}</h2>
+              <h1>{title}</h1>
               {description &&
                 documentToReactComponents(JSON.parse(description.raw), options)}
               {tags && tags.length > 0 && (
-                <p className="project-tools">
-                  {tags.map((tag, index) => (
-                    <span key={index}>{tag}</span>
-                  ))}
-                </p>
+                <div className="project-tools">
+                  <p id="project-tools-label" className="project-tools__label">
+                    Built with
+                  </p>
+                  {/* role="list" keeps list semantics in Safari/VoiceOver,
+                      which drops them when list-style is none. */}
+                  <ul
+                    className="project-tools__list"
+                    role="list"
+                    aria-labelledby="project-tools-label"
+                  >
+                    {tags.map(tag => (
+                      <li key={tag} className="project-tools__item">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </article>
           </section>
@@ -82,11 +108,13 @@ const ProjectTemplate = ({ data, location }) => {
                           `Card image ${index + 1}`
                         }
                         className="card-image"
+                        imgStyle={{ objectFit: "contain" }}
                       />
                     )}
                     <div className="card-description">
                       {documentToReactComponents(
-                        JSON.parse(card.cardDescription.raw)
+                        JSON.parse(card.cardDescription.raw),
+                        options
                       )}
                     </div>
                     {card.iterations !== null &&
@@ -95,7 +123,10 @@ const ProjectTemplate = ({ data, location }) => {
                         <div className="iterations-count">
                           Iteration: {card.iterations}
                           {index !== portfolioCards.length - 1 && (
-                            <FaArrowRight className="iteration-arrow" />
+                            <FaArrowRight
+                              className="iteration-arrow"
+                              aria-hidden="true"
+                            />
                           )}
                         </div>
                       )}
@@ -105,7 +136,7 @@ const ProjectTemplate = ({ data, location }) => {
           </section>
 
         </div>
-      </main>
+      </div>
     </Layout>
   )
 }

@@ -2,10 +2,20 @@ import React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import slugify from "slugify"
+import { getGridClasses } from "../utils/gridColumns"
 
-const ProjectsList = ({ projects = [], selectedTag }) => {
+// maxColumns is the widest grid allowed from 75em: 3 beside the Work page
+// sidebar, 4 where the grid has the full page width (homepage).
+const ProjectsList = ({
+  projects = [],
+  selectedTag,
+  className = "",
+  maxColumns = 3,
+}) => {
+  const gridClasses = getGridClasses(projects.length, maxColumns)
+
   return (
-    <div className="projects-list">
+    <div className={`projects-list ${gridClasses} ${className}`.trim()}>
       {projects.map(project => {
         const { id, title, image, imageAltText } = project
         const pathToImage = getImage(image)

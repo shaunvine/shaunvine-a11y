@@ -1,5 +1,7 @@
 import React from "react"
+import { Link } from "gatsby"
 import { FaReact, FaLinkedin } from "react-icons/fa"
+import ExternalLink from "./ExternalLink"
 import logo from "../assets/images/general/IAAP-Cert.png" // <-- Update this path
 
 const Footer = () => {
@@ -9,42 +11,39 @@ const Footer = () => {
         <div className="footer-logo">
           <img
             src={logo}
-            alt="IAAP Certified Professional in Accessibility Core Competencies (CPACC) "
+            alt="IAAP Certified Professional in Accessibility Core Competencies (CPACC)"
           />
           <div className="footer-social">
-            <a
+            <ExternalLink
               href="https://www.linkedin.com/in/shaun-vine-71683832/"
-              aria-label="Shaun Vine on LinkedIn | Opens in new tab"
+              ariaLabel="Shaun Vine on LinkedIn | Opens in new tab"
               className="footer-social__link"
-              target="_blank"
-              rel="noopener noreferrer"
+              leadingIcon={<FaLinkedin aria-hidden="true" />}
             >
-              <FaLinkedin aria-hidden="true" />
-              <span>LinkedIn</span>
-            </a>
+              LinkedIn
+            </ExternalLink>
+            <Link to="/contact" className="footer-social__link">
+              <span>Contact</span>
+            </Link>
           </div>
         </div>
         <p className="footer-text">
-          &copy; {new Date().getFullYear()} shaunvine.com — Built with
-          <a
-            aria-label="Contentful Website | Opens in new tab"
+          &copy; {new Date().getFullYear()} shaunvine.com — Built with{" "}
+          <ExternalLink
+            ariaLabel="Contentful Website | Opens in new tab"
             className="gatsby"
             href="https://www.contentful.com/"
-            target="_blank"
-            rel="noopener noreferrer"
           >
-            <span>Contentful</span>
-          </a>
-          and
-          <a
-            aria-label="React Website | Opens in new tab"
+            Contentful
+          </ExternalLink>{" "}
+          and{" "}
+          <ExternalLink
+            ariaLabel="React Website | Opens in new tab"
             className="react"
             href="https://react.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
           >
-            <FaReact />
-          </a>
+            <FaReact aria-hidden="true" />
+          </ExternalLink>
           {" · "}
           <button
             type="button"

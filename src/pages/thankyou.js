@@ -11,12 +11,12 @@ const ThankYouPage = () => {
         description="Thank you for contacting me. Your form has been successfully sent. I generally answer within one business day."
         image="/images/shaun-vine-portfolio.jpg"
       />
-      <main className="page">
+      <div className="page">
         <section className="thankyou-page">
           <div>
-            <h2 className="section-title thankyou-page">
+            <h1 className="section-title thankyou-page">
               Thank you for contacting me.
-            </h2>
+            </h1>
             <p>Your form has been successfully sent.</p>
             <p>I generally answer within one business day.</p>
           </div>
@@ -24,7 +24,7 @@ const ThankYouPage = () => {
         <section>
           <OutdoorImages />
         </section>
-      </main>
+      </div>
     </Layout>
   )
 }

@@ -87,7 +87,7 @@ const transcriptContent = (
 const SearchPopupKeyboardSupportPage = () => {
   return (
     <Layout>
-      <main className="page finding-detail">
+      <div className="page finding-detail">
         <article className="finding-detail__article">
           <header className="finding-detail__header">
             <p className="finding-detail__category">
@@ -232,7 +232,7 @@ const SearchPopupKeyboardSupportPage = () => {
 
           <Transcript transcript={transcriptContent} />
         </article>
-      </main>
+      </div>
     </Layout>
   )
 }

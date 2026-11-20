@@ -6,7 +6,7 @@ import Transcript from "../../components/Transcript"
 const SkipToMainContentPage = () => {
   return (
     <Layout>
-      <main className="page finding-detail">
+      <div className="page finding-detail">
         <article className="finding-detail__article">
           <header className="finding-detail__header">
             <p className="finding-detail__category">
@@ -78,7 +78,7 @@ const SkipToMainContentPage = () => {
           </div>
           <Transcript />
         </article>
-      </main>
+      </div>
     </Layout>
   )
 }
