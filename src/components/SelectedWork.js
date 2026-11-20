@@ -38,11 +38,12 @@ const SelectedWork = () => {
         </h2>
       </div>
 
-      {/* The count class lets the CSS pick 1, 2 or 4 columns so the last row
-          is never a single orphan card. */}
+      {/* Full page width here, so up to 4 columns are allowed. ProjectsList
+          picks the count so the last row is never a single orphan card. */}
       <ProjectsList
         projects={projects}
-        className={`selected-work__grid selected-work__grid--count-${projects.length}`}
+        maxColumns={4}
+        className="selected-work__grid"
       />
 
       <p className="selected-work__more">

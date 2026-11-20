@@ -2760,10 +2760,47 @@ p.iterations-count {
   }
 }
 
+/* Project grid, shared by the Work page and homepage Selected work.
+   Mobile first, em breakpoints so it follows the user's text size (WCAG 1.4.4,
+   1.4.10): 1 column by default, 2 from 48em, 3 or 4 from 75em. ProjectsList.js
+   adds one --md-N and one --lg-N class, chosen from the number of cards so the
+   last row is never a single orphan (never auto-fill, which gave 3+1).
+   minmax(0, 1fr) lets a column shrink instead of pushing the page wider. */
 .projects-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
+}
+
+/* A single column is capped so one card doesn't stretch across the page. */
+.projects-list--md-1 {
+  max-width: 36rem;
+}
+
+@media (min-width: 48em) {
+  .projects-list--md-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 75em) {
+  .projects-list--lg-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .projects-list--lg-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .projects-list--lg-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .projects-list--lg-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Only a lone card stays capped at this width. */
+  .projects-list--md-1:not(.projects-list--lg-1) {
+    max-width: none;
+  }
 }
 
 /* Project card (Work page and homepage Selected work). F6 style: white
@@ -2836,37 +2873,12 @@ p.iterations-count {
 /* Selected work (homepage) */
 /*#########*/
 
-/* Cards reuse .project, .project-img and .project-title from the Work page.
-   Only the grid is new. Mobile first, em breakpoints so the layout follows the
-   user's text size (WCAG 1.4.4). Column counts are chosen from how many cards
-   are featured so the last row is never a single orphan card:
-   1 card  -> 1 column, 2 cards -> 2 columns from 48em,
-   3 cards -> 1 column (2 would leave 2+1, 3 is not an approved count),
-   4 cards -> 2 columns from 48em, 4 columns from 75em. */
+/* Cards and grid come from the shared project grid above (ProjectsList.js,
+   maxColumns={4}). Only the spacing is specific to this section; a capped
+   single column is centered under the heading. */
 .selected-work__grid {
-  grid-template-columns: 1fr;
   gap: 1.5rem;
-  max-width: 100%;
-}
-
-/* A lone card or a trio stays one column, capped so it doesn't stretch. */
-.selected-work__grid--count-1,
-.selected-work__grid--count-3 {
-  max-width: 36rem;
   margin-inline: auto;
-}
-
-@media (min-width: 48em) {
-  .selected-work__grid--count-2,
-  .selected-work__grid--count-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 75em) {
-  .selected-work__grid--count-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 }
 
 .selected-work__more {
