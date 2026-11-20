@@ -2764,22 +2764,23 @@ p.iterations-count {
   gap: 2rem;
 }
 
+/* Project card (Work page and homepage Selected work). F6 style: white
+   surface, 4px ink border, square corners, no soft shadow. Ink on white is
+   at least 13.32:1 (ink on cream; white is lighter still). The whole card is
+   one link, so the title is underlined like every other link. */
 .project {
   display: block;
   text-decoration: none;
-  background: var(--blade-light-bg);
-  border: var(--blade-light-border);
-  border-radius: var(--borderRadius);
-  overflow: hidden;
-  box-shadow: var(--shadow-1);
-  padding: 0.5rem;
+  color: var(--color-ink);
+  background: var(--site-surface);
+  border: 4px solid var(--color-ink);
 }
 
-/* The shadow change is not movement, so it applies for everyone. The hover
-   cue is also given to keyboard users through :focus-within. */
+/* The hard ink shadow change is not movement, so it applies for everyone. The
+   same cue is given to keyboard users through :focus-within. */
 .project:hover,
 .project:focus-within {
-  box-shadow: var(--shadow-2);
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 /* The lift and its transition only exist when the user has not asked for
@@ -2795,20 +2796,38 @@ p.iterations-count {
   }
 }
 
+/* Focus ring: currentColor is ink, 16.0:1 on cream, well over the 3:1 needed
+   for UI parts. The offset keeps it clear of the border and the shadow. */
+.project:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* A 4px ink rule separates the image from the title, in the Bauhaus manner. */
 .project-img {
+  display: block;
   height: 14rem;
   width: 100%;
   object-fit: cover;
-  border-radius: calc(var(--borderRadius) - 2px);
+  border-bottom: 4px solid var(--color-ink);
 }
 
 .project-title {
   display: block;
-  text-align: center;
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  color: var(--site-text-dark);
-  font-size: var(--smallText);
+  padding: 1rem;
+  font-family: var(--headingFont);
+  font-weight: 800;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--color-ink);
+  overflow-wrap: break-word; /* a long title can never run out of its card */
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.project:hover .project-title {
+  text-decoration-thickness: 4px;
 }
 
 /*#########*/
