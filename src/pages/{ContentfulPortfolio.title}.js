@@ -54,7 +54,7 @@ const ProjectTemplate = ({ data, location }) => {
               />
             </span>
             <article className="project-info">
-              <h2>{title}</h2>
+              <h1>{title}</h1>
               {description &&
                 documentToReactComponents(JSON.parse(description.raw), options)}
               {tags && tags.length > 0 && (

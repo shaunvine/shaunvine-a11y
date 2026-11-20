@@ -2852,7 +2852,10 @@ p.iterations-count {
   padding: 0;
 }
 
-.project-info h2 {
+.project-info h1 {
+  /* The title is the page's h1 for screen readers, but keeps the h2 size
+     so the page looks the same as before. */
+  font-size: var(--font-size-h2);
   color: var(--site-text-dark);
   margin-bottom: 1rem;
 }
