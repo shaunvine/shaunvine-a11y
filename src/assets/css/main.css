@@ -3057,6 +3057,27 @@ p.iterations-count {
   background: var(--color-blue);
 }
 
+/* Links inside Contentful rich text on the project page. The site link style:
+   dark blue on white is 11.9:1, always underlined (2px, offset 3px), terracotta
+   on hover (5.79:1 on white, and the underline thickens so hover is not shown
+   by colour alone). Focus uses currentColor so the ring matches the text. */
+.richtext-link {
+  color: var(--link-text);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.richtext-link:hover {
+  color: var(--link-hover-text);
+  text-decoration-thickness: 4px;
+}
+
+.richtext-link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
 .portfolio-cards {
   margin: 3rem 0;
 }

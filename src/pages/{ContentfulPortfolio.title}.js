@@ -7,12 +7,26 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { FaArrowRight } from "react-icons/fa"
 import { extractTextFromRaw } from "../utils/extractTextFromRaw"
 
+// Plain text of a rich-text node, so a link with bold or italic text inside it
+// still gets a full accessible name.
+const getNodeText = node =>
+  node.value ?? (node.content || []).map(getNodeText).join("")
+
 const options = {
   renderNode: {
-    hyperlink: node => {
+    // Links open in a new tab, so the accessible name says so (same pattern
+    // as Footer.js). aria-label replaces the link text for screen readers,
+    // so it repeats the full text first.
+    hyperlink: (node, children) => {
       return (
-        <a href={node.data.uri} target="_blank" rel="noopener noreferrer">
-          {node.content[0].value}
+        <a
+          href={node.data.uri}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="richtext-link"
+          aria-label={`${getNodeText(node)} | Opens in new tab`}
+        >
+          {children}
         </a>
       )
     },
