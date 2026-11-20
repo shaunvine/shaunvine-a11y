@@ -1770,7 +1770,8 @@ svg.logo {
    The site's dark blue focus ring (#1E3A4C) would be about 1.3:1 on ink, so the
    footer overrides it below.
    Links keep a 2px underline so they never rely on colour alone (WCAG 1.4.1).
-   Layout is stacked and centred at every size (no breakpoint needed).
+   Layout is stacked and centred below 62em (phones and iPad), and a
+   left-aligned row from 62em up.
    Sizes are in rem and nothing has a fixed height, so text enlargement
    wraps instead of clipping (WCAG 1.4.4). */
 .page-footer {
@@ -1883,6 +1884,30 @@ a.react {
   padding: 0.5rem;
   justify-content: flex-end;
   align-items: center;
+}
+
+@media (min-width: 62em) {
+  .footer-content {
+    flex-direction: row;
+    flex-wrap: wrap; /* wraps rather than clips when text is enlarged */
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .footer-logo {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
+
+  /* The bottom padding above is kept here on purpose. At 62em the footer
+     content is as wide as the viewport minus the 1rem gutters, so the
+     right-hand "Manage cookies" text sits directly above the fixed
+     back-to-top button (right: 1rem, 44px wide) and would be covered
+     without it. */
 }
 /* End Footer */
 
