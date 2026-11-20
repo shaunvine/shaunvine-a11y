@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { FaReact, FaLinkedin } from "react-icons/fa"
+import ExternalLink from "./ExternalLink"
 import logo from "../assets/images/general/IAAP-Cert.png" // <-- Update this path
 
 const Footer = () => {
@@ -13,16 +14,14 @@ const Footer = () => {
             alt="IAAP Certified Professional in Accessibility Core Competencies (CPACC)"
           />
           <div className="footer-social">
-            <a
+            <ExternalLink
               href="https://www.linkedin.com/in/shaun-vine-71683832/"
-              aria-label="Shaun Vine on LinkedIn | Opens in new tab"
+              ariaLabel="Shaun Vine on LinkedIn | Opens in new tab"
               className="footer-social__link"
-              target="_blank"
-              rel="noopener noreferrer"
+              leadingIcon={<FaLinkedin aria-hidden="true" />}
             >
-              <FaLinkedin aria-hidden="true" />
-              <span>LinkedIn</span>
-            </a>
+              LinkedIn
+            </ExternalLink>
             <Link to="/contact" className="footer-social__link">
               <span>Contact</span>
             </Link>
@@ -30,25 +29,21 @@ const Footer = () => {
         </div>
         <p className="footer-text">
           &copy; {new Date().getFullYear()} shaunvine.com — Built with{" "}
-          <a
-            aria-label="Contentful Website | Opens in new tab"
+          <ExternalLink
+            ariaLabel="Contentful Website | Opens in new tab"
             className="gatsby"
             href="https://www.contentful.com/"
-            target="_blank"
-            rel="noopener noreferrer"
           >
-            <span>Contentful</span>
-          </a>{" "}
+            Contentful
+          </ExternalLink>{" "}
           and{" "}
-          <a
-            aria-label="React Website | Opens in new tab"
+          <ExternalLink
+            ariaLabel="React Website | Opens in new tab"
             className="react"
             href="https://react.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             <FaReact aria-hidden="true" />
-          </a>
+          </ExternalLink>
           {" · "}
           <button
             type="button"

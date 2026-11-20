@@ -3,6 +3,7 @@ import SEOmeta from "../components/SEOmeta"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/Layout"
+import ExternalLink from "../components/ExternalLink"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { FaArrowRight } from "react-icons/fa"
 import { extractTextFromRaw } from "../utils/extractTextFromRaw"
@@ -19,15 +20,13 @@ const options = {
     // so it repeats the full text first.
     hyperlink: (node, children) => {
       return (
-        <a
+        <ExternalLink
           href={node.data.uri}
-          target="_blank"
-          rel="noopener noreferrer"
           className="richtext-link"
-          aria-label={`${getNodeText(node)} | Opens in new tab`}
+          ariaLabel={`${getNodeText(node)} | Opens in new tab`}
         >
           {children}
-        </a>
+        </ExternalLink>
       )
     },
   },
